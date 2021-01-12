@@ -1,0 +1,14 @@
+*.blurb
+*Build
+*.DS_Store
+*.gblorb
+*.glk*
+*.iFiction
+*Index
+*manifest.plist
+*Release
+*Reserved
+*.rtf
+*Settings.plist
+*.skein
+*.tiff
