@@ -6,7 +6,7 @@ Include Measured Liquid by Emily Short.
 
 Section 1 - Definition (in place of Section 1I - Definition (for use without Metric Units by Graham Nelson) in Measured Liquid by Emily Short)
 
-A volume is a kind of value. 1.0 tsp (in Imperial units, in tsp) specifies a volume.
+A volume is a kind of value. 1.0 tsp (in US units, in tsp) or 1 teaspoon (in tsp, singular) or 2 teaspoons (in tsp, plural) specifies a volume.
 
 A fluid container has a volume called a fluid capacity. A fluid container has a volume called fluid content. The fluid capacity of a fluid container is usually 50 tsp. The fluid content of a fluid container is usually 0 tsp.
 
@@ -16,15 +16,15 @@ The max volume is a volume that varies. The max volume is 2147483647 tsp.
 
 Section 2 - US Unit Conversions
 
-1 tbsp specifies a volume scaled up by 3.
+1 tbsp (in US units, in tbsp) or 1 tablespoon (in tbsp, singular) or 2 tablespoons (in tbsp, plural) specifies a volume scaled up by 3.
 
-1 fl oz specifies a volume scaled up by 6.
+1 fl oz (in US units, in fl oz) or 1 fluid ounce (in fl oz, singular) or 2 fluid ounces (in fl oz, plural) specifies a volume scaled up by 6.
 
-1 cup specifies a volume scaled up by 48.
+1 cup (in cups, singular) or 1 c (in US units, in cups) or 2 cups (in cups, plural) specifies a volume scaled up by 48.
 
-1 quart specifies a volume scaled up by 192.
+1 qt (in US units, in quarts) 1 quart (in quarts, singular) or 2 quarts (in quarts, plural) specifies a volume scaled up by 192.
 
-1 gallon specifies a volume scaled up by 768.
+1 gal (in US units, in gallons) or 1 gallon (in gallons, singular) or 2 gallons (in gallons, plural) specifies a volume scaled up by 768.
 
 Section 3 - Kitchen
 
@@ -112,10 +112,10 @@ A spice rack is here. It is fixed in place.
 
 A pantry cabinet is here. It is fixed in place.
 
-A bin 1 is in the pantry cabinet. It is a fluid container with fluid capacity 128 fl oz. The fluid content of the bin 1 is 96 fl oz. The liquid of the bin 1 is all-purpose flour.
+A bin 1 is in the pantry cabinet. It is a fluid container with fluid capacity 4 quarts and fluid content 3.1 quarts and liquid all-purpose flour.
 
-A bin 2 is in the pantry cabinet. It is a fluid container with fluid capacity 128 fl oz. The fluid content of the bin 2 is 13 fl oz. The liquid of the bin 2 is bread flour.
+A bin 2 is in the pantry cabinet. It is a fluid container with fluid capacity 4 quarts and fluid content 1.4 cups and liquid bread flour.
 
-A cardboard box is in the pantry cabinet. It is a fluid container with fluid capacity 16 fl oz and fluid content 9 fl oz and liquid white sugar.
+A cardboard box is in the pantry cabinet. It is a fluid container with fluid capacity 2.5 cups and fluid content 1.9 cups and liquid white sugar.
 
 The Dining Room is a room. It is north of the Kitchen. "Dining room description."
