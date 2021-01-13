@@ -4,8 +4,14 @@
 
 Include Measured Liquid by Emily Short.
 
+Table of Liquids (continued)
+liquid	potable	flavor	description (text)
+bread flour	false	--	--
+all-purpose flour	false	--	--
+active dry yeast	false	--	--
+
 A recipe is carried by the player. The description is "Dead-Easy Bread[line break]
-1 1/2 lb all-purpose flour[line break]
+1 1/2 lb (about 6 1/4 cups) all-purpose flour[line break]
 1 tsp salt[line break]
 2 cups water[line break]
 1 tsp sugar[line break]
@@ -33,9 +39,11 @@ An medium east countertop is a supporter in the Kitchen. It is fixed in place.
 
 Understand "medium east counter" as medium east countertop.
 
-A refrigerator is here. It is fixed in place.
+A refrigerator is here. It is fixed in place. It is a container.
 
 Understand "fridge" as refrigerator.
+
+A small bottle is in the refrigerator. It is a fluid container with fluid capacity 4.0 fl oz and fluid content 2.3 fl oz and liquid active dry yeast.
 
 A fume hood is here. It is fixed in place.
 
@@ -72,5 +80,9 @@ A towel cabinet is here. It is fixed in place.
 A spice rack is here. It is fixed in place.
 
 A pantry cabinet is here. It is fixed in place.
+
+A bin 1 is in the pantry cabinet. It is a fluid container with fluid capacity 128.0 fl oz. The fluid content of the bin 1 is 96.0 fl oz. The liquid of the bin 1 is all-purpose flour.
+
+A bin 2 is in the pantry cabinet. It is a fluid container with fluid capacity 128.0 fl oz. The fluid content of the bin 2 is 13.2 fl oz. The liquid of the bin 2 is bread flour.
 
 The Dining Room is a room. It is north of the Kitchen. "Dining room description."
