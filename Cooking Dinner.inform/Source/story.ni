@@ -1,4 +1,4 @@
-"Cooking Dinner" by MoyTW
+"This Kitchen Is Too Cluttered" by MoyTW
 
 [ Includes ]
 
@@ -14,7 +14,7 @@ The sip size is a volume that varies. The sip size is usually 1 tsp.
 
 The max volume is a volume that varies. The max volume is 2147483647 tsp.
 
-Section 2 - US Unit Conversions
+Volume 1 - Setup
 
 1 tbsp (in US units, in tbsp) or 1 tablespoon (in tbsp, singular) or 2 tablespoons (in tbsp, plural) specifies a volume scaled up by 3.
 
@@ -26,14 +26,15 @@ Section 2 - US Unit Conversions
 
 1 gal (in US units, in gallons) or 1 gallon (in gallons, singular) or 2 gallons (in gallons, plural) specifies a volume scaled up by 768.
 
-Section 3 - Kitchen
-
 Table of Liquids (continued)
 liquid	potable	flavor	description (text)
-bread flour	false	--	--
 all-purpose flour	false	--	--
+bread flour	false	--	--
+cake flour	false	--	--
 active dry yeast	false	--	--
 white sugar	false	--	--
+
+Volume 2 - Content
 
 A recipe is carried by the player. The description is "Dead-Easy Bread[line break]
 1 1/2 lb (about 6 1/4 cups) all-purpose flour[line break]
@@ -50,11 +51,29 @@ The Kitchen is a room. "Objectively, your kitchen has a fair amount of counter s
 
 A kitchen sink is here. It is fixed in place. It is a liquid stream. The liquid of the kitchen sink is water. [ Hunt down the code for "preferred for drinking" and make the sink "preferred for filling" so you don't have to specify sink every time. ]
 
-A washing machine is here. It is fixed in place.
+A dishwashing machine is a supporter in the Kitchen. It is fixed in place.
+
+Understand "washing machine" as dishwashing machine.
+
+A drying rack is on the dishwashing machine. It is a container.
 
 A large L-shaped countertop is a supporter in the Kitchen. It is fixed in place.
 
 Understand "large L-shaped counter" as large L-shaped countertop.
+
+A stand mixer is on the large L-shaped countertop. It is a container.
+
+A container called the mixer bowl is in the stand mixer.
+
+Check inserting something into the stand mixer:
+	if the noun is not the mixer bowl,
+	  say "You can't put that into the stand mixer!" instead.
+
+Instead of putting the mixer bowl on the stand mixer:
+	try inserting the mixer bowl into the stand mixer.
+
+Instead of tying the mixer bowl to the stand mixer:
+	try inserting the mixer bowl into the stand mixer.
 
 A small west countertop is a supporter in the Kitchen. It is fixed in place.
 
@@ -82,12 +101,6 @@ A double wall oven is here. It is fixed in place.
 
 A instrument wall hook rack is a supporter in the Kitchen. It is fixed in place.
 
-A 1/4-tsp measuring spoon is on the instrument wall hook rack. It is a fluid container with fluid capacity 0.25 tsp.
-
-A 1/2-tsp measuring spoon is on the instrument wall hook rack. It is a fluid container with fluid capacity 0.5 tsp.
-
-A 1-tsp measuring spoon is on the instrument wall hook rack. It is a fluid container with fluid capacity 1 tsp.
-
 A saucepan wall hook rack is here. It is fixed in place.
 
 A knife block is here. It is fixed in place.
@@ -95,6 +108,12 @@ A knife block is here. It is fixed in place.
 A utensil drawer is here. It is fixed in place.
 
 An instrument cabinet is here. It is fixed in place. It is a container.
+
+A 1/4-tsp measuring spoon is in the instrument cabinet. It is a fluid container with fluid capacity 0.25 tsp.
+
+A 1/2-tsp measuring spoon is in the instrument cabinet. It is a fluid container with fluid capacity 0.5 tsp.
+
+A 1-tsp measuring spoon is in the instrument cabinet. It is a fluid container with fluid capacity 1 tsp.
 
 A 1/4-cup dry measuring cup is in the instrument cabinet. It is a fluid container with fluid capacity 2 fl oz.
 
@@ -112,9 +131,11 @@ A spice rack is here. It is fixed in place.
 
 A pantry cabinet is here. It is fixed in place.
 
-A bin 1 is in the pantry cabinet. It is a fluid container with fluid capacity 4 quarts and fluid content 3.1 quarts and liquid all-purpose flour.
+A top bin is in the pantry cabinet. It is a fluid container with fluid capacity 4 quarts and fluid content 3.1 quarts and liquid all-purpose flour.
 
-A bin 2 is in the pantry cabinet. It is a fluid container with fluid capacity 4 quarts and fluid content 1.4 cups and liquid bread flour.
+A middle bin is in the pantry cabinet. It is a fluid container with fluid capacity 4 quarts and fluid content 1.4 cups and liquid bread flour.
+
+A bottom bin is in the pantry cabinet. It is a fluid container with fluid capacity 4 quarts and fluid content 2.7 cups and liquid cake flour.
 
 A cardboard box is in the pantry cabinet. It is a fluid container with fluid capacity 2.5 cups and fluid content 1.9 cups and liquid white sugar.
 
