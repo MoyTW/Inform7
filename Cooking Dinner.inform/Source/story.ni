@@ -1,5 +1,9 @@
 "Cooking Dinner" by MoyTW
 
+[ Includes ]
+
+Include Measured Liquid by Emily Short.
+
 A recipe is carried by the player. The description is "Dead-Easy Bread[line break]
 1 1/2 lb all-purpose flour[line break]
 1 tsp salt[line break]
