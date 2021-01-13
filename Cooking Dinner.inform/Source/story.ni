@@ -9,6 +9,7 @@ liquid	potable	flavor	description (text)
 bread flour	false	--	--
 all-purpose flour	false	--	--
 active dry yeast	false	--	--
+white sugar	false	--	--
 
 A recipe is carried by the player. The description is "Dead-Easy Bread[line break]
 1 1/2 lb (about 6 1/4 cups) all-purpose flour[line break]
@@ -55,7 +56,9 @@ Understand "stove" as gas stovetop.
 
 A double wall oven is here. It is fixed in place.
 
-A instrument wall hook rack is here. It is fixed in place.
+A instrument wall hook rack is a supporter in the Kitchen. It is fixed in place.
+
+A 1-tsp measuring spoon is on the instrument wall hook rack. It is a fluid container with fluid capacity 0.2 fl oz. It is graduated. [ TODO: Either import metric units or redefine the units such that we can have more than tenths of an fluid ounce! ]
 
 A saucepan wall hook rack is here. It is fixed in place.
 
@@ -84,5 +87,7 @@ A pantry cabinet is here. It is fixed in place.
 A bin 1 is in the pantry cabinet. It is a fluid container with fluid capacity 128.0 fl oz. The fluid content of the bin 1 is 96.0 fl oz. The liquid of the bin 1 is all-purpose flour.
 
 A bin 2 is in the pantry cabinet. It is a fluid container with fluid capacity 128.0 fl oz. The fluid content of the bin 2 is 13.2 fl oz. The liquid of the bin 2 is bread flour.
+
+A cardboard box is in the pantry cabinet. It is a fluid container with fluid capacity 16.0 fl oz and fluid content 9.3 fl oz and liquid white sugar.
 
 The Dining Room is a room. It is north of the Kitchen. "Dining room description."
