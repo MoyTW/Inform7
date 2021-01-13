@@ -2,7 +2,6 @@
 
 [ Includes ]
 
-Include Metric Units by Graham Nelson.
 Include Measured Liquid by Emily Short.
 
 Table of Liquids (continued)
@@ -45,7 +44,7 @@ A refrigerator is here. It is fixed in place. It is a container.
 
 Understand "fridge" as refrigerator.
 
-A small bottle is in the refrigerator. It is a fluid container with fluid capacity 120 ml and fluid content 69 ml and liquid active dry yeast.
+A small bottle is in the refrigerator. It is a fluid container with fluid capacity 4.0 fl oz and fluid content 2.3 fl oz and liquid active dry yeast.
 
 A fume hood is here. It is fixed in place.
 
@@ -59,7 +58,7 @@ A double wall oven is here. It is fixed in place.
 
 A instrument wall hook rack is a supporter in the Kitchen. It is fixed in place.
 
-A 1-tsp measuring spoon is on the instrument wall hook rack. It is a fluid container with fluid capacity 5 ml.
+A 1-tsp measuring spoon is on the instrument wall hook rack. It is a fluid container with fluid capacity 0.2 fl oz. It is graduated. [ TODO: Either import metric units or redefine the units such that we can have more than tenths of an fluid ounce! ]
 
 A saucepan wall hook rack is here. It is fixed in place.
 
@@ -69,15 +68,15 @@ A utensil drawer is here. It is fixed in place.
 
 An instrument cabinet is here. It is fixed in place. It is a container.
 
-A 1/4-cup dry measuring cup is in the instrument cabinet. It is a fluid container with fluid capacity 60 ml.
+A 1/4-cup dry measuring cup is in the instrument cabinet. It is a fluid container with fluid capacity 2.0 fl oz.
 
-A 1/3-cup dry measuring cup is in the instrument cabinet. It is a fluid container with fluid capacity 80 ml.
+A 1/3-cup dry measuring cup is in the instrument cabinet. It is a fluid container with fluid capacity 2.7 fl oz.
 
-A 1/2-cup dry measuring cup is in the instrument cabinet. It is a fluid container with fluid capacity 120 ml.
+A 1/2-cup dry measuring cup is in the instrument cabinet. It is a fluid container with fluid capacity 4.0 fl oz.
 
-A 1-cup dry measuring cup is in the instrument cabinet. It is a fluid container with fluid capacity 240 ml.
+A 1-cup dry measuring cup is in the instrument cabinet. It is a fluid container with fluid capacity 8.0 fl oz.
 
-A 4-cup wet measuring cup is in the instrument cabinet. It is a fluid container with fluid capacity 960 ml. [ TODO: override output so you don't report in metric units! It is graduated. ]
+A 4-cup wet measuring cup is in the instrument cabinet. It is a fluid container with fluid capacity 32.0 fl oz. It is graduated.
 
 A towel cabinet is here. It is fixed in place.
 
@@ -85,10 +84,10 @@ A spice rack is here. It is fixed in place.
 
 A pantry cabinet is here. It is fixed in place.
 
-A bin 1 is in the pantry cabinet. It is a fluid container with fluid capacity 3.84 l. The fluid content of the bin 1 is 2.88 l. The liquid of the bin 1 is all-purpose flour.
+A bin 1 is in the pantry cabinet. It is a fluid container with fluid capacity 128.0 fl oz. The fluid content of the bin 1 is 96.0 fl oz. The liquid of the bin 1 is all-purpose flour.
 
-A bin 2 is in the pantry cabinet. It is a fluid container with fluid capacity 3.84 l. The fluid content of the bin 2 is 0.39 l. The liquid of the bin 2 is bread flour.
+A bin 2 is in the pantry cabinet. It is a fluid container with fluid capacity 128.0 fl oz. The fluid content of the bin 2 is 13.2 fl oz. The liquid of the bin 2 is bread flour.
 
-A cardboard box is in the pantry cabinet. It is a fluid container with fluid capacity 480 ml and fluid content 279 ml and liquid white sugar.
+A cardboard box is in the pantry cabinet. It is a fluid container with fluid capacity 16.0 fl oz and fluid content 9.3 fl oz and liquid white sugar.
 
 The Dining Room is a room. It is north of the Kitchen. "Dining room description."
