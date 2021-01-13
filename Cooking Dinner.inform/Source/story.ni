@@ -4,6 +4,30 @@
 
 Include Measured Liquid by Emily Short.
 
+Section 1 - Definition (in place of Section 1I - Definition (for use without Metric Units by Graham Nelson) in Measured Liquid by Emily Short)
+
+A volume is a kind of value. 1.0 tsp (in Imperial units, in tsp) specifies a volume.
+
+A fluid container has a volume called a fluid capacity. A fluid container has a volume called fluid content. The fluid capacity of a fluid container is usually 50 tsp. The fluid content of a fluid container is usually 0 tsp.
+
+The sip size is a volume that varies. The sip size is usually 1 tsp.
+
+The max volume is a volume that varies. The max volume is 2147483647 tsp.
+
+Section 2 - US Unit Conversions
+
+1 tbsp specifies a volume scaled up by 3.
+
+1 fl oz specifies a volume scaled up by 6.
+
+1 cup specifies a volume scaled up by 48.
+
+1 quart specifies a volume scaled up by 192.
+
+1 gallon specifies a volume scaled up by 768.
+
+Section 3 - Kitchen
+
 Table of Liquids (continued)
 liquid	potable	flavor	description (text)
 bread flour	false	--	--
@@ -44,7 +68,7 @@ A refrigerator is here. It is fixed in place. It is a container.
 
 Understand "fridge" as refrigerator.
 
-A small bottle is in the refrigerator. It is a fluid container with fluid capacity 4.0 fl oz and fluid content 2.3 fl oz and liquid active dry yeast.
+A small bottle is in the refrigerator. It is a fluid container with fluid capacity 4 fl oz and fluid content 2.4 fl oz and liquid active dry yeast.
 
 A fume hood is here. It is fixed in place.
 
@@ -58,7 +82,11 @@ A double wall oven is here. It is fixed in place.
 
 A instrument wall hook rack is a supporter in the Kitchen. It is fixed in place.
 
-A 1-tsp measuring spoon is on the instrument wall hook rack. It is a fluid container with fluid capacity 0.2 fl oz. It is graduated. [ TODO: Either import metric units or redefine the units such that we can have more than tenths of an fluid ounce! ]
+A 1/4-tsp measuring spoon is on the instrument wall hook rack. It is a fluid container with fluid capacity 0.25 tsp.
+
+A 1/2-tsp measuring spoon is on the instrument wall hook rack. It is a fluid container with fluid capacity 0.5 tsp.
+
+A 1-tsp measuring spoon is on the instrument wall hook rack. It is a fluid container with fluid capacity 1 tsp.
 
 A saucepan wall hook rack is here. It is fixed in place.
 
@@ -68,15 +96,15 @@ A utensil drawer is here. It is fixed in place.
 
 An instrument cabinet is here. It is fixed in place. It is a container.
 
-A 1/4-cup dry measuring cup is in the instrument cabinet. It is a fluid container with fluid capacity 2.0 fl oz.
+A 1/4-cup dry measuring cup is in the instrument cabinet. It is a fluid container with fluid capacity 2 fl oz.
 
-A 1/3-cup dry measuring cup is in the instrument cabinet. It is a fluid container with fluid capacity 2.7 fl oz.
+A 1/3-cup dry measuring cup is in the instrument cabinet. It is a fluid container with fluid capacity 16 tsp.
 
-A 1/2-cup dry measuring cup is in the instrument cabinet. It is a fluid container with fluid capacity 4.0 fl oz.
+A 1/2-cup dry measuring cup is in the instrument cabinet. It is a fluid container with fluid capacity 4 fl oz.
 
-A 1-cup dry measuring cup is in the instrument cabinet. It is a fluid container with fluid capacity 8.0 fl oz.
+A 1-cup dry measuring cup is in the instrument cabinet. It is a fluid container with fluid capacity 8 fl oz.
 
-A 4-cup wet measuring cup is in the instrument cabinet. It is a fluid container with fluid capacity 32.0 fl oz. It is graduated.
+A 4-cup wet measuring cup is in the instrument cabinet. It is a fluid container with fluid capacity 32 fl oz. It is graduated.
 
 A towel cabinet is here. It is fixed in place.
 
@@ -84,10 +112,10 @@ A spice rack is here. It is fixed in place.
 
 A pantry cabinet is here. It is fixed in place.
 
-A bin 1 is in the pantry cabinet. It is a fluid container with fluid capacity 128.0 fl oz. The fluid content of the bin 1 is 96.0 fl oz. The liquid of the bin 1 is all-purpose flour.
+A bin 1 is in the pantry cabinet. It is a fluid container with fluid capacity 128 fl oz. The fluid content of the bin 1 is 96 fl oz. The liquid of the bin 1 is all-purpose flour.
 
-A bin 2 is in the pantry cabinet. It is a fluid container with fluid capacity 128.0 fl oz. The fluid content of the bin 2 is 13.2 fl oz. The liquid of the bin 2 is bread flour.
+A bin 2 is in the pantry cabinet. It is a fluid container with fluid capacity 128 fl oz. The fluid content of the bin 2 is 13 fl oz. The liquid of the bin 2 is bread flour.
 
-A cardboard box is in the pantry cabinet. It is a fluid container with fluid capacity 16.0 fl oz and fluid content 9.3 fl oz and liquid white sugar.
+A cardboard box is in the pantry cabinet. It is a fluid container with fluid capacity 16 fl oz and fluid content 9 fl oz and liquid white sugar.
 
 The Dining Room is a room. It is north of the Kitchen. "Dining room description."
