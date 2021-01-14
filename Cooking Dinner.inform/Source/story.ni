@@ -74,13 +74,19 @@ Heat oven to 450 degrees and bake for ~20-25 minutes, then remove and cool.
 
 The Kitchen is a room. "Objectively, your kitchen has a fair amount of counter space, but it never feels that way. The west and east walls are lined with appliances or countertops, with as many cabinets as can be crammed above of below them. Midday light shines through the glass sliding door to the north, through which you can see the patio. To the south lies the dining room."
 
+[ Sink ]
+
 A kitchen sink is here. It is fixed in place. It is a liquid stream. The liquid of the kitchen sink is water. [ Hunt down the code for "preferred for drinking" and make the sink "preferred for filling" so you don't have to specify sink every time. ]
+
+[ Dish washer ]
 
 A dishwashing machine is a supporter in the Kitchen. It is fixed in place.
 
 Understand "washing machine" as dishwashing machine.
 
 A drying rack is on the dishwashing machine. It is a container.
+
+[ Large counter ]
 
 A large L-shaped countertop is a supporter in the Kitchen. It is fixed in place.
 
@@ -90,27 +96,37 @@ An abstract stand mixer called new stand mixer is on the large L-shaped countert
 
 An abstract mixer bowl called mixer bowl is in the new stand mixer.
 
-An abstract stand mixer called old stand mixer is on the large L-shaped countertop.
+An plastic attachments tub is a container on the large L-shaped countertop.
 
-An abstract mixer attachment called the paddle attachment is in the new stand mixer.
+An abstract mixer attachment called the paddle attachment is in the plastic attachments tub.
 
-An abstract mixer attachment called dough hook attachment is on top of the large L-shaped countertop.
+An abstract mixer attachment called dough hook attachment is in the plastic attachments tub.
 
-An abstract mixer attachment called whisk attachment is on top of the large L-shaped countertop.
+An abstract mixer attachment called whisk attachment is in the plastic attachments tub.
+
+A knife block is a container on the large L-shaped countertop. It is fixed in place.
+
+[ Small counter ]
 
 A small west countertop is a supporter in the Kitchen. It is fixed in place.
 
 Understand "small west counter" as small west countertop.
 
+[ Medium counter ]
+
 An medium east countertop is a supporter in the Kitchen. It is fixed in place.
 
 Understand "medium east counter" as medium east countertop.
+
+[ Fridge ]
 
 A refrigerator is here. It is fixed in place. It is a container.
 
 Understand "fridge" as refrigerator.
 
 A small bottle is in the refrigerator. It is a fluid container with fluid capacity 4 fl oz and fluid content 2.4 fl oz and liquid active dry yeast.
+
+[ Stove & fume hood ]
 
 A fume hood is here. It is fixed in place.
 
@@ -120,15 +136,23 @@ The upper-left burner, the upper-right burner, the lower-left burner, and the lo
 
 Understand "stove" as gas stovetop.
 
+[ Oven ]
+
 A double wall oven is here. It is fixed in place.
+
+[ Spoon & spatula rack ]
 
 A instrument wall hook rack is a supporter in the Kitchen. It is fixed in place.
 
+[ Saucepan rack ]
+
 A saucepan wall hook rack is here. It is fixed in place.
 
-A knife block is here. It is fixed in place.
+[ Utensil drawer ]
 
 A utensil drawer is here. It is fixed in place.
+
+[ Instrument cabinet ]
 
 An instrument cabinet is here. It is fixed in place. It is a container.
 
@@ -148,9 +172,15 @@ A 1-cup dry measuring cup is in the instrument cabinet. It is a fluid container 
 
 A 4-cup wet measuring cup is in the instrument cabinet. It is a fluid container with fluid capacity 32 fl oz. It is graduated.
 
+[ Towel cabinet ]
+
 A towel cabinet is here. It is fixed in place.
 
+[ Spice rack ]
+
 A spice rack is here. It is fixed in place.
+
+[ Pantry ]
 
 A pantry cabinet is here. It is fixed in place.
 
