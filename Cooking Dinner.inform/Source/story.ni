@@ -36,6 +36,31 @@ white sugar	false	--	--
 
 Volume 2 - Content
 
+Book 1 - Object Rules
+
+Section 1 - Stand Mixer
+
+An abstract stand mixer is a kind of container.
+An abstract mixer bowl is a kind of container.
+An abstract mixer attachment is a kind of thing.
+
+Check inserting something into an abstract stand mixer:
+	if the noun is not an abstract mixer bowl and the noun is not an abstract mixer attachment:
+		say "You can't put that into the stand mixer!" instead;
+	otherwise if the noun is an abstract mixer attachment and the second noun contains an abstract mixer attachment:
+		say "There's already an attachment!" instead;
+
+Instead of putting an abstract mixer attachment on an abstract stand mixer:
+	try inserting the noun into the second noun.
+Instead of tying an abstract mixer attachment to an abstract stand mixer:
+	try inserting the noun into the second noun.
+Instead of putting an abstract mixer bowl on an abstract stand mixer:
+	try inserting the noun into the second noun.
+Instead of tying an abstract mixer bowl to an abstract stand mixer:
+	try inserting the noun into the second noun.
+
+Book 2 - Rooms
+
 A recipe is carried by the player. The description is "Dead-Easy Bread[line break]
 1 1/2 lb (about 6 1/4 cups) all-purpose flour[line break]
 1 tsp salt[line break]
@@ -61,37 +86,17 @@ A large L-shaped countertop is a supporter in the Kitchen. It is fixed in place.
 
 Understand "large L-shaped counter" as large L-shaped countertop.
 
-Section 1 - Stand Mixer
+An abstract stand mixer called new stand mixer is on the large L-shaped countertop.
 
-A stand mixer is on the large L-shaped countertop. It is a container.
+An abstract mixer bowl called mixer bowl is in the new stand mixer.
 
-A mixer attachment is a kind of thing.
+An abstract stand mixer called old stand mixer is on the large L-shaped countertop.
 
-Instead of putting a mixer attachment on the stand mixer:
-	try inserting the noun into the stand mixer.
+An abstract mixer attachment called the paddle attachment is in the new stand mixer.
 
-Instead of tying the mixer attachment to the stand mixer:
-	try inserting the noun into the stand mixer.
+An abstract mixer attachment called dough hook attachment is on top of the large L-shaped countertop.
 
-A container called the mixer bowl is in the stand mixer.
-
-Check inserting something into the stand mixer:
-	if the noun is not the mixer bowl and the noun is not a mixer attachment:
-		say "You can't put that into the stand mixer!" instead;
-	otherwise if the noun is a mixer attachment and the stand mixer contains a mixer attachment:
-		say "There's already an attachment!" instead;
-
-Instead of putting the mixer bowl on the stand mixer:
-	try inserting the mixer bowl into the stand mixer.
-
-Instead of tying the mixer bowl to the stand mixer:
-	try inserting the mixer bowl into the stand mixer.
-
-A mixer attachment called the paddle attachment is in the stand mixer.
-
-A mixer attachment called the dough hook attachment is on top of the large L-shaped countertop.
-
-A mixer attachment called the whisk attachment is on top of the large L-shaped countertop.
+An abstract mixer attachment called whisk attachment is on top of the large L-shaped countertop.
 
 A small west countertop is a supporter in the Kitchen. It is fixed in place.
 
