@@ -34,6 +34,8 @@ cake flour	false	--	--
 active dry yeast	false	--	--
 white sugar	false	--	--
 
+A temperature is a kind of value. 1 degree farenheit (singular) or 2 degrees farenheit (plural) or 1 F specifies a temperature.
+
 Volume 2 - Content
 
 Book 1 - Object Rules
@@ -58,6 +60,48 @@ Instead of putting an abstract mixer bowl on an abstract stand mixer:
 	try inserting the noun into the second noun.
 Instead of tying an abstract mixer bowl to an abstract stand mixer:
 	try inserting the noun into the second noun.
+
+Section 2 - Oven
+
+[ Oven states:
+	OFF
+	SET TEMP <Bake/Broil> AT <Temperature>
+	Temperature of [X] degrees, if temperature < X then PREHEATING
+  Oven usage:
+	set oven to bake <- requests that you specify a temperature
+	set oven to bake at 400 degrees farenheit
+	set oven to broil <- requests that you specify a temperature.
+	set oven to 400 degrees farenheit <- asks if you you want to bake or broil
+	x oven <- to see the current settings and temperature
+	set timer to 15 minutes
+	stop oven
+	turn oven off / turn off oven
+]
+An abstract oven is a kind of container. It is openable. It is usually closed. An abstract oven has a temperature called current temperature. The current temperature of an abstract oven is usually 0 F.
+
+A bake button is a kind of device. A bake button is part of every abstract oven.
+A broil button is a kind of device. A broil button is part of every abstract oven.
+
+A temperature dial is a kind of thing. A temperature dial has a temperature called target temperature. The target temperature of a temperature dial is usually 0 F. A temperature dial is part of every abstract oven.
+
+Understand "set [temperature dial] to [temperature]" as setting it by temperature. Setting it by temperature is an action applying to one thing and one temperature.
+
+Instead of setting a temperature dial to something:
+	say "The dial only accepts degrees farenheit (ex: 275 degrees farenheit/275 F)"
+
+Check setting a temperature dial by temperature:
+	if the temperature understood is less than 200 F:
+		say "The minimum temperature for the oven is 200 F." instead;
+	otherwise if the temperature understood is greater than 500 F:
+		say "The dial only goess to 500 F." instead;
+
+Carry out setting a temperature dial by temperature:
+	now the target temperature of the noun is the temperature understood.
+
+Report setting a temperature dial by temperature:
+	say "You set [the noun] to [temperature understood]."
+
+Test oven with "set upper oven's dial to asdf/set upper oven's dial to 3/set upper oven's dial to 3 F/set upper oven's dial to -3 F/set upper oven's dial to 3.5 F/set upper oven's dial to 9999 F/set upper oven's dial to 250 degrees farenheit"
 
 Book 2 - Rooms
 
@@ -138,7 +182,9 @@ Understand "stove" as gas stovetop.
 
 [ Oven ]
 
-A double wall oven is here. It is fixed in place.
+A double wall oven is here. It is fixed in place. 
+The upper oven is an abstract oven. It is part of the double wall oven.
+The lower oven is an abstract oven. It is part of the double wall oven.
 
 [ Spoon & spatula rack ]
 
