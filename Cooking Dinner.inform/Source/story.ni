@@ -61,19 +61,37 @@ A large L-shaped countertop is a supporter in the Kitchen. It is fixed in place.
 
 Understand "large L-shaped counter" as large L-shaped countertop.
 
+Section 1 - Stand Mixer
+
 A stand mixer is on the large L-shaped countertop. It is a container.
+
+A mixer attachment is a kind of thing.
+
+Instead of putting a mixer attachment on the stand mixer:
+	try inserting the noun into the stand mixer.
+
+Instead of tying the mixer attachment to the stand mixer:
+	try inserting the noun into the stand mixer.
 
 A container called the mixer bowl is in the stand mixer.
 
 Check inserting something into the stand mixer:
-	if the noun is not the mixer bowl,
-	  say "You can't put that into the stand mixer!" instead.
+	if the noun is not the mixer bowl and the noun is not a mixer attachment:
+		say "You can't put that into the stand mixer!" instead;
+	otherwise if the noun is a mixer attachment and the stand mixer contains a mixer attachment:
+		say "There's already an attachment!" instead;
 
 Instead of putting the mixer bowl on the stand mixer:
 	try inserting the mixer bowl into the stand mixer.
 
 Instead of tying the mixer bowl to the stand mixer:
 	try inserting the mixer bowl into the stand mixer.
+
+A mixer attachment called the paddle attachment is in the stand mixer.
+
+A mixer attachment called the dough hook attachment is on top of the large L-shaped countertop.
+
+A mixer attachment called the whisk attachment is on top of the large L-shaped countertop.
 
 A small west countertop is a supporter in the Kitchen. It is fixed in place.
 
