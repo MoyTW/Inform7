@@ -77,31 +77,79 @@ Section 2 - Oven
 	stop oven
 	turn oven off / turn off oven
 ]
-An abstract oven is a kind of container. It is openable. It is usually closed. An abstract oven has a temperature called current temperature. The current temperature of an abstract oven is usually 0 F.
+Oven status is a kind of value. The oven statuses are off, bake, and broil.
 
-A bake button is a kind of device. A bake button is part of every abstract oven.
-A broil button is a kind of device. A broil button is part of every abstract oven.
+An abstract oven is a kind of container. It is openable. It is usually closed.
+An abstract oven has a temperature called current temperature. The current temperature of an abstract oven is usually 0 F.
+An abstract oven has a temperature called target temperature. The target temperature of an abstract oven is usually 0 F.
+An abstract oven has an oven status called target status. The target status of an abstract oven is usually OFF.
 
-A temperature dial is a kind of thing. A temperature dial has a temperature called target temperature. The target temperature of a temperature dial is usually 0 F. A temperature dial is part of every abstract oven.
+Instead of setting an abstract oven to something:
+	say "You can set the oven to bake, broil, or off, or you can set it to a target temperature, in degrees farenheit."
 
-Understand "set [temperature dial] to [temperature]" as setting it by temperature. Setting it by temperature is an action applying to one thing and one temperature.
+Understand "set [abstract oven] to [oven status]" as setting it by oven status. Setting it by oven status is an action applying to one thing and one oven status.
 
-Instead of setting a temperature dial to something:
-	say "The dial only accepts degrees farenheit (ex: 275 degrees farenheit/275 F)"
+Carry out setting an abstract oven by oven status:
+	if the oven status understood is off:
+		if the target status of the noun is off:
+			say "It's already off.";
+		otherwise:
+			say "You hit the OFF button on the oven, clearing the [target status of the noun] and resetting the target temperature to 0 F.";
+			now the target status of the noun is off;
+			now the target temperature of the noun is 0 F;
+	otherwise if the oven status understood is bake:
+		if the target temperature of the noun is 0 F:
+			say "You hit the bake button, but the oven buzzes with complaint. It needs a target temperature first.";
+		otherwise if the target status of the noun is off:
+			say "You hit the bake button and press start, beginning to heat the oven.";
+			now the target status of the noun is bake;
+		otherwise if the target status of the noun is bake:
+			say "It's already set to bake.";
+		otherwise if the target status of the noun is broil:
+			say "You switch the oven from broil to bake.";
+			now the target status of the noun is bake;
+	otherwise if the oven status understood is broil:
+		if the target temperature of the noun is 0 F:
+			say "You hit the broil button, but the oven buzzes with complaint. It needs a target temperature first.";
+		otherwise if the target status of the noun is off:
+			say "You hit the broil button and press start, beginning to heat the oven.";
+			now the target status of the noun is broil;
+		otherwise if the target status of the noun is bake:
+			say "You switch the oven from bake to broil.";
+			now the target status of the noun is broil;
+		otherwise if the target status of the noun is broil:
+			say "The oven is already set to broil.";
 
-Check setting a temperature dial by temperature:
+Understand "set [abstract oven] to [temperature]" as setting it by temperature. Setting it by temperature is an action applying to one thing and one temperature.
+
+Check setting an abstract oven by temperature:
 	if the temperature understood is less than 200 F:
 		say "The minimum temperature for the oven is 200 F." instead;
 	otherwise if the temperature understood is greater than 500 F:
 		say "The dial only goess to 500 F." instead;
 
-Carry out setting a temperature dial by temperature:
+Carry out setting an abstract oven by temperature:
 	now the target temperature of the noun is the temperature understood.
 
-Report setting a temperature dial by temperature:
+Report setting an abstract oven by temperature:
 	say "You set [the noun] to [temperature understood]."
 
-Test oven with "set upper oven's dial to asdf/set upper oven's dial to 3/set upper oven's dial to 3 F/set upper oven's dial to -3 F/set upper oven's dial to 3.5 F/set upper oven's dial to 9999 F/set upper oven's dial to 250 degrees farenheit"
+Test oven with "
+set upper oven to asdf/
+set upper oven to bake/
+set upper oven to broil/
+set upper oven to off/
+set upper oven to 3/
+set upper oven to 3 F/
+set upper oven to 9999 F/
+set upper oven to 250 degrees farenheit/
+set upper oven to bake/
+set upper oven to broil/
+set upper oven to broil/
+set upper oven to bake/
+set upper oven to off/
+set upper oven to off
+"
 
 Book 2 - Rooms
 
