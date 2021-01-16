@@ -16,6 +16,8 @@ The max volume is a volume that varies. The max volume is 2147483647 tsp.
 
 Volume 1 - Setup
 
+Section 1 - Definitions
+
 1 tbsp (in US units, in tbsp) or 1 tablespoon (in tbsp, singular) or 2 tablespoons (in tbsp, plural) specifies a volume scaled up by 3.
 
 1 fl oz (in US units, in fl oz) or 1 fluid ounce (in fl oz, singular) or 2 fluid ounces (in fl oz, plural) specifies a volume scaled up by 6.
@@ -35,6 +37,18 @@ active dry yeast	false	--	--
 white sugar	false	--	--
 
 A temperature is a kind of value. 1 degree farenheit (singular) or 2 degrees farenheit (plural) or 1 F specifies a temperature.
+
+Section 2 - Time
+
+When play begins: now the right hand status line is "[time of day]".
+
+[ See http://inform7.com/book/RB_4_1.html for the example this is taken from. ]
+
+Examining something is acting fast. Looking is acting fast.
+
+The take visual actions out of world rule is listed before the every turn stage rule in the turn sequence rules.
+
+This is the take visual actions out of world rule: if acting fast, rule succeeds.
 
 Volume 2 - Content
 
@@ -160,7 +174,7 @@ A recipe is carried by the player. The description is "Dead-Easy Bread[line brea
 1 tsp sugar[line break]
 1 tsp active dry yeast[line break]
 Dump the flour and salt into a stand mixer, using the paddle attachment. Beat the sugar and yeast into the water, then dump the water into the mixer under the stir setting. Put it to speed 2 and leave it on for ~8 minutes-ish until it's done - usually I test it by poking it and seeing if it fills in the hole, but honestly it's probably fine. Most recipes will tell you to cover the dough with a cloth and leave it for an hour and a half at a warm-ish temperature, but what I like to do is actually boil some water, put the saucepan in the oven (off of course) and then put the dough in with it. The idea is you want to give it time to rise but don't want it to lose too much moisture. You'll be fine either way, bread's actually pretty hard to mess up.[line break]
-Anyways after it rises, prep the baking sheet by putting some parchment paper on it. Take out the dough, flour a board and knead it a bit and shape it into an oval. Stick it on the sheet and cover it with a cloth (or put it back in the oven) and leave for another 45-minutes-ish.[line break]
+Anyways after it rises, prep the baking sheet by putting some parchment paper on it. Take out the dough, flour a board and gently knead it a bit then shape it into an oval. Stick it on the sheet and cover it with a cloth (or put it back in the oven) and leave for another 45-minutes-ish.[line break]
 Heat oven to 450 degrees and bake for ~20-25 minutes, then remove and cool.
 "
 
