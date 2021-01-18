@@ -194,31 +194,35 @@ Anyways after it rises, prep the baking sheet by putting some parchment paper on
 Heat oven to 450 degrees and bake for ~20-25 minutes, then remove and cool.
 "
 
-The Kitchen is a room. "Objectively, your kitchen has a fair amount of counter space, but it never feels that way. The west and east walls are lined with appliances or countertops, with as many cabinets as can be crammed above of below them. Midday light shines through the glass sliding door to the north, through which you can see the patio. To the south lies the dining room."
+Part 1 - Kitchen
+
+The Kitchen is a room. "Objectively, your kitchen has a fair amount of counter space, but it never feels that way! Most of west wall is taken up by a long Corian countertop over drawers, with a large sink and a washing machine cutting through the center. The east wall houses the stovetop, the tall double wall oven, a small tile countertop, and the fridge. Above and below the countertops, crammed wherever there is space, are a profusion of cabinets. Morning light shines through the glass sliding door to the north, through which you can see the patio. To the south lies the dining room."
+
+Section 1 - West Wall
 
 [ Sink ]
 
-A kitchen sink is here. It is fixed in place. It is a liquid stream. The liquid of the kitchen sink is water. [ Hunt down the code for "preferred for drinking" and make the sink "preferred for filling" so you don't have to specify sink every time. ]
+A kitchen sink is in Kitchen. It is fixed in place. It is scenery. It is a liquid stream. The liquid of the kitchen sink is water. [ Hunt down the code for "preferred for drinking" and make the sink "preferred for filling" so you don't have to specify sink every time. ]
 
 [ Dish washer ]
 
-A dishwashing machine is a supporter in the Kitchen. It is fixed in place.
+A dishwashing machine is a supporter in the Kitchen. It is fixed in place and scenery.
 
 Understand "washing machine" as dishwashing machine.
 
-A drying rack is on the dishwashing machine. It is a container.
+A drying rack is on the dishwashing machine. It is scenery. It is a container.
 
 [ Large counter ]
 
-A large L-shaped countertop is a supporter in the Kitchen. It is fixed in place.
+A large Corian countertop is a supporter in the Kitchen. It is fixed in place. It is scenery.
 
-Understand "large L-shaped counter" as large L-shaped countertop.
+Understand "large Corian counter" as large Corian countertop.
 
-An abstract stand mixer called new stand mixer is on the large L-shaped countertop.
+An abstract stand mixer called new stand mixer is on the large large Corian countertop.
 
 An abstract mixer bowl called mixer bowl is in the new stand mixer.
 
-An plastic attachments tub is a container on the large L-shaped countertop.
+An plastic attachments tub is a container on the large Corian countertop. It is scenery.
 
 An abstract mixer attachment called the paddle attachment is in the plastic attachments tub.
 
@@ -226,59 +230,51 @@ An abstract mixer attachment called dough hook attachment is in the plastic atta
 
 An abstract mixer attachment called whisk attachment is in the plastic attachments tub.
 
-A knife block is a container on the large L-shaped countertop. It is fixed in place.
+A knife block is a container on the large Corian countertop. It is fixed in place. It is scenery.
 
-[ Small counter ]
-
-A small west countertop is a supporter in the Kitchen. It is fixed in place.
-
-Understand "small west counter" as small west countertop.
-
-[ Medium counter ]
-
-An medium east countertop is a supporter in the Kitchen. It is fixed in place.
-
-Understand "medium east counter" as medium east countertop.
-
-[ Fridge ]
-
-A refrigerator is here. It is fixed in place. It is a container.
-
-Understand "fridge" as refrigerator.
-
-A small bottle is in the refrigerator. It is a fluid container with fluid capacity 4 fl oz and fluid content 2.4 fl oz and liquid active dry yeast.
+Section 2 - East wall
 
 [ Stove & fume hood ]
 
-A fume hood is here. It is fixed in place.
+A fume hood is here. It is fixed in place. It is scenery.
 
-A gas stovetop is here. It is fixed in place.
+A gas stovetop is here. It is fixed in place. It is scenery.
 
 The upper-left burner, the upper-right burner, the lower-left burner, and the lower-right burner are parts of the stovetop.
 
 Understand "stove" as gas stovetop.
 
-[ Oven ]
+[ Tall double wall oven ]
 
-A double wall oven is here. It is fixed in place. 
+A tall double wall oven is here. It is fixed in place. It is scenery.
 The upper oven is an abstract oven. It is part of the double wall oven.
 The lower oven is an abstract oven. It is part of the double wall oven.
 
-[ Spoon & spatula rack ]
+[ Small tile countertop ]
 
-A instrument wall hook rack is a supporter in the Kitchen. It is fixed in place.
+A small tile countertop is a supporter in the Kitchen. It is fixed in place. It is scenery.
 
-[ Saucepan rack ]
+Understand "small tile counter" as small tile countertop.
 
-A saucepan wall hook rack is here. It is fixed in place.
+[ Refrigerator ]
+
+A refrigerator is here. It is fixed in place. It is scenery. It is a container.
+
+Understand "fridge" as refrigerator.
+
+A small bottle is in the refrigerator. It is a fluid container with fluid capacity 4 fl oz and fluid content 2.4 fl oz and liquid active dry yeast.
+
+Section 3 - Drawers
+
+A drawers is here. It is fixed in place. It is scenery. "You list off the drawers in your head. Dinnerware is in the [bold type]utensil drawer[roman type] on the left of the washing machine, and instruments are in the [bold type]instrument drawer[roman type] to the right of the sink."
 
 [ Utensil drawer ]
 
-A utensil drawer is here. It is fixed in place.
+A utensil drawer is here. It is fixed in place. It is scenery.
 
-[ Instrument cabinet ]
+[ Small instrument drawer ]
 
-An instrument cabinet is here. It is fixed in place. It is a container.
+An instrument cabinet is here. It is fixed in place. It is scenery. It is a container.
 
 A 1/4-tsp measuring spoon is in the instrument cabinet. It is a fluid container with fluid capacity 0.25 tsp.
 
@@ -294,19 +290,27 @@ A 1/2-cup dry measuring cup is in the instrument cabinet. It is a fluid containe
 
 A 1-cup dry measuring cup is in the instrument cabinet. It is a fluid container with fluid capacity 8 fl oz.
 
-A 4-cup wet measuring cup is in the instrument cabinet. It is a fluid container with fluid capacity 32 fl oz. It is graduated.
+Section 4 - Cabinets
+
+A cabinets is here. It is fixed in place. It is scenery. "You list off the cabinets in your head. The [bold type]spice rack[roman type] is over to the right of the sink, and the [bold type]mixing bowl cabinet[roman type] (which also has the liquid measuring cups) is the one next to it. The [bold type]pantry[roman type]'s down under the L-countertop near the dining room. Pans and saucepans are in the [bold type]under-stove cabinet[roman type], and pots proper are in the [bold type]pot cabinet[roman type] near the sliding door. Cleaning supplies (hopefully unnecessary) are in the [bold type]under-sink cabinet.[roman type] Good thing you know where everything is, right?"
+
+[ Bowl cabinet ]
+
+A bowl cabinet is here. It is fixed in place. It is scenery. It is a container.
+
+A 4-cup wet measuring cup is in the bowl cabinet. It is a fluid container with fluid capacity 32 fl oz. It is graduated.
 
 [ Towel cabinet ]
 
-A towel cabinet is here. It is fixed in place.
+A towel cabinet is here. It is fixed in place. It is scenery.
 
 [ Spice rack ]
 
-A spice rack is here. It is fixed in place.
+A spice rack is here. It is fixed in place. It is scenery.
 
 [ Pantry ]
 
-A pantry cabinet is here. It is fixed in place.
+A pantry cabinet is here. It is fixed in place. It is scenery.
 
 A top bin is in the pantry cabinet. It is a fluid container with fluid capacity 4 quarts and fluid content 3.1 quarts and liquid all-purpose flour.
 
@@ -315,5 +319,15 @@ A middle bin is in the pantry cabinet. It is a fluid container with fluid capaci
 A bottom bin is in the pantry cabinet. It is a fluid container with fluid capacity 4 quarts and fluid content 2.7 cups and liquid cake flour.
 
 A cardboard box is in the pantry cabinet. It is a fluid container with fluid capacity 2.5 cups and fluid content 1.9 cups and liquid white sugar.
+
+[ Spoon & spatula rack ]
+
+A instrument wall hook rack is a supporter in the Kitchen. It is fixed in place. It is scenery.
+
+[ Saucepan rack ]
+
+A saucepan wall hook rack is here. It is fixed in place. It is scenery.
+
+Part 2 - Dining Room
 
 The Dining Room is a room. It is north of the Kitchen. "Dining room description."
