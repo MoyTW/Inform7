@@ -196,7 +196,7 @@ Heat oven to 450 degrees and bake for ~20-25 minutes, then remove and cool.
 
 Part 1 - Kitchen
 
-The Kitchen is a room. "Objectively, your kitchen has a fair amount of counter space, but it never feels that way! Most of west wall is taken up by a long Corian countertop over drawers, with a large sink and a washing machine cutting through the center. The east wall houses the stovetop, the tall double wall oven, a small tile countertop, and the fridge. Above and below the countertops, crammed wherever there is space, are a profusion of cabinets. Morning light shines through the glass sliding door to the north, through which you can see the patio. To the south lies the dining room."
+The Kitchen is a room. "Objectively, your kitchen has a fair amount of counter space, but it never feels that way! Most of west wall is taken up by a [bold type]long Corian countertop[roman type] over various [bold type]drawers[roman type], with a [bold type]kitchen sink[roman type] and a [bold type]washing machine[roman type] cutting through the center. The east wall houses a [bold type]gas stovetop[roman type], a [bold type]double wall oven[roman type], a [bold type]small tile countertop[roman type], and the [bold type]fridge[roman type]. Above and below the countertops, crammed wherever there is space, are a profusion of [bold type]cabinets[roman type]. Morning light shines through the glass sliding door to the north, through which you can see the patio. To the south lies the dining room."
 
 Section 1 - West Wall
 
@@ -218,19 +218,17 @@ A large Corian countertop is a supporter in the Kitchen. It is fixed in place. I
 
 Understand "large Corian counter" as large Corian countertop.
 
-An abstract stand mixer called new stand mixer is on the large large Corian countertop.
+An abstract stand mixer called the stand mixer is on the large Corian countertop.
 
-An abstract mixer bowl called mixer bowl is in the new stand mixer.
+An abstract mixer bowl called the mixer bowl is in the stand mixer.
 
-An plastic attachments tub is a container on the large Corian countertop. It is scenery.
+A plastic attachments tub is a container on the large Corian countertop. It is scenery.
 
 An abstract mixer attachment called the paddle attachment is in the plastic attachments tub.
 
 An abstract mixer attachment called dough hook attachment is in the plastic attachments tub.
 
 An abstract mixer attachment called whisk attachment is in the plastic attachments tub.
-
-A knife block is a container on the large Corian countertop. It is fixed in place. It is scenery.
 
 Section 2 - East wall
 
