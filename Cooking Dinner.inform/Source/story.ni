@@ -226,19 +226,19 @@ An abstract mixer attachment called dough hook attachment is in the plastic atta
 
 An abstract mixer attachment called whisk attachment is in the plastic attachments tub.
 
-[ A knife block is a container on the large L-shaped countertop. It is fixed in place. ]
+A knife block is a container on the large L-shaped countertop. It is fixed in place.
 
 [ Small counter ]
 
-[ A small west countertop is a supporter in the Kitchen. It is fixed in place.
+A small west countertop is a supporter in the Kitchen. It is fixed in place.
 
-Understand "small west counter" as small west countertop. ]
+Understand "small west counter" as small west countertop.
 
 [ Medium counter ]
 
-[ An medium east countertop is a supporter in the Kitchen. It is fixed in place.
+An medium east countertop is a supporter in the Kitchen. It is fixed in place.
 
-Understand "medium east counter" as medium east countertop. ]
+Understand "medium east counter" as medium east countertop.
 
 [ Fridge ]
 
@@ -250,13 +250,13 @@ A small bottle is in the refrigerator. It is a fluid container with fluid capaci
 
 [ Stove & fume hood ]
 
-[ A fume hood is here. It is fixed in place.
+A fume hood is here. It is fixed in place.
 
 A gas stovetop is here. It is fixed in place.
 
 The upper-left burner, the upper-right burner, the lower-left burner, and the lower-right burner are parts of the stovetop.
 
-Understand "stove" as gas stovetop. ]
+Understand "stove" as gas stovetop.
 
 [ Oven ]
 
@@ -270,11 +270,11 @@ A instrument wall hook rack is a supporter in the Kitchen. It is fixed in place.
 
 [ Saucepan rack ]
 
-[ A saucepan wall hook rack is here. It is fixed in place. ]
+A saucepan wall hook rack is here. It is fixed in place.
 
 [ Utensil drawer ]
 
-[ A utensil drawer is here. It is fixed in place. ]
+A utensil drawer is here. It is fixed in place.
 
 [ Instrument cabinet ]
 
