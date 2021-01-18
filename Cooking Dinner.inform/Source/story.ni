@@ -150,6 +150,20 @@ Carry out setting an abstract oven by temperature:
 Report setting an abstract oven by temperature:
 	say "You set [the noun] to [temperature understood]."
 
+Every turn:
+	repeat with instance running through abstract ovens:
+		if target status of instance is not OFF:
+			if target temperature of instance is greater than current temperature of instance:
+				now current temperature of instance is current temperature of the instance + 23 F;
+			if current temperature of instance is greater than target temperature of instance:
+				now current temperature of instance is target temperature of instance;
+			say "Temp of [instance] is [current temperature of the instance]";
+		if target status of the instance is OFF:
+			if current temperature of instance is greater than room temperature:
+				now current temperature of instance is current temperature of the instance - 23 F;
+			if current temperature of instance is less than room temperature:
+				now current temperature of instance is room temperature;
+
 Test oven with "
 set upper oven to asdf/
 set upper oven to bake/
