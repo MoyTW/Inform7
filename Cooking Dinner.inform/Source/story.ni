@@ -38,6 +38,8 @@ white sugar	false	--	--
 
 A temperature is a kind of value. 1 degree farenheit (singular) or 2 degrees farenheit (plural) or 1 F specifies a temperature.
 
+The room temperature is always 70 F.
+
 Section 2 - Time
 
 When play begins: now the right hand status line is "[time of day]".
