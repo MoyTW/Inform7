@@ -36,6 +36,7 @@ cake flour	false	--	--
 active dry yeast	false	--	--
 white sugar	false	--	--
 salt	false	--	--
+raisins	false	--	--
 
 A temperature is a kind of value. 1 degree farenheit (singular) or 2 degrees farenheit (plural) or 1 F specifies a temperature.
 
@@ -77,6 +78,9 @@ Instead of putting an abstract mixer bowl on an abstract stand mixer:
 	try inserting the noun into the second noun.
 Instead of tying an abstract mixer bowl to an abstract stand mixer:
 	try inserting the noun into the second noun.
+
+[ Mixing test - we should be able to combine sugar and raisins. ]
+Test mixing with "pour raisins into half-cup / pour half-cup into 4-cup / x 4-cup / pour white sugar into quarter-cup / pour quarter-cup into 4-cup / x 4-cup"
 
 Section 2 - Oven
 
@@ -276,18 +280,25 @@ A utensil drawer is here. It is fixed in place. It is scenery.
 An instrument cabinet is here. It is fixed in place. It is scenery. It is a container.
 
 A 1/4-tsp measuring spoon is in the instrument cabinet. It is a fluid container with fluid capacity 0.25 tsp.
+Understand "quarter-teaspoon measuring spoon" as 1/4-tsp measuring spoon. Understand "quarter-teaspoon" as 1/4-tsp measuring spoon.
 
 A 1/2-tsp measuring spoon is in the instrument cabinet. It is a fluid container with fluid capacity 0.5 tsp.
+Understand "half-teaspoon measuring spoon" as 1/2-tsp measuring spoon. Understand "half-teaspoon" as 1/2-tsp measuring spoon.
 
 A 1-tsp measuring spoon is in the instrument cabinet. It is a fluid container with fluid capacity 1 tsp.
+Understand "teaspoon measuring spoon" as 1-tsp measuring spoon. Understand "teaspoon" as 1-tsp measuring spoon.
 
 A 1/4-cup dry measuring cup is in the instrument cabinet. It is a fluid container with fluid capacity 2 fl oz.
+Understand "quarter-cup dry measuring cup" as 1/4-cup dry measuring cup. Understand "quarter-cup" as 1/4-cup dry measuring cup.
 
 A 1/3-cup dry measuring cup is in the instrument cabinet. It is a fluid container with fluid capacity 16 tsp.
+Understand "third-cup dry measuring cup" as 1/3-cup dry measuring cup. Understand "third-cup" as 1/3-cup dry measuring cup.
 
 A 1/2-cup dry measuring cup is in the instrument cabinet. It is a fluid container with fluid capacity 4 fl oz.
+Understand "half-cup dry measuring cup" as 1/2-cup dry measuring cup. Understand "half-cup" as 1/2-cup dry measuring cup.
 
 A 1-cup dry measuring cup is in the instrument cabinet. It is a fluid container with fluid capacity 8 fl oz.
+Understand "cup dry measuring cup" as 1-cup dry measuring cup. Understand "cup" as 1-cup dry measuring cup.
 
 Section 4 - Cabinets
 
@@ -326,6 +337,8 @@ A middle bin is in the pantry cabinet. It is a fluid container with fluid capaci
 A bottom bin is in the pantry cabinet. It is a fluid container with fluid capacity 4 quarts and fluid content 2.7 cups and liquid cake flour.
 
 A cardboard box is in the pantry cabinet. It is a fluid container with fluid capacity 2.5 cups and fluid content 1.9 cups and liquid white sugar.
+
+A resealable plastic bag is in the pantry cabinet. It is a fluid container with fluid capacity 30 fl oz  and fluid content 22 fl oz and liquid raisins.
 
 [ Spoon & spatula rack ]
 
