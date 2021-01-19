@@ -35,6 +35,7 @@ bread flour	false	--	--
 cake flour	false	--	--
 active dry yeast	false	--	--
 white sugar	false	--	--
+salt	false	--	--
 
 A temperature is a kind of value. 1 degree farenheit (singular) or 2 degrees farenheit (plural) or 1 F specifies a temperature.
 
@@ -294,7 +295,13 @@ A cabinets is here. It is fixed in place. It is scenery. "You list off the cabin
 
 [ Bowl cabinet ]
 
-A bowl cabinet is here. It is fixed in place. It is scenery. It is a container.
+A mixing bowl cabinet is here. It is fixed in place. It is scenery. It is a container.
+
+A 1.5-qt mixing bowl is in the bowl cabinet. It is a fluid container with fluid capacity 1.5 quarts.
+
+A 3-qt mixing bowl is in the bowl cabinet. It is a fluid container with fluid capacity 3 quarts.
+
+A 5-qt mixing bowl is in the bowl cabinet. It is a fluid container with fluid capacity 5 quarts.
 
 A 4-cup wet measuring cup is in the bowl cabinet. It is a fluid container with fluid capacity 32 fl oz. It is graduated.
 
@@ -305,6 +312,8 @@ A towel cabinet is here. It is fixed in place. It is scenery.
 [ Spice rack ]
 
 A spice rack is here. It is fixed in place. It is scenery.
+
+A 500g cylinder of salt is in the spice rack. It is a fluid container with fluid capacity 30 tbsp and fluid content 19 tbsp and liquid salt.
 
 [ Pantry ]
 
