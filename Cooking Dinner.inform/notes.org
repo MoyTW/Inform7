@@ -1,0 +1,116 @@
+Ok, so, Measured Liquids is a bust for our purposes. Let's work through this.
+
+* Desired End State
+
+Here's what I want to happen:
+> fill 1/2-cup with raisins
+> pour 1/2-cup into bowl
+> fill 1-tbsp with cornstarch
+> pour 1-tbsp into bowl
+> fill 1/4-cup with sugar
+> pour sugar into bowl
+> x bowl
+The bowl holds a mixture of raisins, cornstarch, and sugar.
+> fill 1-cup with water
+> pour 1-cup into bowl
+> x bowl
+The bowl holds a mixture of water, raisins, cornstarch, and sugar.
+
+Now it's not perfect - in particular describing the resulting mixture as "a
+mixture of water, raisins, cornstarch, and sugar" is kinda weird - but it's
+servicable. Then, when you boil it down (put it on a burner at X temperature for
+Y time) it can convert into "raisin sauce".
+
+More concretely, to our bread game:
+
+> fill 1-tsp with active dry yeast
+> pour 1-tsp into mixing bowl
+> x mixing bowl
+The bowl holds some active dry yeast.
+> fill 1-cup with water
+> pour 1-cup into mixing bowl
+> fill 1-cup with water
+> pour 1-cup into mixing bowl
+> x mixing bowl
+The bowl holds a mixture of active dry yeast and water.
+> fill 1-tsp with white sugar
+> pour 1-tsp into mixing bowl
+> x mixing bowl
+The mixing bowl holds a mixture of active dry yeast, water, and white sugar.
+> beat mixing bowl
+You beat the mixture in the mixing bowl until combined.
+> x mixing bowl
+The mixing bowl holds a foamy yeast mixture.
+
+* Approaches
+
+** Model ingredients as liquids, using Measured Liquids
+
+Since we measure most ingredients (flour, sugar, salt, raisins, etc.) by volume,
+we could reasonably model them as a liquid - hence Emily Short's Measured
+Liquids. However, this does not work, because Measured Liquids only allows each
+container to have one liquid.
+
+So, we cannot model "a mixture of X, Y, and Z" using Measured Liquids without
+pre-defining all permutations of all ingredients as their own liquid, which is
+implausible if we ever want to add another recipe.
+
+Measured Liquids *does* allow you to add in solids by turning off the
+liquids-only rule, but at that point we're going to have to essentially rewrite
+the volume rules for solids and there's no point in using Measured Liquids,
+since we can model water as a solid.
+
+** Model volumes of ingredients as dynamic objects
+
+This approach is:
++ Make a volume
++ Make an ingredient that has a volume
++ Make ingredient containers which can carry ingredients and restrict other
+  containers from carrying ingredients
+
+Then, whenever you move a [quantity] of [ingredient] into another container,
+create a *new* object of [ingredient] with a volume, and subtract the volume
+from the old one. Likewise, when you combine two of the same ingredient, then
+you kill the object from the source and add its quantity to the target.
+
+This 100% does what I'm looking for except that apparently, Inform doesn't
+handle dynamic objects very well as per
+https://stackoverflow.com/questions/5386306/need-help-creating-new-objects-in-inform7/5672312
+and for reasons beyond me it's discouraged.
+
+An advantage of this is that it nicely handles, say, "1lb of salmon" if we end
+up moving forwards with this.
+
+** Extend/reimplement Measured Liquids to handle multiple liquids
+
+If I'm reading Measured Liquids right, it models as follows:
+
+a kind of container called "fluid container" has:
+  - <a kind of value called volume> "fluid capacity"
+  - <a kind of value called volume> "fluid content"
+  - <an entry in table of liquids> "liquid"
+
+That is, there are three values attached each fluid container - how much it can
+store, how much it has right now, and what kind of thing is in it.
+
+If there's a way to effectively define a property as a list, and a way of
+defining tuples, then we could change "fluid container" to have something like:
+
+a tuple of "ingredient-and-volume" has:
+  - <an entry in the table of liquids> "liquid"
+  - <a kind of value called volume> "ingredient volume"
+
+a kind of fluid container called "fluid container" has:
+  - <a list of "ingredient-and-volume"> ingredients-and-volumes
+  - <a kind of value called volume> "fluid capacity"
+
+which would comfortably provide for mixtures of salt, raisins, and water,
+provided we model each of them as a liquid.
+
+However I have no idea how to do this in Inform, and the documentation on lists,
+especially lists of objects (http://inform7.com/book/WI_21_6.html) doesn't seem
+to provide for...I mean, essentially, how to create and manipulate a data
+structure holding lists. It's also possible I'm fundamentally misunderstanding
+how people structure Inform programs and are just going "Well if I were using
+[Object-Oriented Language of Choice] I would model it as..."
+
