@@ -32,6 +32,8 @@ Understand "mixture" as a mixing-bowl.
 The mixing bowl is a mixing-bowl.  It is on the counter. The counter is in the Kitchen.
 The pan is a mixing-bowl. It is in the cupboard. The cupboard is a closed, fixed in place, openable container. It is in the Kitchen.
 
+A thing called box is a kind of container. Box is on the counter.
+
 Rule before printing the name of a mixing-bowl:
 	omit contents in listing; [otherwise we'll be told it's empty, even when it's got a mixture in it]
 Rule after printing the name of a mixing-bowl when printing the locale description:

@@ -18,6 +18,43 @@ Volume 1 - Setup
 
 Section 1 - Definitions
 
+[ Ingredients ]
+
+An ingredient is a kind of value. The ingredients are defined by the Table of Cooking Ingredients.
+
+Table of Cooking Ingredients
+ingredient
+null-ingredient
+i-water
+i-all-purpose-flour
+i-bread-flour
+i-cake-flour
+
+[ Ingredient container ]
+
+An ingredient-container is a kind of thing.
+
+An ingredient-container is either graduated or ungraduated. An ingredient-container is usually ungraduated.
+An ingredient-container has a volume called capacity. An ingredient-container has a list of ingredients called ingredients-list. An ingredient-container has a list of volumes called volumes-list.
+
+Check inserting something into an ingredient-container (this is the can't put objects an ingredient container rule):
+	say "The [second noun] [hold] only ingredients." instead.
+
+[ TODO: Modify descriptions to fit & graduated/ungraduated ]
+Rule after printing the name of an ingredient-container when printing the locale description:
+	let n be the number of entries in the ingredients-list of the item described;
+	if n > 1:
+		say " (containing a mixture of [ingredients-list])";
+	else if n is 1:
+		say " (containing some [entry 1 of the ingredients-list of the item described])";
+
+A ingredient-container called i-water-source is on the large Corian countertop.
+The capacity of i-water-source is 19 teaspoons.
+The ingredients-list of i-water-source is {i-water}.
+The volumes-list of i-water-source is {3 teaspoons}.
+
+[ Units ]
+
 1 tbsp (in US units, in tbsp) or 1 tablespoon (in tbsp, singular) or 2 tablespoons (in tbsp, plural) specifies a volume scaled up by 3.
 
 1 fl oz (in US units, in fl oz) or 1 fluid ounce (in fl oz, singular) or 2 fluid ounces (in fl oz, plural) specifies a volume scaled up by 6.
@@ -55,6 +92,9 @@ The take visual actions out of world rule is listed before the every turn stage 
 This is the take visual actions out of world rule: if acting fast, rule succeeds.
 
 Volume 2 - Content
+
+When play begins:
+	say "Special verbs are [italic type]fill[roman type] and [italic type]pour[roman type]."
 
 Book 1 - Object Rules
 
@@ -308,11 +348,11 @@ A cabinets is here. It is fixed in place. It is scenery. "You list off the cabin
 
 A mixing bowl cabinet is here. It is fixed in place. It is scenery. It is a container.
 
-A 1.5-qt mixing bowl is in the bowl cabinet. It is a fluid container with fluid capacity 1.5 quarts.
+A 1.5-qt mixing bowl is in the bowl cabinet. It is a ingredient-container with capacity 1.5 quarts.
 
-A 3-qt mixing bowl is in the bowl cabinet. It is a fluid container with fluid capacity 3 quarts.
+A 3-qt mixing bowl is in the bowl cabinet. It is a ingredient-container with capacity 3 quarts.
 
-A 5-qt mixing bowl is in the bowl cabinet. It is a fluid container with fluid capacity 5 quarts.
+A 5-qt mixing bowl is in the bowl cabinet. It is a ingredient-container with capacity 5 quarts.
 
 A 4-cup wet measuring cup is in the bowl cabinet. It is a fluid container with fluid capacity 32 fl oz. It is graduated.
 
