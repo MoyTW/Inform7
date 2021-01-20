@@ -2,21 +2,27 @@
 
 [ Includes ]
 
-Include Measured Liquid by Emily Short.
-
-Section 1 - Definition (in place of Section 1I - Definition (for use without Metric Units by Graham Nelson) in Measured Liquid by Emily Short)
-
-A volume is a kind of value. 1.0 tsp (in US units, in tsp) or 1 teaspoon (in tsp, singular) or 2 teaspoons (in tsp, plural) specifies a volume.
-
-A fluid container has a volume called a fluid capacity. A fluid container has a volume called fluid content. The fluid capacity of a fluid container is usually 50 tsp. The fluid content of a fluid container is usually 0 tsp.
-
-The sip size is a volume that varies. The sip size is usually 1 tsp.
-
-The max volume is a volume that varies. The max volume is 2147483647 tsp.
-
 Volume 1 - Setup
 
 Section 1 - Definitions
+
+A volume is a kind of value. 1.0 tsp (in US units, in tsp) or 1 teaspoon (in tsp, singular) or 2 teaspoons (in tsp, plural) specifies a volume.
+
+The max volume is a volume that varies. The max volume is 2147483647 tsp.
+
+1 tbsp (in US units, in tbsp) or 1 tablespoon (in tbsp, singular) or 2 tablespoons (in tbsp, plural) specifies a volume scaled up by 3.
+
+1 fl oz (in US units, in fl oz) or 1 fluid ounce (in fl oz, singular) or 2 fluid ounces (in fl oz, plural) specifies a volume scaled up by 6.
+
+1 cup (in cups, singular) or 1 c (in US units, in cups) or 2 cups (in cups, plural) specifies a volume scaled up by 48.
+
+1 qt (in US units, in quarts) 1 quart (in quarts, singular) or 2 quarts (in quarts, plural) specifies a volume scaled up by 192.
+
+1 gal (in US units, in gallons) or 1 gallon (in gallons, singular) or 2 gallons (in gallons, plural) specifies a volume scaled up by 768.
+
+A temperature is a kind of value. 1 degree farenheit (singular) or 2 degrees farenheit (plural) or 1 F specifies a temperature.
+
+The room temperature is always 70 F.
 
 [ Ingredients ]
 
@@ -25,10 +31,14 @@ An ingredient is a kind of value. The ingredients are defined by the Table of Co
 Table of Cooking Ingredients
 ingredient
 null-ingredient
-i-water
-i-all-purpose-flour
-i-bread-flour
-i-cake-flour
+active dry yeast
+all-purpose flour
+bread flour
+cake flour
+raisins
+salt
+water
+white sugar
 
 [ Ingredient container ]
 
@@ -47,37 +57,6 @@ Rule after printing the name of an ingredient-container when printing the locale
 		say " (containing a mixture of [ingredients-list])";
 	else if n is 1:
 		say " (containing some [entry 1 of the ingredients-list of the item described])";
-
-A ingredient-container called i-water-source is on the large Corian countertop.
-The capacity of i-water-source is 19 teaspoons.
-The ingredients-list of i-water-source is {i-water}.
-The volumes-list of i-water-source is {3 teaspoons}.
-
-[ Units ]
-
-1 tbsp (in US units, in tbsp) or 1 tablespoon (in tbsp, singular) or 2 tablespoons (in tbsp, plural) specifies a volume scaled up by 3.
-
-1 fl oz (in US units, in fl oz) or 1 fluid ounce (in fl oz, singular) or 2 fluid ounces (in fl oz, plural) specifies a volume scaled up by 6.
-
-1 cup (in cups, singular) or 1 c (in US units, in cups) or 2 cups (in cups, plural) specifies a volume scaled up by 48.
-
-1 qt (in US units, in quarts) 1 quart (in quarts, singular) or 2 quarts (in quarts, plural) specifies a volume scaled up by 192.
-
-1 gal (in US units, in gallons) or 1 gallon (in gallons, singular) or 2 gallons (in gallons, plural) specifies a volume scaled up by 768.
-
-Table of Liquids (continued)
-liquid	potable	flavor	description (text)
-all-purpose flour	false	--	--
-bread flour	false	--	--
-cake flour	false	--	--
-active dry yeast	false	--	--
-white sugar	false	--	--
-salt	false	--	--
-raisins	false	--	--
-
-A temperature is a kind of value. 1 degree farenheit (singular) or 2 degrees farenheit (plural) or 1 F specifies a temperature.
-
-The room temperature is always 70 F.
 
 Section 2 - Time
 
@@ -247,7 +226,7 @@ Section 1 - West Wall
 
 [ Sink ]
 
-A kitchen sink is in Kitchen. It is fixed in place. It is scenery. It is a liquid stream. The liquid of the kitchen sink is water. [ Hunt down the code for "preferred for drinking" and make the sink "preferred for filling" so you don't have to specify sink every time. ]
+A kitchen sink is in Kitchen. It is fixed in place. It is scenery.
 
 [ Dish washer ]
 
@@ -305,7 +284,7 @@ A refrigerator is here. It is fixed in place. It is scenery. It is a container.
 
 Understand "fridge" as refrigerator.
 
-A small bottle is in the refrigerator. It is a fluid container with fluid capacity 4 fl oz and fluid content 2.4 fl oz and liquid active dry yeast.
+A small bottle is in the refrigerator. It is an ingredient-container with capacity 4 fl oz and ingredients-list {active dry yeast} and volumes-list {2.4 fl oz}.
 
 Section 3 - Drawers
 
@@ -319,25 +298,25 @@ A utensil drawer is here. It is fixed in place. It is scenery.
 
 An instrument cabinet is here. It is fixed in place. It is scenery. It is a container.
 
-A 1/4-tsp measuring spoon is in the instrument cabinet. It is a fluid container with fluid capacity 0.25 tsp.
+A 1/4-tsp measuring spoon is in the instrument cabinet. It is an ingredient-container with capacity 0.25 tsp.
 Understand "quarter-teaspoon measuring spoon" as 1/4-tsp measuring spoon. Understand "quarter-teaspoon" as 1/4-tsp measuring spoon.
 
-A 1/2-tsp measuring spoon is in the instrument cabinet. It is a fluid container with fluid capacity 0.5 tsp.
+A 1/2-tsp measuring spoon is in the instrument cabinet. It is an ingredient-container with capacity 0.5 tsp.
 Understand "half-teaspoon measuring spoon" as 1/2-tsp measuring spoon. Understand "half-teaspoon" as 1/2-tsp measuring spoon.
 
-A 1-tsp measuring spoon is in the instrument cabinet. It is a fluid container with fluid capacity 1 tsp.
+A 1-tsp measuring spoon is in the instrument cabinet. It is an ingredient-container with capacity 1 tsp.
 Understand "teaspoon measuring spoon" as 1-tsp measuring spoon. Understand "teaspoon" as 1-tsp measuring spoon.
 
-A 1/4-cup dry measuring cup is in the instrument cabinet. It is a fluid container with fluid capacity 2 fl oz.
+A 1/4-cup dry measuring cup is in the instrument cabinet. It is an ingredient-container with capacity 2 fl oz.
 Understand "quarter-cup dry measuring cup" as 1/4-cup dry measuring cup. Understand "quarter-cup" as 1/4-cup dry measuring cup.
 
-A 1/3-cup dry measuring cup is in the instrument cabinet. It is a fluid container with fluid capacity 16 tsp.
+A 1/3-cup dry measuring cup is in the instrument cabinet. It is an ingredient-container with capacity 16 tsp.
 Understand "third-cup dry measuring cup" as 1/3-cup dry measuring cup. Understand "third-cup" as 1/3-cup dry measuring cup.
 
-A 1/2-cup dry measuring cup is in the instrument cabinet. It is a fluid container with fluid capacity 4 fl oz.
+A 1/2-cup dry measuring cup is in the instrument cabinet. It is an ingredient-container with capacity 4 fl oz.
 Understand "half-cup dry measuring cup" as 1/2-cup dry measuring cup. Understand "half-cup" as 1/2-cup dry measuring cup.
 
-A 1-cup dry measuring cup is in the instrument cabinet. It is a fluid container with fluid capacity 8 fl oz.
+A 1-cup dry measuring cup is in the instrument cabinet. It is an ingredient-container with capacity 8 fl oz.
 Understand "cup dry measuring cup" as 1-cup dry measuring cup. Understand "cup" as 1-cup dry measuring cup.
 
 Section 4 - Cabinets
@@ -354,7 +333,7 @@ A 3-qt mixing bowl is in the bowl cabinet. It is a ingredient-container with cap
 
 A 5-qt mixing bowl is in the bowl cabinet. It is a ingredient-container with capacity 5 quarts.
 
-A 4-cup wet measuring cup is in the bowl cabinet. It is a fluid container with fluid capacity 32 fl oz. It is graduated.
+A 4-cup wet measuring cup is in the bowl cabinet. It is an ingredient-container with capacity 32 fl oz. It is graduated.
 
 [ Towel cabinet ]
 
@@ -364,21 +343,21 @@ A towel cabinet is here. It is fixed in place. It is scenery.
 
 A spice rack is here. It is fixed in place. It is scenery.
 
-A 500g cylinder of salt is in the spice rack. It is a fluid container with fluid capacity 30 tbsp and fluid content 19 tbsp and liquid salt.
+A 500g cylinder of salt is in the spice rack. It is an ingredient-container with capacity 30 tbsp and ingredients-list {salt} and volumes-list {19 tbsp}.
 
 [ Pantry ]
 
 A pantry cabinet is here. It is fixed in place. It is scenery.
 
-A top bin is in the pantry cabinet. It is a fluid container with fluid capacity 4 quarts and fluid content 3.1 quarts and liquid all-purpose flour.
+A top bin is in the pantry cabinet. It is an ingredient-container with capacity 4 quarts and ingredients-list {all-purpose flour} and volumes-list {3.1 quarts}.
 
-A middle bin is in the pantry cabinet. It is a fluid container with fluid capacity 4 quarts and fluid content 1.4 cups and liquid bread flour.
+A middle bin is in the pantry cabinet. It is an ingredient-container with capacity 4 quarts and ingredients-list {bread flour} and volumes-list {1.4 cups}.
 
-A bottom bin is in the pantry cabinet. It is a fluid container with fluid capacity 4 quarts and fluid content 2.7 cups and liquid cake flour.
+A bottom bin is in the pantry cabinet. It is an ingredient-container with capacity 4 quarts and ingredients-list {cake flour} and volumes-list {2.7 cups}.
 
-A cardboard box is in the pantry cabinet. It is a fluid container with fluid capacity 2.5 cups and fluid content 1.9 cups and liquid white sugar.
+A cardboard box is in the pantry cabinet. It is an ingredient-container with capacity 2.5 cups and ingredients-list {white sugar} and volumes-list {1.9 cups}.
 
-A resealable plastic bag is in the pantry cabinet. It is a fluid container with fluid capacity 30 fl oz  and fluid content 22 fl oz and liquid raisins.
+A resealable plastic bag is in the pantry cabinet. It is an ingredient-container with capacity 30 fl oz  and ingredients-list {raisins} and volumes-list {22 fl oz}.
 
 [ Spoon & spatula rack ]
 
