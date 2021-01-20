@@ -24,13 +24,12 @@ A temperature is a kind of value. 1 degree farenheit (singular) or 2 degrees far
 
 The room temperature is always 70 F.
 
-[ Ingredients ]
+Section 2 - Ingredients & Ingredient Containers
 
 An ingredient is a kind of value. The ingredients are defined by the Table of Cooking Ingredients.
 
 Table of Cooking Ingredients
 ingredient
-null-ingredient
 active dry yeast
 all-purpose flour
 bread flour
@@ -284,7 +283,7 @@ A refrigerator is here. It is fixed in place. It is scenery. It is a container.
 
 Understand "fridge" as refrigerator.
 
-A small bottle is in the refrigerator. It is an ingredient-container with capacity 4 fl oz and ingredients-list {active dry yeast} and volumes-list {2.4 fl oz}.
+A small active dry yeast bottle is in the refrigerator. It is an ingredient-container with capacity 4 fl oz and ingredients-list {active dry yeast} and volumes-list {2.4 fl oz}.
 
 Section 3 - Drawers
 
@@ -349,15 +348,15 @@ A 500g cylinder of salt is in the spice rack. It is an ingredient-container with
 
 A pantry cabinet is here. It is fixed in place. It is scenery.
 
-A top bin is in the pantry cabinet. It is an ingredient-container with capacity 4 quarts and ingredients-list {all-purpose flour} and volumes-list {3.1 quarts}.
+A all-purpose flour bin is in the pantry cabinet. It is an ingredient-container with capacity 4 quarts and ingredients-list {all-purpose flour} and volumes-list {3.1 quarts}.
 
-A middle bin is in the pantry cabinet. It is an ingredient-container with capacity 4 quarts and ingredients-list {bread flour} and volumes-list {1.4 cups}.
+A bread flour bin is in the pantry cabinet. It is an ingredient-container with capacity 4 quarts and ingredients-list {bread flour} and volumes-list {1.4 cups}.
 
-A bottom bin is in the pantry cabinet. It is an ingredient-container with capacity 4 quarts and ingredients-list {cake flour} and volumes-list {2.7 cups}.
+A cake flour bin is in the pantry cabinet. It is an ingredient-container with capacity 4 quarts and ingredients-list {cake flour} and volumes-list {2.7 cups}.
 
-A cardboard box is in the pantry cabinet. It is an ingredient-container with capacity 2.5 cups and ingredients-list {white sugar} and volumes-list {1.9 cups}.
+A sugar box is in the pantry cabinet. It is an ingredient-container with capacity 2.5 cups and ingredients-list {white sugar} and volumes-list {1.9 cups}.
 
-A resealable plastic bag is in the pantry cabinet. It is an ingredient-container with capacity 30 fl oz  and ingredients-list {raisins} and volumes-list {22 fl oz}.
+A raisins bag is in the pantry cabinet. It is an ingredient-container with capacity 30 fl oz  and ingredients-list {raisins} and volumes-list {22 fl oz}.
 
 [ Spoon & spatula rack ]
 
