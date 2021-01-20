@@ -127,15 +127,18 @@ Carry out adding:
 	now the amount left of the source is the amount left of the source - amount;
 	[if we're adding more of an existing ingredient, find the relevant entry in the mixture and add the amount to the amounts]
 	if the ingredient understood is listed in the mixture of the second noun:
+		say "Mixture: [mixture of the second noun][line break]";
 		let count be 1;
 		repeat with N running through the mixture of the second noun:
 			if N is the ingredient understood:
 				now entry count of the amounts of the second noun is entry count of the amounts of the second noun + amount;
+				say "Adding position [count]: [ingredient understood], [entry count of the amounts of the second noun]";
 				break;
-		increment count;
+			increment count;
 	else:
 		add the ingredient understood to the mixture of the second noun;
 		add the amount to the amounts of the second noun;
+		say "Adding new ingredient [ingredient understood], [amounts of the second noun]";
 	
 
 Report adding:
