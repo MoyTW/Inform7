@@ -43,31 +43,31 @@ white sugar
 
 [ Ingredient container ]
 
-An ingredient-container is a kind of thing.
+An IngredientContainer is a kind of thing.
 
-An ingredient-container is either graduated or ungraduated. An ingredient-container is usually ungraduated.
-An ingredient-container has a volume called capacity. An ingredient-container has a list of ingredients called ingredients-list. An ingredient-container has a list of volumes called volumes-list.
+An IngredientContainer is either graduated or ungraduated. An IngredientContainer is usually ungraduated.
+An IngredientContainer has a volume called capacity. An IngredientContainer has a list of ingredients called ingredients_list. An IngredientContainer has a list of volumes called volumes_list.
 
-Check inserting something into an ingredient-container (this is the can't put objects an ingredient container rule):
+Check inserting something into an IngredientContainer (this is the can't put objects an ingredient container rule):
 	say "The [second noun] [hold] only ingredients." instead.
 
 [ TODO: Modify descriptions to fit & graduated/ungraduated ]
-Rule after printing the name of an ingredient-container when printing the locale description:
-	let n be the number of entries in the ingredients-list of the item described;
+Rule after printing the name of an IngredientContainer when printing the locale description:
+	let n be the number of entries in the ingredients_list of the item described;
 	if n > 1:
-		say " (containing a mixture of [ingredients-list])";
+		say " (containing a mixture of [ingredients_list])";
 	else if n is 1:
-		say " (containing some [entry 1 of the ingredients-list of the item described])";
+		say " (containing some [entry 1 of the ingredients_list of the item described])";
 
-Instead of examining an ingredient-container:
+Instead of examining an IngredientContainer:
 	say "[The noun] ";
-	let n be the number of entries in the ingredients-list of the noun;
+	let n be the number of entries in the ingredients_list of the noun;
 	if n is 0:
 		say "is empty.";
 	else if n is 1:
-		say "contains [entry 1 of the volumes-list of the noun] [entry 1 of the ingredients-list of the noun].";
+		say "contains [entry 1 of the volumes_list of the noun] [entry 1 of the ingredients_list of the noun].";
 	else:
-		say "contains a mixture of [ingredients-list of the noun], quantities [volumes-list of the noun] - TODO: reformat.";
+		say "contains a mixture of [ingredients_list of the noun], quantities [volumes_list of the noun] - TODO: reformat.";
 
 [ Filling ]
 
@@ -96,33 +96,33 @@ Understand "empty [something] in/into/with [something]" as pouring it into.
 [ TODO: Discourage the player pouring something into an ingredient source container ]
 
 Pouring it into is an action applying to two things.
-The pouring it into action has a list of ingredients called the ingredients-poured.
-The pouring it into action has a list of volumes called the amounts-poured.
+The pouring it into action has a list of ingredients called the ingredients_poured.
+The pouring it into action has a list of volumes called the amounts_poured.
 
 Setting action variables for pouring something into something (this is the setting ingredients poured rule):
-	if the noun is an ingredient-container:
-		now the ingredients-poured is the ingredients-list of the noun.
+	if the noun is an IngredientContainer:
+		now the ingredients_poured is the ingredients_list of the noun.
 
 Setting action variables for pouring something (called the source) into something (called the target) (this is the setting amounts poured rule):
-	if the source is an ingredient-container and the target is an ingredient-container:
+	if the source is an IngredientContainer and the target is an IngredientContainer:
 		[ target capacity ]
 		let target_remaining_capacity be capacity of target;
-		repeat with taken_capacity running through volumes-list of the target:
+		repeat with taken_capacity running through volumes_list of the target:
 			decrease target_remaining_capacity by taken_capacity;
 		[ source total ]
 		let source_total_amount be 0 tsp;
-		repeat with v running through volumes-list of the source:
+		repeat with v running through volumes_list of the source:
 			increase source_total_amount by v;
 		[ amount poured ]
 		if target_remaining_capacity is greater than the source_total_amount:
-			now the amounts-poured is the volumes-list of the noun;
+			now the amounts_poured is the volumes_list of the noun;
 		otherwise:
 			let new_volumes be a list of volumes;
 			let scalar be target_remaining_capacity / source_total_amount;
-			repeat with v running through volumes-list of the source:
+			repeat with v running through volumes_list of the source:
 				add scalar * v to new_volumes;
-			now the amounts-poured is new_volumes;
-		say "amounts-poured=[amounts-poured]";
+			now the amounts_poured is new_volumes;
+		say "amounts_poured=[amounts_poured]";
 
 [ TODO: can't pour two untouched things rule ]
 
@@ -134,18 +134,18 @@ Setting action variables for pouring something (called the source) into somethin
 
 Carry out an actor pouring something (called source) into something (called target) (this is the standard carry out pouring rule):
 	let s_i be 1;
-	repeat with new_ingredient running through ingredients-poured:
-		let new_volume be the entry s_i of the amounts-poured;
-		if the new_ingredient is listed in the ingredients-list of the target:
+	repeat with new_ingredient running through ingredients_poured:
+		let new_volume be the entry s_i of the amounts_poured;
+		if the new_ingredient is listed in the ingredients_list of the target:
 			let t_i be 1;
-			repeat with N running through the ingredients-list of the target:
+			repeat with N running through the ingredients_list of the target:
 				if N is the ingredient understood:
-					increase entry t_i of the volumes-list of the target by the new_volume;
+					increase entry t_i of the volumes_list of the target by the new_volume;
 					break;
 				increment t_i;
 		else:
-			add the new_ingredient to the ingredients-list of the target;
-			add the new_volume to the volumes-list of the target;
+			add the new_ingredient to the ingredients_list of the target;
+			add the new_volume to the volumes_list of the target;
 		increment s_i;
 
 [ For some reason "x 1.5-qt" tells you you can't see any such thing! ]
@@ -377,7 +377,7 @@ A refrigerator is here. It is fixed in place. It is scenery. It is a container.
 
 Understand "fridge" as refrigerator.
 
-A small active dry yeast bottle is in the refrigerator. It is an ingredient-container with capacity 4 fl oz and ingredients-list {active dry yeast} and volumes-list {2.4 fl oz}.
+A small active dry yeast bottle is in the refrigerator. It is an IngredientContainer with capacity 4 fl oz and ingredients_list {active dry yeast} and volumes_list {2.4 fl oz}.
 
 Section 3 - Drawers
 
@@ -391,25 +391,25 @@ A utensil drawer is here. It is fixed in place. It is scenery.
 
 An instrument cabinet is here. It is fixed in place. It is scenery. It is a container.
 
-A 1/4-tsp measuring spoon is in the instrument cabinet. It is an ingredient-container with capacity 0.25 tsp.
+A 1/4-tsp measuring spoon is in the instrument cabinet. It is an IngredientContainer with capacity 0.25 tsp.
 Understand "quarter-teaspoon measuring spoon" as 1/4-tsp measuring spoon. Understand "quarter-teaspoon" as 1/4-tsp measuring spoon.
 
-A 1/2-tsp measuring spoon is in the instrument cabinet. It is an ingredient-container with capacity 0.5 tsp.
+A 1/2-tsp measuring spoon is in the instrument cabinet. It is an IngredientContainer with capacity 0.5 tsp.
 Understand "half-teaspoon measuring spoon" as 1/2-tsp measuring spoon. Understand "half-teaspoon" as 1/2-tsp measuring spoon.
 
-A 1-tsp measuring spoon is in the instrument cabinet. It is an ingredient-container with capacity 1 tsp.
+A 1-tsp measuring spoon is in the instrument cabinet. It is an IngredientContainer with capacity 1 tsp.
 Understand "teaspoon measuring spoon" as 1-tsp measuring spoon. Understand "teaspoon" as 1-tsp measuring spoon.
 
-A 1/4-cup dry measuring cup is in the instrument cabinet. It is an ingredient-container with capacity 2 fl oz.
+A 1/4-cup dry measuring cup is in the instrument cabinet. It is an IngredientContainer with capacity 2 fl oz.
 Understand "quarter-cup dry measuring cup" as 1/4-cup dry measuring cup. Understand "quarter-cup" as 1/4-cup dry measuring cup.
 
-A 1/3-cup dry measuring cup is in the instrument cabinet. It is an ingredient-container with capacity 16 tsp.
+A 1/3-cup dry measuring cup is in the instrument cabinet. It is an IngredientContainer with capacity 16 tsp.
 Understand "third-cup dry measuring cup" as 1/3-cup dry measuring cup. Understand "third-cup" as 1/3-cup dry measuring cup.
 
-A 1/2-cup dry measuring cup is in the instrument cabinet. It is an ingredient-container with capacity 4 fl oz.
+A 1/2-cup dry measuring cup is in the instrument cabinet. It is an IngredientContainer with capacity 4 fl oz.
 Understand "half-cup dry measuring cup" as 1/2-cup dry measuring cup. Understand "half-cup" as 1/2-cup dry measuring cup.
 
-A 1-cup dry measuring cup is in the instrument cabinet. It is an ingredient-container with capacity 8 fl oz.
+A 1-cup dry measuring cup is in the instrument cabinet. It is an IngredientContainer with capacity 8 fl oz.
 Understand "cup dry measuring cup" as 1-cup dry measuring cup. Understand "cup" as 1-cup dry measuring cup.
 
 Section 4 - Cabinets
@@ -420,13 +420,13 @@ A cabinets is here. It is fixed in place. It is scenery. "You list off the cabin
 
 A mixing bowl cabinet is here. It is fixed in place. It is scenery. It is a container.
 
-A 1.5-qt mixing bowl is in the bowl cabinet. It is a ingredient-container with capacity 1.5 quarts.
+A 1.5-qt mixing bowl is in the bowl cabinet. It is a IngredientContainer with capacity 1.5 quarts.
 
-A 3-qt mixing bowl is in the bowl cabinet. It is a ingredient-container with capacity 3 quarts.
+A 3-qt mixing bowl is in the bowl cabinet. It is a IngredientContainer with capacity 3 quarts.
 
-A 5-qt mixing bowl is in the bowl cabinet. It is a ingredient-container with capacity 5 quarts.
+A 5-qt mixing bowl is in the bowl cabinet. It is a IngredientContainer with capacity 5 quarts.
 
-A 4-cup wet measuring cup is in the bowl cabinet. It is an ingredient-container with capacity 32 fl oz. It is graduated.
+A 4-cup wet measuring cup is in the bowl cabinet. It is an IngredientContainer with capacity 32 fl oz. It is graduated.
 
 [ Towel cabinet ]
 
@@ -436,21 +436,21 @@ A towel cabinet is here. It is fixed in place. It is scenery.
 
 A spice rack is here. It is fixed in place. It is scenery.
 
-A 500g cylinder of salt is in the spice rack. It is an ingredient-container with capacity 30 tbsp and ingredients-list {salt} and volumes-list {19 tbsp}.
+A 500g cylinder of salt is in the spice rack. It is an IngredientContainer with capacity 30 tbsp and ingredients_list {salt} and volumes_list {19 tbsp}.
 
 [ Pantry ]
 
 A pantry cabinet is here. It is fixed in place. It is scenery.
 
-A all-purpose flour bin is in the pantry cabinet. It is an ingredient-container with capacity 4 quarts and ingredients-list {all-purpose flour} and volumes-list {3.1 quarts}.
+A all-purpose flour bin is in the pantry cabinet. It is an IngredientContainer with capacity 4 quarts and ingredients_list {all-purpose flour} and volumes_list {3.1 quarts}.
 
-A bread flour bin is in the pantry cabinet. It is an ingredient-container with capacity 4 quarts and ingredients-list {bread flour} and volumes-list {1.4 cups}.
+A bread flour bin is in the pantry cabinet. It is an IngredientContainer with capacity 4 quarts and ingredients_list {bread flour} and volumes_list {1.4 cups}.
 
-A cake flour bin is in the pantry cabinet. It is an ingredient-container with capacity 4 quarts and ingredients-list {cake flour} and volumes-list {2.7 cups}.
+A cake flour bin is in the pantry cabinet. It is an IngredientContainer with capacity 4 quarts and ingredients_list {cake flour} and volumes_list {2.7 cups}.
 
-A sugar box is in the pantry cabinet. It is an ingredient-container with capacity 2.5 cups and ingredients-list {white sugar} and volumes-list {1.9 cups}.
+A sugar box is in the pantry cabinet. It is an IngredientContainer with capacity 2.5 cups and ingredients_list {white sugar} and volumes_list {1.9 cups}.
 
-A raisins bag is in the pantry cabinet. It is an ingredient-container with capacity 30 fl oz  and ingredients-list {raisins} and volumes-list {22 fl oz}.
+A raisins bag is in the pantry cabinet. It is an IngredientContainer with capacity 30 fl oz  and ingredients_list {raisins} and volumes_list {22 fl oz}.
 
 [ Spoon & spatula rack ]
 
