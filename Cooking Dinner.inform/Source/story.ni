@@ -207,10 +207,10 @@ Book 1 - Object Rules
 Section 1 - Stand Mixer
 
 [ Ok, so...if you just write "zero, stir, two..." it will interpret "two" not to mean the string two but the numerical value two, and then throw an error due to mixed string/number types. Hence setting_number. ]
-StandMixerStatus is a kind of value. The StandMixerStatuses are status_0, stir, status_2, status_4, status_6, status_8 and status_10.
+StandMixerStatus is a kind of value. The StandMixerStatuses are speed 0, stir, speed 2, speed 4, speed 6, speed 8 and speed 10.
 
 A StandMixer is a kind of container.
-A StandMixer has a StandMixerStatus called status. The status of a StandMixer is usually status_0.
+A StandMixer has a StandMixerStatus called status. The status of a StandMixer is usually speed 0.
 
 A MixerBowl is a kind of IngredientContainer. The capacity of a MixerBowl is usually 6 quarts.
 
@@ -236,33 +236,39 @@ Instead of tying an MixerBowl to a StandMixer:
 [ Status ]
 
 Understand "set [StandMixer] to [a number]" as setting it by number. Setting it by number is an action applying to one thing and one number.
-
 Understand "set [StandMixer] to [StandMixerStatus]" as setting it by StandMixerStatus. Setting it by StandMixerStatus is an action applying to one thing and one StandMixerStatus.
-
-Check setting StandMixer by number:
-	let valid_mixer_numbers be {0, 2, 4, 6, 8, 10};
-	if the number understood is not listed in valid_mixer_numbers:
-		say "The settings on the stand mixer are 0, stir, 2, 4, 6, 8, and 10.";
-		stop the action.
-
-Carry out setting StandMixer by number:
-	if the number understood is:
-		-- 0: now the status of the noun is status_0;
-		-- 2: now the status of the noun is status_2;
-		-- 4: now the status of the noun is status_4;
-		-- 6: now the status of the noun is status_6;
-		-- 8: now the status of the noun is status_8;
-		-- 10: now the status of the noun is status_10;
-
-Report setting a StandMixer by number:
-	say "You set [the noun] to [the status of the noun]."
 
 Instead of setting a StandMixer to something:
 	say "The settings on the stand mixer are 0, stir, 2, 4, 6, 8, and 10.";
 
+[ TODO: Special text for setting stand mixer to itself ]
+Check setting StandMixer by number (this is the only valid number settings rule):
+	let valid_mixer_numbers be {0, 2, 4, 6, 8, 10};
+	if the number understood is not listed in valid_mixer_numbers:
+		say "The settings on the stand mixer are 0, stir, 2, 4, 6, 8, and 10.";
+		stop the action.
+Check setting StandMixer by number (this is the stop if no attachment present by number rule):
+	if the noun does not contain a MixerAttachment:
+		say "There's no attachment in the mixer. Turning it on would accomplish nothing.";
+		stop the action.
+Check setting a StandMixer by StandMixerStatus (this is the stop if no attachment present by status rule):
+	if the noun does not contain a MixerAttachment:
+		say "There's no attachment in the mixer. Turning it on would accomplish nothing.";
+		stop the action.
+
+Carry out setting StandMixer by number:
+	if the number understood is:
+		-- 0: now the status of the noun is speed 0;
+		-- 2: now the status of the noun is speed 2;
+		-- 4: now the status of the noun is speed 4;
+		-- 6: now the status of the noun is speed 6;
+		-- 8: now the status of the noun is speed 8;
+		-- 10: now the status of the noun is speed 10;
 Carry out setting StandMixer by StandMixerStatus:
 	now the status of the noun is the StandMixerStatus understood;
 
+Report setting a StandMixer by number:
+	say "You set [the noun] to [the status of the noun]."
 Report setting a StandMixer by StandMixerStatus:
 	say "You set [the noun] to [the status of the noun]."
 
