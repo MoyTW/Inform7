@@ -176,13 +176,14 @@ Carry out an actor pouring something (called source) into something (called targ
 			add the new_volume to the volumes_list of the target;
 		increment src_idx;
 
-[ TODO: Figure out how to use 'fill' when the user, well, fills! ]
-[ TODO: Figure out how to surface the description of a mixture! ]
-Report an actor pouring something into something (this is the standard report someone pouring rule):
-	say "[The actor] [pour] the [the noun] into [the second noun].";
+Report an actor pouring something (called source) into something (called target) (this is the standard report someone pouring rule):
+	if the capacity of the source is greater than the capacity of the target:
+		say "[The actor] [fill] [the target] from [the source].";
+	else:
+		say "[The actor] [pour] [the source] into [the target].";
 
 [ For some reason "x 1.5-qt" tells you you can't see any such thing! ]
-test i with "put 1.5-qt on Corian / put 3-qt on Corian / fill 1-tsp with salt / pour 1-tsp into 3-qt / x 3-qt / fill 1-cup with bread flour / pour 1-cup into 3-qt / x 3-qt / pour 3-qt into half-cup / x 3-qt / x half-cup"
+test i with "put 1.5-qt on Corian / put 3-qt on Corian / fill 1-tsp with salt / pour 1-tsp into 3-qt / x 3-qt / fill 1-cup with bread flour / pour 1-cup into 3-qt / x 3-qt / pour 3-qt into half-cup / x 3-qt / x half-cup / pour half-cup into 4-cup / x half-cup"
 
 Section 3 - Time
 
