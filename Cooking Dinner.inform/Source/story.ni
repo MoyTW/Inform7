@@ -132,21 +132,21 @@ Setting action variables for pouring something (called the source) into somethin
 [ TODO: can't pour empties rule ]
 
 Carry out an actor pouring something (called source) into something (called target) (this is the standard carry out pouring rule):
-	let s_i be 1;
+	let src_idx be 1;
 	repeat with new_ingredient running through ingredients_poured:
-		let new_volume be the entry s_i of the amounts_poured;
-		decrease entry s_i of the volumes_list of the source by the new_volume;
+		let new_volume be the entry src_idx of the amounts_poured;
+		decrease entry src_idx of the volumes_list of the source by the new_volume;
 		if the new_ingredient is listed in the ingredients_list of the target:
-			let t_i be 1;
+			let tar_idx be 1;
 			repeat with N running through the ingredients_list of the target:
 				if N is the new_ingredient:
-					increase entry t_i of the volumes_list of the target by the new_volume;
+					increase entry tar_idx of the volumes_list of the target by the new_volume;
 					break;
-				increment t_i;
+				increment tar_idx;
 		else:
 			add the new_ingredient to the ingredients_list of the target;
 			add the new_volume to the volumes_list of the target;
-		increment s_i;
+		increment src_idx;
 
 [ For some reason "x 1.5-qt" tells you you can't see any such thing! ]
 test i with "put 1.5-qt on Corian / put 3-qt on Corian / fill 1-tsp with salt / pour 1-tsp into 3-qt / x 3-qt / fill 1-cup with bread flour / pour 1-cup into 3-qt / x 3-qt / pour 3-qt into half-cup / x 3-qt / x half-cup"
