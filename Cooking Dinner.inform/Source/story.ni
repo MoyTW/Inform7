@@ -206,23 +206,23 @@ Book 1 - Object Rules
 
 Section 1 - Stand Mixer
 
-An abstract stand mixer is a kind of container.
-An abstract mixer bowl is a kind of container.
-An abstract mixer attachment is a kind of thing.
+A StandMixer is a kind of container.
+A MixerBowl is a kind of container.
+A MixerAttachment is a kind of thing.
 
-Check inserting something into an abstract stand mixer:
-	if the noun is not an abstract mixer bowl and the noun is not an abstract mixer attachment:
+Check inserting something into a StandMixer:
+	if the noun is not an MixerBowl and the noun is not an MixerAttachment:
 		say "You can't put that into the stand mixer!" instead;
-	otherwise if the noun is an abstract mixer attachment and the second noun contains an abstract mixer attachment:
+	otherwise if the noun is a MixerAttachment and the second noun contains a MixerAttachment:
 		say "There's already an attachment!" instead;
 
-Instead of putting an abstract mixer attachment on an abstract stand mixer:
+Instead of putting an MixerAttachment on a StandMixer:
 	try inserting the noun into the second noun.
-Instead of tying an abstract mixer attachment to an abstract stand mixer:
+Instead of tying an MixerAttachment to a StandMixer:
 	try inserting the noun into the second noun.
-Instead of putting an abstract mixer bowl on an abstract stand mixer:
+Instead of putting an MixerBowl on a StandMixer:
 	try inserting the noun into the second noun.
-Instead of tying an abstract mixer bowl to an abstract stand mixer:
+Instead of tying an MixerBowl to a StandMixer:
 	try inserting the noun into the second noun.
 
 [ Mixing test - we should be able to combine sugar and raisins. ]
@@ -351,8 +351,8 @@ pour all-purpose into 4-cup /
 pour 4-cup into 3-qt /
 fill 1-cup with all-purpose /
 pour 1-cup into 3-qt /
-fill 1/4-cup with all-purpose /
-pour 1/4-cup into 3-qt /
+fill quarter-cup with all-purpose /
+pour quarter-cup into 3-qt /
 fill 1-tsp with salt /
 pour 1-tsp into 3-qt /
 fill 1-cup from sink /
@@ -410,17 +410,17 @@ A large Corian countertop is a supporter in the Kitchen. It is fixed in place. I
 
 Understand "large Corian counter" as large Corian countertop.
 
-An abstract stand mixer called the stand mixer is on the large Corian countertop.
+An StandMixer called the stand mixer is on the large Corian countertop.
 
-An abstract mixer bowl called the mixer bowl is in the stand mixer.
+An MixerBowl called the mixer bowl is in the stand mixer.
 
-A plastic attachments tub is a container on the large Corian countertop. It is scenery.
+A plastic attachments tub is a container on the large Corian countertop.
 
-An abstract mixer attachment called the paddle attachment is in the plastic attachments tub.
+An MixerAttachment called the paddle attachment is in the plastic attachments tub.
 
-An abstract mixer attachment called dough hook attachment is in the plastic attachments tub.
+An MixerAttachment called dough hook attachment is in the plastic attachments tub.
 
-An abstract mixer attachment called whisk attachment is in the plastic attachments tub.
+An MixerAttachment called whisk attachment is in the plastic attachments tub.
 
 Section 2 - East wall
 
