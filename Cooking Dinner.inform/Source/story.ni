@@ -140,12 +140,20 @@ Check an actor pouring something into something (this is the can't pour somethin
 		say "No point pouring something into itself.";
 		stop the action.
 
-Check an actor pouring something into something (this is the can't pour empty containers rule):
+Check an actor pouring something into something (this is the can't pour out of empty containers rule):
 	let total_taken_capacity be 0 tsp;
 	repeat with taken_capacity running through volumes_list of the noun:
 		increase total_taken_capacity by taken_capacity;
 	if total_taken_capacity is 0 tsp:
 		say "[The noun] [are] empty.";
+		stop the action.
+
+Check an actor pouring something into something (this is the can't pour into a full container rule):
+	let total_taken_capacity be 0 tsp;
+	repeat with taken_capacity running through volumes_list of the second noun:
+		increase total_taken_capacity by taken_capacity;
+	if total_taken_capacity is the capacity of the second noun:
+		say "[The second noun] [are] full!";
 		stop the action.
 
 test pouring_checks with "pour salt into stand mixer / pour stand mixer into salt / pour salt into salt / x salt / pour salt into 4-cup / x salt / pour salt into 1-cup / x 1-cup"
