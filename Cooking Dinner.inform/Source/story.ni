@@ -207,7 +207,7 @@ Book 1 - Object Rules
 Section 1 - Stand Mixer
 
 A StandMixer is a kind of container.
-A MixerBowl is a kind of container.
+A MixerBowl is a kind of IngredientContainer. The capacity of a MixerBowl is usually 6 quarts.
 A MixerAttachment is a kind of thing.
 
 Check inserting something into a StandMixer:
