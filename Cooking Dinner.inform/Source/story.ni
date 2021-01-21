@@ -126,12 +126,12 @@ Setting action variables for pouring something (called the source) into somethin
 [ TODO: can't pour two untouched things rule ]
 
 Check an actor pouring something into something (this is the can't pour out of a non-IngredientContainer rule):
-	if the second noun is not an IngredientContainer:
+	if the noun is not an IngredientContainer:
 		say "You can't pour out of that.";
 		stop the action.
 
 Check an actor pouring something into something (this is the can't pour into a non-IngredientContainer rule):
-	if the noun is not an IngredientContainer:
+	if the second noun is not an IngredientContainer:
 		say "That's not an appropriate container for cooking with!";
 		stop the action.
 
@@ -308,7 +308,7 @@ Every turn:
 				now current temperature of instance is current temperature of the instance + 23 F;
 			if current temperature of instance is greater than target temperature of instance:
 				now current temperature of instance is target temperature of instance;
-			say "Temp of [instance] is [current temperature of the instance]";
+				say "[The instance] plays a jaunty tune, indicating that it's finished preheating.";
 		if target status of the instance is OFF:
 			if current temperature of instance is greater than room temperature:
 				now current temperature of instance is current temperature of the instance - 23 F;
