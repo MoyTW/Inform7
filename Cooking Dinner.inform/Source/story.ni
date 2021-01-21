@@ -353,7 +353,7 @@ Section 1 - West Wall
 
 [ Sink ]
 
-A kitchen sink is in Kitchen. It is fixed in place. It is scenery.
+A kitchen sink is in Kitchen. It is fixed in place. It is scenery. It is an IngredientContainer with capacity 8 gallons and ingredients_list {water} and volumes_list {8 gallons}.
 
 [ Dish washer ]
 
