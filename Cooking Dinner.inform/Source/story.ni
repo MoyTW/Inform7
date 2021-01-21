@@ -335,14 +335,55 @@ set upper oven to off
 Book 2 - Rooms
 
 A recipe is carried by the player. The description is "Dead-Easy Bread[line break]
-1 1/2 lb (about 6 1/4 cups) all-purpose flour[line break]
+1 1/2 lb (about 5 1/4 cups) all-purpose flour[line break]
 1 tsp salt[line break]
 2 cups water[line break]
 1 tsp sugar[line break]
 1 tsp active dry yeast[line break]
-Dump the flour and salt into a stand mixer, using the paddle attachment. Beat the sugar and yeast into the water, then dump the water into the mixer under the stir setting. Put it to speed 2 and leave it on for ~8 minutes-ish until it's done - usually I test it by poking it and seeing if it fills in the hole, but honestly it's probably fine. Most recipes will tell you to cover the dough with a cloth and leave it for an hour and a half at a warm-ish temperature, but what I like to do is actually boil some water, put the saucepan in the oven (off of course) and then put the dough in with it. The idea is you want to give it time to rise but don't want it to lose too much moisture. You'll be fine either way, bread's actually pretty hard to mess up.[line break]
+Dump the flour and salt into the mixer bowl. In another bowl, beat the sugar and yeast into the water. Pour the liquids into the flour and stir until it comes together into a dough. Using the dough hook for the mixer, put it to speed 2 and leave it on for ~8 minutes-ish until it's done - you can test it by poking it and seeing if it fills in the hole, but honestly it's probably fine. Most recipes will tell you to cover the dough with a cloth and leave it for an hour and a half at a warm-ish temperature, but what I like to do is actually boil some water, put the saucepan in the oven (off of course) and then put the dough in with it. The idea is you want to give it time to rise but don't want it to lose too much moisture. You'll be fine either way, bread's actually pretty hard to mess up.[line break]
 Anyways after it rises, prep the baking sheet by putting some parchment paper on it. Take out the dough, flour a board and gently knead it a bit then shape it into an oval. Stick it on the sheet and cover it with a cloth (or put it back in the oven) and leave for another 45-minutes-ish.[line break]
 Heat oven to 450 degrees and bake for ~20-25 minutes, then remove and cool.
+"
+
+test happy with "
+put 3-qt on corian /
+pour all-purpose into 4-cup /
+pour 4-cup into 3-qt /
+fill 1-cup with all-purpose /
+pour 1-cup into 3-qt /
+fill 1/4-cup with all-purpose /
+pour 1/4-cup into 3-qt /
+fill 1-tsp with salt /
+pour 1-tsp into 3-qt /
+fill 1-cup from sink /
+pour 1-cup into 4-cup /
+fill 1-cup from sink /
+pour 1-cup into 4-cup /
+fill 1-tsp with active dry yeast /
+pour 1-tsp into 4-cup /
+fill 1-tsp with sugar /
+pour 1-tsp into 4-cup /
+x 4-cup /
+x 3-qt /
+beat 4-cup /
+pour 3-qt into mixer bowl /
+pour 4-cup into mixer bowl /
+stir mixer bowl /
+x mixer bowl /
+attach paddle to stand mixer /
+set stand mixer to 2 /
+z /
+z /
+z /
+x mixer bowl /
+z /
+z /
+z /
+x mixer bowl /
+z /
+z /
+set mixer to off /
+x stand mixer bowl
 "
 
 Part 1 - Kitchen
