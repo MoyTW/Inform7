@@ -4,7 +4,9 @@
 
 Volume 1 - Setup
 
-Section 1 - Definitions
+Chapter 1 - Definitions
+
+Section 1 - Unit Definitions
 
 A volume is a kind of value. 1.0 tsp (in US units, in tsp) or 1 teaspoon (in tsp, singular) or 2 teaspoons (in tsp, plural) specifies a volume.
 
@@ -57,7 +59,99 @@ Rule after printing the name of an ingredient-container when printing the locale
 	else if n is 1:
 		say " (containing some [entry 1 of the ingredients-list of the item described])";
 
-Section 2 - Time
+Instead of examining an ingredient-container:
+	say "[The noun] ";
+	let n be the number of entries in the ingredients-list of the noun;
+	if n is 0:
+		say "is empty.";
+	else if n is 1:
+		say "contains [entry 1 of the volumes-list of the noun] [entry 1 of the ingredients-list of the noun].";
+	else:
+		say "contains a mixture of [ingredients-list of the noun], quantities [volumes-list of the noun] - TODO: reformat.";
+
+[ Filling ]
+
+To fill is a verb.
+
+Understand the command "fill" as something new.
+
+Understand "fill [something] with/from [something]" as filling it with.
+Understand "fill [something]" as filling it with.
+
+Filling it with is an action applying to two things.
+
+Carry out an actor filling something with something (this is the convert filling to pouring rule):
+	try the actor pouring the second noun into the noun instead.
+
+Rule for supplying a missing second noun while an actor filling (this is the query player for source rule):
+	say "You'll need to specify what to fill [the noun] with."
+
+[ Pouring ]
+
+To pour is a verb.
+
+Understand "pour [something] in/into/with [something]" as pouring it into.
+Understand "empty [something] in/into/with [something]" as pouring it into.
+
+[ TODO: Discourage the player pouring something into an ingredient source container ]
+
+Pouring it into is an action applying to two things.
+The pouring it into action has a list of ingredients called the ingredients-poured.
+The pouring it into action has a list of volumes called the amounts-poured.
+
+Setting action variables for pouring something into something (this is the setting ingredients poured rule):
+	if the noun is an ingredient-container:
+		now the ingredients-poured is the ingredients-list of the noun.
+
+Setting action variables for pouring something (called the source) into something (called the target) (this is the setting amounts poured rule):
+	if the source is an ingredient-container and the target is an ingredient-container:
+		[ target capacity ]
+		let target_remaining_capacity be capacity of target;
+		repeat with taken_capacity running through volumes-list of the target:
+			decrease target_remaining_capacity by taken_capacity;
+		[ source total ]
+		let source_total_amount be 0 tsp;
+		repeat with v running through volumes-list of the source:
+			increase source_total_amount by v;
+		[ amount poured ]
+		if target_remaining_capacity is greater than the source_total_amount:
+			now the amounts-poured is the volumes-list of the noun;
+		otherwise:
+			let new_volumes be a list of volumes;
+			let scalar be target_remaining_capacity / source_total_amount;
+			repeat with v running through volumes-list of the source:
+				add scalar * v to new_volumes;
+			now the amounts-poured is new_volumes;
+		say "amounts-poured=[amounts-poured]";
+
+[ TODO: can't pour two untouched things rule ]
+
+[ TODO: can't pour without fluid containers rule ]
+
+[ TODO: no pouring something into itself rule ]
+
+[ TODO: can't pour empties rule ]
+
+Carry out an actor pouring something (called source) into something (called target) (this is the standard carry out pouring rule):
+	let s_i be 1;
+	repeat with new_ingredient running through ingredients-poured:
+		let new_volume be the entry s_i of the amounts-poured;
+		if the new_ingredient is listed in the ingredients-list of the target:
+			let t_i be 1;
+			repeat with N running through the ingredients-list of the target:
+				if N is the ingredient understood:
+					increase entry t_i of the volumes-list of the target by the new_volume;
+					break;
+				increment t_i;
+		else:
+			add the new_ingredient to the ingredients-list of the target;
+			add the new_volume to the volumes-list of the target;
+		increment s_i;
+
+[ For some reason "x 1.5-qt" tells you you can't see any such thing! ]
+test i with "put 1.5-qt on Corian / put 3-qt on Corian / fill 1-tsp with salt / pour 1-tsp into 3-qt / x 3-qt / fill 1-cup with bread flour / pour 1-cup into 3-qt / x 3-qt / pour 3-qt into half-cup / x 3-qt / x half-cup"
+
+Section 3 - Time
 
 When play begins: now the right hand status line is "[time of day]".
 
