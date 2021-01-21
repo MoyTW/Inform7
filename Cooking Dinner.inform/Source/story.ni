@@ -125,12 +125,32 @@ Setting action variables for pouring something (called the source) into somethin
 
 [ TODO: can't pour two untouched things rule ]
 
-[ TODO: can't pour without fluid containers rule ]
+Check an actor pouring something into something (this is the can't pour out of a non-IngredientContainer rule):
+	if the second noun is not an IngredientContainer:
+		say "You can't pour out of that.";
+		stop the action.
 
-[ TODO: no pouring something into itself rule ]
+Check an actor pouring something into something (this is the can't pour into a non-IngredientContainer rule):
+	if the noun is not an IngredientContainer:
+		say "That's not an appropriate container for cooking with!";
+		stop the action.
 
-[ TODO: can't pour empties rule ]
+Check an actor pouring something into something (this is the can't pour something into itself rule):
+	if the noun is the second noun:
+		say "No point pouring something into itself.";
+		stop the action.
 
+Check an actor pouring something into something (this is the can't pour empty containers rule):
+	let total_taken_capacity be 0 tsp;
+	repeat with taken_capacity running through volumes_list of the noun:
+		increase total_taken_capacity by taken_capacity;
+	if total_taken_capacity is 0 tsp:
+		say "[The noun] [are] empty.";
+		stop the action.
+
+test pouring_checks with "pour salt into stand mixer / pour stand mixer into salt / pour salt into salt / x salt / pour salt into 4-cup / x salt / pour salt into 1-cup / x 1-cup"
+
+[ TODO: Right now we accumulate 0-quantity ingredients for every type of ingredient that passes through a container, which we should either implement "clean" for, or just make it implicit. ]
 Carry out an actor pouring something (called source) into something (called target) (this is the standard carry out pouring rule):
 	let src_idx be 1;
 	repeat with new_ingredient running through ingredients_poured:
@@ -147,6 +167,11 @@ Carry out an actor pouring something (called source) into something (called targ
 			add the new_ingredient to the ingredients_list of the target;
 			add the new_volume to the volumes_list of the target;
 		increment src_idx;
+
+[ TODO: Figure out how to use 'fill' when the user, well, fills! ]
+[ TODO: Figure out how to surface the description of a mixture! ]
+Report an actor pouring something into something (this is the standard report someone pouring rule):
+	say "[The actor] [pour] the [the noun] into [the second noun].";
 
 [ For some reason "x 1.5-qt" tells you you can't see any such thing! ]
 test i with "put 1.5-qt on Corian / put 3-qt on Corian / fill 1-tsp with salt / pour 1-tsp into 3-qt / x 3-qt / fill 1-cup with bread flour / pour 1-cup into 3-qt / x 3-qt / pour 3-qt into half-cup / x 3-qt / x half-cup"
@@ -448,7 +473,7 @@ A bread flour bin is in the pantry cabinet. It is an IngredientContainer with ca
 
 A cake flour bin is in the pantry cabinet. It is an IngredientContainer with capacity 4 quarts and ingredients_list {cake flour} and volumes_list {2.7 cups}.
 
-A sugar box is in the pantry cabinet. It is an IngredientContainer with capacity 2.5 cups and ingredients_list {white sugar} and volumes_list {1.9 cups}.
+A white sugar box is in the pantry cabinet. It is an IngredientContainer with capacity 2.5 cups and ingredients_list {white sugar} and volumes_list {1.9 cups}.
 
 A raisins bag is in the pantry cabinet. It is an IngredientContainer with capacity 30 fl oz  and ingredients_list {raisins} and volumes_list {22 fl oz}.
 
