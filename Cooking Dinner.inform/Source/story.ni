@@ -122,7 +122,6 @@ Setting action variables for pouring something (called the source) into somethin
 			repeat with v running through volumes_list of the source:
 				add scalar * v to new_volumes;
 			now the amounts_poured is new_volumes;
-		say "amounts_poured=[amounts_poured]";
 
 [ TODO: can't pour two untouched things rule ]
 
@@ -136,10 +135,11 @@ Carry out an actor pouring something (called source) into something (called targ
 	let s_i be 1;
 	repeat with new_ingredient running through ingredients_poured:
 		let new_volume be the entry s_i of the amounts_poured;
+		decrease entry s_i of the volumes_list of the source by the new_volume;
 		if the new_ingredient is listed in the ingredients_list of the target:
 			let t_i be 1;
 			repeat with N running through the ingredients_list of the target:
-				if N is the ingredient understood:
+				if N is the new_ingredient:
 					increase entry t_i of the volumes_list of the target by the new_volume;
 					break;
 				increment t_i;
