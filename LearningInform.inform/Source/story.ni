@@ -28,8 +28,7 @@ Check setting StandMixer by number (this is the only valid number settings rule)
 
 Carry out setting StandMixer by number:
 	if the number understood is:
-		[ -- 0: try setting the stand mixer to speed 0; ] [ This is what I *want* to do ]
-		-- 0: try putting the noun on the table; [ Try clearly works in this case ]
+		-- 0: try setting the noun by StandMixerStatus speed 0; [ This is what I *want* to do ]
 		-- 2: now the status of the noun is speed 2;
 		-- 4: now the status of the noun is speed 4;
 		-- 6: now the status of the noun is speed 6;

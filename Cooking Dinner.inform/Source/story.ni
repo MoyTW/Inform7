@@ -241,34 +241,34 @@ Understand "set [StandMixer] to [StandMixerStatus]" as setting it by StandMixerS
 Instead of setting a StandMixer to something:
 	say "The settings on the stand mixer are 0, stir, 2, 4, 6, 8, and 10.";
 
-[ TODO: Special text for setting stand mixer to itself ]
 Check setting StandMixer by number (this is the only valid number settings rule):
 	let valid_mixer_numbers be {0, 2, 4, 6, 8, 10};
 	if the number understood is not listed in valid_mixer_numbers:
 		say "The settings on the stand mixer are 0, stir, 2, 4, 6, 8, and 10.";
 		stop the action.
-Check setting StandMixer by number (this is the stop if no attachment present by number rule):
-	if the noun does not contain a MixerAttachment:
-		say "There's no attachment in the mixer. Turning it on would accomplish nothing.";
+
+Carry out setting StandMixer by number:
+	if the number understood is:
+		-- 0: try setting the noun by StandMixerStatus speed 0;
+		-- 2: try setting the noun by StandMixerStatus speed 2;
+		-- 4: try setting the noun by StandMixerStatus speed 4;
+		-- 6: try setting the noun by StandMixerStatus speed 6;
+		-- 8: try setting the noun by StandMixerStatus speed 8;
+		-- 10: try setting the noun by StandMixerStatus speed 10;
+
+Check setting a StandMixer by StandMixerStatus (this is the never set to current status rule):
+	if the StandMixerStatus understood is the status of the noun:
+		say "The stand mixer is already set to [the StandMixerStatus understood].";
 		stop the action.
+
 Check setting a StandMixer by StandMixerStatus (this is the stop if no attachment present by status rule):
 	if the noun does not contain a MixerAttachment:
 		say "There's no attachment in the mixer. Turning it on would accomplish nothing.";
 		stop the action.
 
-Carry out setting StandMixer by number:
-	if the number understood is:
-		-- 0: now the status of the noun is speed 0;
-		-- 2: now the status of the noun is speed 2;
-		-- 4: now the status of the noun is speed 4;
-		-- 6: now the status of the noun is speed 6;
-		-- 8: now the status of the noun is speed 8;
-		-- 10: now the status of the noun is speed 10;
 Carry out setting StandMixer by StandMixerStatus:
 	now the status of the noun is the StandMixerStatus understood;
 
-Report setting a StandMixer by number:
-	say "You set [the noun] to [the status of the noun]."
 Report setting a StandMixer by StandMixerStatus:
 	say "You set [the noun] to [the status of the noun]."
 
