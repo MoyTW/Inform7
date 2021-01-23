@@ -280,76 +280,76 @@ Part 3 - Oven
 	stop oven
 	turn oven off / turn off oven
 ]
-Oven status is a kind of value. The oven statuses are off, bake, and broil.
+OvenStatus is a kind of value. The OvenStatuses are off, bake, and broil.
 
-An abstract oven is a kind of container. It is openable. It is usually closed.
-An abstract oven has a temperature called current temperature. The current temperature of an abstract oven is usually 0 F.
-An abstract oven has a temperature called target temperature. The target temperature of an abstract oven is usually 0 F.
-An abstract oven has an oven status called target status. The target status of an abstract oven is usually OFF.
+An AbstractOven is a kind of container. It is openable. It is usually closed.
+An AbstractOven has a temperature called current_temperature. The current_temperature of an AbstractOven is usually 0 F.
+An AbstractOven has a temperature called target_temperature. The target_temperature of an AbstractOven is usually 0 F.
+An AbstractOven has an OvenStatus called target_status. The target_status of an AbstractOven is usually OFF.
 
-Instead of setting an abstract oven to something:
-	say "You can set the oven to bake, broil, or off, or you can set it to a target temperature, in degrees farenheit."
+Instead of setting an AbstractOven to something:
+	say "You can set the oven to bake, broil, or off, or you can set it to a target_temperature, in degrees farenheit."
 
-Understand "set [abstract oven] to [oven status]" as setting it by oven status. Setting it by oven status is an action applying to one thing and one oven status.
+Understand "set [AbstractOven] to [OvenStatus]" as setting it by OvenStatus. Setting it by OvenStatus is an action applying to one thing and one OvenStatus.
 
-Carry out setting an abstract oven by oven status:
-	if the oven status understood is off:
-		if the target status of the noun is off:
+Carry out setting an AbstractOven by OvenStatus:
+	if the OvenStatus understood is off:
+		if the target_status of the noun is off:
 			say "It's already off.";
 		otherwise:
-			say "You hit the OFF button on the oven, clearing the [target status of the noun] and resetting the target temperature to 0 F.";
-			now the target status of the noun is off;
-			now the target temperature of the noun is 0 F;
-	otherwise if the oven status understood is bake:
-		if the target temperature of the noun is 0 F:
-			say "You hit the bake button, but the oven buzzes with complaint. It needs a target temperature first.";
-		otherwise if the target status of the noun is off:
+			say "You hit the OFF button on the oven, clearing the [target_status of the noun] and resetting the target_temperature to 0 F.";
+			now the target_status of the noun is off;
+			now the target_temperature of the noun is 0 F;
+	otherwise if the OvenStatus understood is bake:
+		if the target_temperature of the noun is 0 F:
+			say "You hit the bake button, but the oven buzzes with complaint. It needs a target_temperature first.";
+		otherwise if the target_status of the noun is off:
 			say "You hit the bake button and press start, beginning to heat the oven.";
-			now the target status of the noun is bake;
-		otherwise if the target status of the noun is bake:
+			now the target_status of the noun is bake;
+		otherwise if the target_status of the noun is bake:
 			say "It's already set to bake.";
-		otherwise if the target status of the noun is broil:
+		otherwise if the target_status of the noun is broil:
 			say "You switch the oven from broil to bake.";
-			now the target status of the noun is bake;
-	otherwise if the oven status understood is broil:
-		if the target temperature of the noun is 0 F:
-			say "You hit the broil button, but the oven buzzes with complaint. It needs a target temperature first.";
-		otherwise if the target status of the noun is off:
+			now the target_status of the noun is bake;
+	otherwise if the OvenStatus understood is broil:
+		if the target_temperature of the noun is 0 F:
+			say "You hit the broil button, but the oven buzzes with complaint. It needs a target_temperature first.";
+		otherwise if the target_status of the noun is off:
 			say "You hit the broil button and press start, beginning to heat the oven.";
-			now the target status of the noun is broil;
-		otherwise if the target status of the noun is bake:
+			now the target_status of the noun is broil;
+		otherwise if the target_status of the noun is bake:
 			say "You switch the oven from bake to broil.";
-			now the target status of the noun is broil;
-		otherwise if the target status of the noun is broil:
+			now the target_status of the noun is broil;
+		otherwise if the target_status of the noun is broil:
 			say "The oven is already set to broil.";
 
-Understand "set [abstract oven] to [temperature]" as setting it by temperature. Setting it by temperature is an action applying to one thing and one temperature.
+Understand "set [AbstractOven] to [temperature]" as setting it by temperature. Setting it by temperature is an action applying to one thing and one temperature.
 
-Check setting an abstract oven by temperature:
+Check setting an AbstractOven by temperature:
 	if the temperature understood is less than 200 F:
 		say "The minimum temperature for the oven is 200 F." instead;
 	otherwise if the temperature understood is greater than 500 F:
 		say "The dial only goess to 500 F." instead;
 
-Carry out setting an abstract oven by temperature:
-	now the target temperature of the noun is the temperature understood.
+Carry out setting an AbstractOven by temperature:
+	now the target_temperature of the noun is the temperature understood.
 
-Report setting an abstract oven by temperature:
+Report setting an AbstractOven by temperature:
 	say "You set [the noun] to [temperature understood]."
 
 Every turn:
-	repeat with instance running through abstract ovens:
-		if target status of instance is not OFF:
-			if target temperature of instance is greater than current temperature of instance:
-				now current temperature of instance is current temperature of the instance + 23 F;
-			if current temperature of instance is greater than target temperature of instance:
-				now current temperature of instance is target temperature of instance;
+	repeat with instance running through AbstractOvens:
+		if target_status of instance is not OFF:
+			if target_temperature of instance is greater than current_temperature of instance:
+				now current_temperature of instance is current_temperature of the instance + 23 F;
+			if current_temperature of instance is greater than target_temperature of instance:
+				now current_temperature of instance is target_temperature of instance;
 				say "[The instance] plays a jaunty tune, indicating that it's finished preheating.";
-		if target status of the instance is OFF:
-			if current temperature of instance is greater than room temperature:
-				now current temperature of instance is current temperature of the instance - 23 F;
-			if current temperature of instance is less than room temperature:
-				now current temperature of instance is room temperature;
+		if target_status of the instance is OFF:
+			if current_temperature of instance is greater than room temperature:
+				now current_temperature of instance is current_temperature of the instance - 23 F;
+			if current_temperature of instance is less than room temperature:
+				now current_temperature of instance is room temperature;
 
 Test oven with "
 set upper oven to asdf/
@@ -493,8 +493,8 @@ Understand "stove" as gas stovetop.
 [ Tall double wall oven ]
 
 A tall double wall oven is here. It is fixed in place. It is scenery.
-The upper oven is an abstract oven. It is part of the double wall oven.
-The lower oven is an abstract oven. It is part of the double wall oven.
+The upper oven is an AbstractOven. It is part of the double wall oven.
+The lower oven is an AbstractOven. It is part of the double wall oven.
 
 [ Small tile countertop ]
 
