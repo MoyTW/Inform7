@@ -212,14 +212,14 @@ StandMixerStatus is a kind of value. The StandMixerStatuses are speed 0, stir, s
 A StandMixer is a kind of container.
 A StandMixer has a StandMixerStatus called status. The status of a StandMixer is usually speed 0.
 
-A MixerBowl is a kind of IngredientContainer. The capacity of a MixerBowl is usually 6 quarts.
+A StandMixerBowl is a kind of IngredientContainer. The capacity of a StandMixerBowl is usually 6 quarts.
 
 A MixerAttachment is a kind of thing.
 
 [ Inserting/attaching ]
 
 Check inserting something into a StandMixer:
-	if the noun is not an MixerBowl and the noun is not an MixerAttachment:
+	if the noun is not an StandMixerBowl and the noun is not an MixerAttachment:
 		say "You can't put that into the stand mixer!" instead;
 	otherwise if the noun is a MixerAttachment and the second noun contains a MixerAttachment:
 		say "There's already an attachment!" instead;
@@ -228,9 +228,9 @@ Instead of putting an MixerAttachment on a StandMixer:
 	try inserting the noun into the second noun.
 Instead of tying an MixerAttachment to a StandMixer:
 	try inserting the noun into the second noun.
-Instead of putting an MixerBowl on a StandMixer:
+Instead of putting a StandMixerBowl on a StandMixer:
 	try inserting the noun into the second noun.
-Instead of tying an MixerBowl to a StandMixer:
+Instead of tying a StandMixerBowl to a StandMixer:
 	try inserting the noun into the second noun.
 
 [ Status ]
@@ -263,7 +263,12 @@ Check setting a StandMixer by StandMixerStatus (this is the never set to current
 
 Check setting a StandMixer by StandMixerStatus (this is the stop if no attachment present by status rule):
 	if the noun does not contain a MixerAttachment:
-		say "There's no attachment in the mixer. Turning it on would accomplish nothing.";
+		say "[The noun] has no attachment mounted. Turning it on would accomplish nothing.";
+		stop the action.
+
+Check setting a StandMixer by StandMixerStatus (this is the do not start stand mixer if no bowl present rule):
+	if the noun does not contain a StandMixerBowl:
+		say "[The noun] has no bowl mounted. Turning it on now would accomplish nothing.";
 		stop the action.
 
 Carry out setting StandMixer by StandMixerStatus:
@@ -432,7 +437,7 @@ x mixer bowl /
 z /
 z /
 set mixer to off /
-x stand mixer bowl
+x mixer bowl
 "
 
 Part 1 - Kitchen
@@ -459,9 +464,9 @@ A large Corian countertop is a supporter in the Kitchen. It is fixed in place. I
 
 Understand "large Corian counter" as large Corian countertop.
 
-An StandMixer called the stand mixer is on the large Corian countertop.
+A StandMixer called the stand mixer is on the large Corian countertop.
 
-An MixerBowl called the mixer bowl is in the stand mixer.
+A StandMixerBowl called the mixer bowl is in the stand mixer.
 
 A plastic attachments tub is a container on the large Corian countertop.
 
