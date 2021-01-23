@@ -4,9 +4,9 @@
 
 Volume 1 - Setup
 
-Chapter 1 - Definitions
+Book 1 - Value Definitions
 
-Section 1 - Unit Definitions
+Part 1 - Units
 
 A volume is a kind of value. 1.0 tsp (in US units, in tsp) or 1 teaspoon (in tsp, singular) or 2 teaspoons (in tsp, plural) specifies a volume.
 
@@ -26,7 +26,7 @@ A temperature is a kind of value. 1 degree farenheit (singular) or 2 degrees far
 
 The room temperature is always 70 F.
 
-Section 2 - Ingredients & Ingredient Containers
+Part 2 - Ingredients
 
 An ingredient is a kind of value. The ingredients are defined by the Table of Cooking Ingredients.
 
@@ -41,35 +41,9 @@ salt
 water
 white sugar
 
-[ Ingredient container ]
+Book 2 - Verb Definitions
 
-An IngredientContainer is a kind of thing.
-
-An IngredientContainer is either graduated or ungraduated. An IngredientContainer is usually ungraduated.
-An IngredientContainer has a volume called capacity. An IngredientContainer has a list of ingredients called ingredients_list. An IngredientContainer has a list of volumes called volumes_list.
-
-Check inserting something into an IngredientContainer (this is the can't put objects an ingredient container rule):
-	say "The [second noun] [hold] only ingredients." instead.
-
-[ TODO: Modify descriptions to fit & graduated/ungraduated ]
-Rule after printing the name of an IngredientContainer when printing the locale description:
-	let n be the number of entries in the ingredients_list of the item described;
-	if n > 1:
-		say " (containing a mixture of [ingredients_list])";
-	else if n is 1:
-		say " (containing some [entry 1 of the ingredients_list of the item described])";
-
-Instead of examining an IngredientContainer:
-	say "[The noun] ";
-	let n be the number of entries in the ingredients_list of the noun;
-	if n is 0:
-		say "is empty.";
-	else if n is 1:
-		say "contains [entry 1 of the volumes_list of the noun] [entry 1 of the ingredients_list of the noun].";
-	else:
-		say "contains a mixture of [ingredients_list of the noun], quantities [volumes_list of the noun] - TODO: reformat.";
-
-[ Filling ]
+Part 1 - Fill Verb
 
 To fill is a verb.
 
@@ -86,7 +60,7 @@ Carry out an actor filling something with something (this is the convert filling
 Rule for supplying a missing second noun while an actor filling (this is the query player for source rule):
 	say "You'll need to specify what to fill [the noun] with."
 
-[ Pouring ]
+Part 2 - Pour Verb
 
 To pour is a verb.
 
@@ -185,26 +159,37 @@ Report an actor pouring something (called source) into something (called target)
 [ For some reason "x 1.5-qt" tells you you can't see any such thing! ]
 test i with "put 1.5-qt on Corian / put 3-qt on Corian / fill 1-tsp with salt / pour 1-tsp into 3-qt / x 3-qt / fill 1-cup with bread flour / pour 1-cup into 3-qt / x 3-qt / pour 3-qt into half-cup / x 3-qt / x half-cup / pour half-cup into 4-cup / x half-cup"
 
-Section 3 - Time
+Book 3 - Object Definitions
 
-When play begins: now the right hand status line is "[time of day]".
+Part 1 - IngredientContainer
 
-[ See http://inform7.com/book/RB_4_1.html for the example this is taken from. ]
+An IngredientContainer is a kind of thing.
 
-Examining something is acting fast. Looking is acting fast.
+An IngredientContainer is either graduated or ungraduated. An IngredientContainer is usually ungraduated.
+An IngredientContainer has a volume called capacity. An IngredientContainer has a list of ingredients called ingredients_list. An IngredientContainer has a list of volumes called volumes_list.
 
-The take visual actions out of world rule is listed before the every turn stage rule in the turn sequence rules.
+Check inserting something into an IngredientContainer (this is the can't put objects an ingredient container rule):
+	say "The [second noun] [hold] only ingredients." instead.
 
-This is the take visual actions out of world rule: if acting fast, rule succeeds.
+[ TODO: Modify descriptions to fit & graduated/ungraduated ]
+Rule after printing the name of an IngredientContainer when printing the locale description:
+	let n be the number of entries in the ingredients_list of the item described;
+	if n > 1:
+		say " (containing a mixture of [ingredients_list])";
+	else if n is 1:
+		say " (containing some [entry 1 of the ingredients_list of the item described])";
 
-Volume 2 - Content
+Instead of examining an IngredientContainer:
+	say "[The noun] ";
+	let n be the number of entries in the ingredients_list of the noun;
+	if n is 0:
+		say "is empty.";
+	else if n is 1:
+		say "contains [entry 1 of the volumes_list of the noun] [entry 1 of the ingredients_list of the noun].";
+	else:
+		say "contains a mixture of [ingredients_list of the noun], quantities [volumes_list of the noun] - TODO: reformat.";
 
-When play begins:
-	say "Special verbs are [italic type]fill[roman type] and [italic type]pour[roman type]."
-
-Book 1 - Object Rules
-
-Section 1 - Stand Mixer
+Part 2 - StandMixer
 
 [ Ok, so...if you just write "zero, stir, two..." it will interpret "two" not to mean the string two but the numerical value two, and then throw an error due to mixed string/number types. Hence setting_number. ]
 StandMixerStatus is a kind of value. The StandMixerStatuses are speed 0, stir, speed 2, speed 4, speed 6, speed 8 and speed 10.
@@ -279,10 +264,7 @@ Report setting a StandMixer by StandMixerStatus:
 
 Test stand with "set stand mixer to asdf / set stand mixer to 0 / set stand mixer to zero"
 
-[ Mixing test - we should be able to combine sugar and raisins. ]
-Test mixing with "pour raisins into half-cup / pour half-cup into 4-cup / x 4-cup / pour white sugar into quarter-cup / pour quarter-cup into 4-cup / x 4-cup"
-
-Section 2 - Oven
+Part 3 - Oven
 
 [ Oven states:
 	OFF
@@ -386,7 +368,27 @@ set upper oven to off/
 set upper oven to off
 "
 
-Book 2 - Rooms
+[ Mixing test - we should be able to combine sugar and raisins. ]
+Test mixing with "pour raisins into half-cup / pour half-cup into 4-cup / x 4-cup / pour white sugar into quarter-cup / pour quarter-cup into 4-cup / x 4-cup"
+
+Book 3 - Time
+
+When play begins: now the right hand status line is "[time of day]".
+
+[ See http://inform7.com/book/RB_4_1.html for the example this is taken from. ]
+
+Examining something is acting fast. Looking is acting fast.
+
+The take visual actions out of world rule is listed before the every turn stage rule in the turn sequence rules.
+
+This is the take visual actions out of world rule: if acting fast, rule succeeds.
+
+Volume 2 - Content
+
+When play begins:
+	say "Special verbs are [italic type]fill[roman type] and [italic type]pour[roman type]."
+
+Book 1 - Rooms
 
 A recipe is carried by the player. The description is "Dead-Easy Bread[line break]
 1 1/2 lb (about 5 1/4 cups) all-purpose flour[line break]
@@ -444,7 +446,7 @@ Part 1 - Kitchen
 
 The Kitchen is a room. "Objectively, your kitchen has a fair amount of counter space, but it never feels that way! Most of west wall is taken up by a [bold type]long Corian countertop[roman type] over various [bold type]drawers[roman type], with a [bold type]kitchen sink[roman type] and a [bold type]washing machine[roman type] cutting through the center. The east wall houses a [bold type]gas stovetop[roman type], a [bold type]double wall oven[roman type], a [bold type]small tile countertop[roman type], and the [bold type]fridge[roman type]. Above and below the countertops, crammed wherever there is space, are a profusion of [bold type]cabinets[roman type]. Morning light shines through the glass sliding door to the north, through which you can see the patio. To the south lies the dining room."
 
-Section 1 - West Wall
+Chapter 1 - West Wall
 
 [ Sink ]
 
@@ -476,7 +478,7 @@ An MixerAttachment called dough hook attachment is in the plastic attachments tu
 
 An MixerAttachment called whisk attachment is in the plastic attachments tub.
 
-Section 2 - East wall
+Chapter 2 - East wall
 
 [ Stove & fume hood ]
 
@@ -508,7 +510,7 @@ Understand "fridge" as refrigerator.
 
 A small active dry yeast bottle is in the refrigerator. It is an IngredientContainer with capacity 4 fl oz and ingredients_list {active dry yeast} and volumes_list {2.4 fl oz}.
 
-Section 3 - Drawers
+Chapter 3 - Drawers
 
 A drawers is here. It is fixed in place. It is scenery. "You list off the drawers in your head. Dinnerware is in the [bold type]utensil drawer[roman type] on the left of the washing machine, and instruments are in the [bold type]instrument drawer[roman type] to the right of the sink."
 
@@ -541,7 +543,7 @@ Understand "half-cup dry measuring cup" as 1/2-cup dry measuring cup. Understand
 A 1-cup dry measuring cup is in the instrument cabinet. It is an IngredientContainer with capacity 8 fl oz.
 Understand "cup dry measuring cup" as 1-cup dry measuring cup. Understand "cup" as 1-cup dry measuring cup.
 
-Section 4 - Cabinets
+Chapter 4 - Cabinets
 
 A cabinets is here. It is fixed in place. It is scenery. "You list off the cabinets in your head. The [bold type]spice rack[roman type] is over to the right of the sink, and the [bold type]mixing bowl cabinet[roman type] (which also has the liquid measuring cups) is the one next to it. The [bold type]pantry[roman type]'s down under the L-countertop near the dining room. Pans and saucepans are in the [bold type]under-stove cabinet[roman type], and pots proper are in the [bold type]pot cabinet[roman type] near the sliding door. Cleaning supplies (hopefully unnecessary) are in the [bold type]under-sink cabinet.[roman type] Good thing you know where everything is, right?"
 
