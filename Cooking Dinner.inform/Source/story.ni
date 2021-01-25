@@ -188,7 +188,10 @@ Part 1 - IngredientContainer
 An IngredientContainer is a kind of thing.
 
 An IngredientContainer is either graduated or ungraduated. An IngredientContainer is usually ungraduated.
-An IngredientContainer has a volume called capacity. An IngredientContainer has a list of ingredients called ingredients_list. An IngredientContainer has a list of volumes called volumes_list.
+An IngredientContainer has a volume called capacity.
+An IngredientContainer has a list of ingredients called ingredients_list.
+An IngredientContainer has a list of volumes called volumes_list.
+An IngredientContainer can be a ingredient_source. An IngredientContainer is usually not an ingredient_source.
 
 Check inserting something into an IngredientContainer (this is the can't put objects an ingredient container rule):
 	say "The [second noun] [hold] only ingredients." instead.
@@ -472,7 +475,7 @@ Chapter 1 - West Wall
 
 [ Sink ]
 
-A kitchen sink is in Kitchen. It is fixed in place. It is scenery. It is an IngredientContainer with capacity 8 gallons and ingredients_list {water} and volumes_list {8 gallons}.
+A kitchen sink is in Kitchen. It is fixed in place. It is scenery. It is an IngredientContainer with capacity 8 gallons and ingredients_list {water} and volumes_list {8 gallons}. It is an ingredient_source.
 
 [ Dish washer ]
 
@@ -530,7 +533,7 @@ A refrigerator is here. It is fixed in place. It is scenery. It is a container.
 
 Understand "fridge" as refrigerator.
 
-A small active dry yeast bottle is in the refrigerator. It is an IngredientContainer with capacity 4 fl oz and ingredients_list {active dry yeast} and volumes_list {2.4 fl oz}.
+A small active dry yeast bottle is in the refrigerator. It is an IngredientContainer with capacity 4 fl oz and ingredients_list {active dry yeast} and volumes_list {2.4 fl oz}. It is an ingredient_source.
 
 Chapter 3 - Drawers
 
@@ -593,21 +596,21 @@ A towel cabinet is here. It is fixed in place. It is scenery.
 
 A spice rack is here. It is fixed in place. It is scenery.
 
-A 500g cylinder of salt is in the spice rack. It is an IngredientContainer with capacity 30 tbsp and ingredients_list {salt} and volumes_list {19 tbsp}.
+A 500g cylinder of salt is in the spice rack. It is an IngredientContainer with capacity 30 tbsp and ingredients_list {salt} and volumes_list {19 tbsp}. It is an ingredient_source.
 
 [ Pantry ]
 
 A pantry cabinet is here. It is fixed in place. It is scenery.
 
-A all-purpose flour bin is in the pantry cabinet. It is an IngredientContainer with capacity 4 quarts and ingredients_list {all-purpose flour} and volumes_list {3.1 quarts}.
+A all-purpose flour bin is in the pantry cabinet. It is an IngredientContainer with capacity 4 quarts and ingredients_list {all-purpose flour} and volumes_list {3.1 quarts}. It is an ingredient_source.
 
-A bread flour bin is in the pantry cabinet. It is an IngredientContainer with capacity 4 quarts and ingredients_list {bread flour} and volumes_list {1.4 cups}.
+A bread flour bin is in the pantry cabinet. It is an IngredientContainer with capacity 4 quarts and ingredients_list {bread flour} and volumes_list {1.4 cups}. It is an ingredient_source.
 
-A cake flour bin is in the pantry cabinet. It is an IngredientContainer with capacity 4 quarts and ingredients_list {cake flour} and volumes_list {2.7 cups}.
+A cake flour bin is in the pantry cabinet. It is an IngredientContainer with capacity 4 quarts and ingredients_list {cake flour} and volumes_list {2.7 cups}. It is an ingredient_source.
 
-A white sugar box is in the pantry cabinet. It is an IngredientContainer with capacity 2.5 cups and ingredients_list {white sugar} and volumes_list {1.9 cups}.
+A white sugar box is in the pantry cabinet. It is an IngredientContainer with capacity 2.5 cups and ingredients_list {white sugar} and volumes_list {1.9 cups}. It is an ingredient_source.
 
-A raisins bag is in the pantry cabinet. It is an IngredientContainer with capacity 30 fl oz  and ingredients_list {raisins} and volumes_list {22 fl oz}.
+A raisins bag is in the pantry cabinet. It is an IngredientContainer with capacity 30 fl oz  and ingredients_list {raisins} and volumes_list {22 fl oz}. It is an ingredient_source.
 
 [ Spoon & spatula rack ]
 
