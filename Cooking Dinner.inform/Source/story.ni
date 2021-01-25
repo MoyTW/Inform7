@@ -47,8 +47,6 @@ Part 1 - Fill Verb
 
 To fill is a verb.
 
-Understand the command "fill" as something new.
-
 Understand "fill [something] with/from [something]" as filling it with.
 Understand "fill [something]" as filling it with.
 
@@ -158,6 +156,24 @@ Report an actor pouring something (called source) into something (called target)
 
 [ For some reason "x 1.5-qt" tells you you can't see any such thing! ]
 test i with "put 1.5-qt on Corian / put 3-qt on Corian / fill 1-tsp with salt / pour 1-tsp into 3-qt / x 3-qt / fill 1-cup with bread flour / pour 1-cup into 3-qt / x 3-qt / pour 3-qt into half-cup / x 3-qt / x half-cup / pour half-cup into 4-cup / x half-cup"
+
+Part 3 - Beat verb
+
+To beat is a verb.
+
+Understand "beat [something] with [something]" as beating it with.
+
+Beating it with is an action applying to two things.
+
+Test beat with "fill 4-cup from sink / beat water with mixing spoon / beat 4-cup with mixing spoon"
+
+Part 4 - Mix verb
+
+To mix is a verb.
+
+Part 5 - Knead verb
+
+[ TODO: Kneading! ]
 
 Book 3 - Object Definitions
 
@@ -542,6 +558,10 @@ Understand "half-cup dry measuring cup" as 1/2-cup dry measuring cup. Understand
 
 A 1-cup dry measuring cup is in the instrument cabinet. It is an IngredientContainer with capacity 8 fl oz.
 Understand "cup dry measuring cup" as 1-cup dry measuring cup. Understand "cup" as 1-cup dry measuring cup.
+
+A 12-inch wooden mixing spoon is in the instrument cabinet.
+
+A 12-inch wooden slotted spoon is in the instrument cabinet.
 
 Chapter 4 - Cabinets
 
