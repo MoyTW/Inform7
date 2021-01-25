@@ -163,15 +163,46 @@ Part 3 - Beat verb
 
 An example might be:
 	> beat water <- you find the ingredient container that has water; however, if there are 2 containers with water, how do we disambiguate?
-	> beat yeast into water <- here we "beat X into Y" - this is basically syntactic sugar on "beat water" ]
+	> beat yeast into water <- here we "beat X into Y" - this is basically syntactic sugar on "beat water"
+
+Reflecting further even if we object-ify each ingredient that doesn't solve the problem. The problem is, what if I have one egg in a earthenware bowl and one egg in a plastic bowl, and I say "beat egg"? The only way to disambiguate them is to specify the container! So, we need to set up container-based disambiguation... ]
 
 To beat is a verb.
 
-Understand "beat [something] with [something]" as beating it with.
+Understand "beat [ingredient] with [something]" as beating it by ingredient. Beating it by ingredient is an action applying to one ingredient and one thing.
+The beating it by ingredient action has a list of objects called candidates.
 
-Beating it with is an action applying to two things.
+Setting action variables for beating ingredient by ingredient (this is the setting container beat rule):
+	let new_candidates be a list of objects;
+	repeat with container running through IngredientContainers:
+		if container is not ingredient_source:
+			let c_idx be 1;
+			repeat with container_ingredient running through ingredients_list of container:
+				if the ingredient understood is container_ingredient and entry c_idx of volumes_list of container is greater than 0 tsp:
+					add container to new_candidates;
+				increment c_idx;
+	now candidates is new_candidates;
 
-Test beat with "fill 4-cup from sink / beat water with mixing spoon / beat 4-cup with mixing spoon"
+Check beating ingredient by ingredient (this is the stop if no target rule):
+	if the number of entries in candidates is less than 1:
+		say "No such target TODO text!";
+		stop the action.
+
+Check beating ingredient by ingredient (this is the stop if too many candidates rule):
+	if the number of entries in candidates is greater than 1:
+		say "There are multiple containers with [the ingredient understood]. Which do you mean, the [candidates]? TODO: Make this actually invoke the 'asking which do you mean' activity, somehow; 'carry out asking which do you mean' will invoke the rule but not populate the options list - figure out how to do that, or...figure out how to restructure completely.";
+		stop the action.
+
+Carry out beating ingredient by ingredient (this is the standard beating it by ingredient rule):
+	try beating entry 1 of candidates with the second noun;
+
+Understand "beat [something] with [something]" as beating it with. Beating it with is an action applying to two things.
+
+Carry out beating something (called container) with something (called the beater):
+	say "You beat [the container] with [the beater]. TODO: Implement!";
+
+[ Test beat with "beat water / fill 4-cup from sink / beat water"; ]
+Test beat with "fill 4-cup from sink / beat asdf / beat water / beat water with mixing spoon / beat 4-cup with mixing spoon / fill 1-cup from sink / beat water"
 
 Part 4 - Mix verb
 
