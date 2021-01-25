@@ -159,6 +159,12 @@ test i with "put 1.5-qt on Corian / put 3-qt on Corian / fill 1-tsp with salt / 
 
 Part 3 - Beat verb
 
+[ We have an issue with "beat" and "knead" - namely, that since we model a roux or a dough as "a list of ingredients" and not "an object" we can't directly beat or knead anything! Can we think of a good way to alias it?
+
+An example might be:
+	> beat water <- you find the ingredient container that has water; however, if there are 2 containers with water, how do we disambiguate?
+	> beat yeast into water <- here we "beat X into Y" - this is basically syntactic sugar on "beat water" ]
+
 To beat is a verb.
 
 Understand "beat [something] with [something]" as beating it with.
