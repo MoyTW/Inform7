@@ -1,49 +1,38 @@
 "Scratch" by MoyTW
 
-The Kitchen is a room.
+[ http://inform7.com/book/WI_18_31.html ]
 
-Section 1 - Stand Mixer
+Eight-Walled Chamber is a room. "A perfectly octagonal room whose walls are tinted in various hues."
 
-[ Ok, so...if you just write "zero, stir, two..." it will interpret "two" not to mean the string two but the numerical value two, and then throw an error due to mixed string/number types. Hence speed <number>. ]
-[ I would put "off" in here but I also have an oven with off/bake/broil, and apparently you can only define one "off" in the whole file (!?) - so it's speed 0 here. ]
-StandMixerStatus is a kind of value. The StandMixerStatuses are speed 0, stir, speed 2, speed 4, speed 6, speed 8 and speed 10.
+A plinth is in the Eight-Walled Chamber. The plinth is a supporter.
 
-A StandMixer is a kind of thing.
-A StandMixer has a StandMixerStatus called status. The status of a StandMixer is usually speed 0.
+An egg is a kind of thing.
+The player carries two eggs.
 
-Instead of examining a StandMixer:
-	say "[The noun] is currently set at [the status of the noun]";
+A red basket is on the plinth. The red basket is a container.
+A green basket is on the plinth. The green basket is a container.
 
-Understand "set [StandMixer] to [a number]" as setting it by number. Setting it by number is an action applying to one thing and one number.
-Understand "set [StandMixer] to [StandMixerStatus]" as setting it by StandMixerStatus. Setting it by StandMixerStatus is an action applying to one thing and one StandMixerStatus.
+[ Apparently, if you have two identical items it just picks one, instead of disambiguating by container! That isn't...quite the kind of behaviour we'd want for cooking, haha. ]
+test egg with "put one egg in red / put one egg in green / l / get egg / l"
 
-Instead of setting a StandMixer to something:
-	say "The settings on the stand mixer are 0, stir, 2, 4, 6, 8, and 10.";
+Understand "wall" as a direction.
 
-Check setting StandMixer by number (this is the only valid number settings rule):
-	let valid_mixer_numbers be {0, 2, 4, 6, 8, 10};
-	if the number understood is not listed in valid_mixer_numbers:
-		say "The settings on the stand mixer are 0, stir, 2, 4, 6, 8, and 10.";
-		stop the action.
+Definition: a direction is matched if it fits the parse list.
 
-Carry out setting StandMixer by number:
-	if the number understood is:
-		-- 0: try setting the noun by StandMixerStatus speed 0; [ This is what I *want* to do ]
-		-- 2: now the status of the noun is speed 2;
-		-- 4: now the status of the noun is speed 4;
-		-- 6: now the status of the noun is speed 6;
-		-- 8: now the status of the noun is speed 8;
-		-- 10: now the status of the noun is speed 10;
+Rule for asking which do you mean when everything matched is direction:
+	say "In which direction?"
 
-Carry out setting StandMixer by StandMixerStatus:
-	now the status of the noun is the StandMixerStatus understood;
+To decide whether (N - an object) fits the parse list:
+	(- (FindInParseList({N})) -)
 
-Test stand with "set stand mixer to asdf / x stand mixer / set stand mixer to 4 / x stand mixer / set stand mixer to 0 / x stand mixer / set stand mixer to speed 0 / x stand mixer / set stand mixer to speed 8 / x stand mixer"
-
-Section 2 - Room
-
-A countertop is a supporter in the kitchen. It is fixed in place.
-
-The StandMixer called the stand mixer is on the countertop.
-
-A table is a supporter in the kitchen. It is fixed in place.
+Include (-
+[ FindInParseList obj i k marker;
+	marker = 0;
+	for (i=1 : i<=number_of_classes : i++) {
+	while (((match_classes-->marker) ~= i) && ((match_classes-->marker) ~= -i)) marker++;
+	k = match_list-->marker;
+	if (k==obj) rtrue;
+	}
+	rfalse;
+];
+-)
