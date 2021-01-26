@@ -206,3 +206,17 @@ be pulled upwards such that if you undersalt your sauce your whole dish ends up
 undersalted, or if you dump raisins into your dough your bread is now raisin
 bread. This requires substantial special rules on the part of each recipe, but
 you're never gonna get away from that.
+
+** Inform 7
+
+Ingredient is a kind of thing.
+
+|-----------------+--------------------------------------+--------------+-----------------|
+| product         | ingredients                          | ratios       | transformations |
+|-----------------+--------------------------------------+--------------+-----------------|
+| bread           | { bread dough }                      | { 1 }        | { bake }        |
+| risen dough     | { unrisen dough}                     | { 1 }        | { rise }        |
+| unrisen dough   | { dry ingredients, wet ingredients } | { 1, 1 }     | --              |
+| dry ingredients | { flour, salt }                      | { 252, 1 }   | --              |
+| wet ingredients | { water, sugar, active dry yeast }   | { 96, 1, 1 } | { beat }        |
+|-----------------+--------------------------------------+--------------+-----------------|
