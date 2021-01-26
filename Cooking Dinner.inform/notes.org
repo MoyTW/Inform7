@@ -1,6 +1,7 @@
+* Measured Liqiuids
 Ok, so, Measured Liquids is a bust for our purposes. Let's work through this.
 
-* Desired End State
+** Desired End State
 
 Here's what I want to happen:
 > fill 1/2-cup with raisins
@@ -42,9 +43,9 @@ You beat the mixture in the mixing bowl until combined.
 > x mixing bowl
 The mixing bowl holds a foamy yeast mixture.
 
-* Approaches
+** Approaches
 
-** Model ingredients as liquids, using Measured Liquids
+*** Model ingredients as liquids, using Measured Liquids
 
 Since we measure most ingredients (flour, sugar, salt, raisins, etc.) by volume,
 we could reasonably model them as a liquid - hence Emily Short's Measured
@@ -60,7 +61,7 @@ liquids-only rule, but at that point we're going to have to essentially rewrite
 the volume rules for solids and there's no point in using Measured Liquids,
 since we can model water as a solid.
 
-** Model volumes of ingredients as dynamic objects
+*** Model volumes of ingredients as dynamic objects
 
 This approach is:
 + Make a volume
@@ -81,7 +82,7 @@ and for reasons beyond me it's discouraged.
 An advantage of this is that it nicely handles, say, "1lb of salmon" if we end
 up moving forwards with this.
 
-** Extend/reimplement Measured Liquids to handle multiple liquids
+*** Extend/reimplement Measured Liquids to handle multiple liquids
 
 If I'm reading Measured Liquids right, it models as follows:
 
@@ -114,3 +115,94 @@ structure holding lists. It's also possible I'm fundamentally misunderstanding
 how people structure Inform programs and are just going "Well if I were using
 [Object-Oriented Language of Choice] I would model it as..."
 
+* Compound ingredients, actions on ingredients
+
+Currently, the approach is:
+1. An ingredient is the base value
+2. A mixture is a list of [ingredient, value] pairs which is always held in a
+   container. It's implemented via a double-list on the container.
+
+This works excellently with regards to pouring. However, it doesn't really
+handle state transformations like kneading, and it doesn't really let you
+compose ingredients nicely. It also seems to present issues with "and now we
+call the mixture something else" - for example, calling flour + water + stuff a
+"dough" after you combine them.
+
+Let's take an example for state transformations - say a recipe calls for a
+roux. If we were Full Simulationist, how if you brown the roux it should change
+the taste. However, browning the roux is not included in the ingredients list!
+
+An example of composing ingredients would be, if you have a recipe that calls
+for frosting, you can do pretty much whatever frosting you want and then
+substitute it in. This works nicely if you happy-path your frosting, but what
+happens if you make the frosting, and forget the sugar? We need to carry over
+the "forgot the sugar" of the frosting into the final product...
+
+...which, actually, is the same "how do you carry over that you put too much
+water in the dough?" as my final point.
+
+** Original Plan
+
+You track every ingredient in your mixture until you reach the "end" state (that
+is, baking). Once you hit baking, you add up all the ingredients, and you then
+produce a result. You have an 'ideal' recipe and if your salt is off by more
+than a factor or .9 or something, you can call it "oversalted" or "undersalted"
+and if it's off by like, more than...1.5? you can say "Whoops, too salty, didn't
+properly rise!" (to be honest I've never been off on salt so I don't know at
+what point it starts killing the yeast).
+
+This works basically perfectly if you ignore the intermediate, non-ingredient
+steps like kneading and rising. So! Back to the drawing board.
+
+** How I'd model this in 'standard' OOPL
+
+class Recipe {
+  // Ordering can be controlled by breaking into CompoundIngredient
+  list of <ingredient, volume> pairs
+  // A transformation is a thing done, for example: "bake at [temp] for [time]"
+  list of transformations
+}
+
+interface Ingredient {
+  name
+}
+
+// Represents 'the thing you'll get outta the source' - water, or sugar, or milk
+class BaseIngredient : Ingredient {}
+
+// Represents intermediate ingredients like a batter or a roux
+class CompoundIngredient : Ingredient {
+  // Reference for what is intended for intermediate ingredient
+  recipe
+  // Carried over from IngredientMixture
+  list of ingredients
+  // Represents "cooked at [temp]" or "kneaded"
+  list of transformations
+  // Represents "salty" or "underworked", depending on the specific recipe
+  // Either derived or set on state change
+  list of properties (derived from list of ingredients + recipe)
+}
+
+class IngredientMixture {
+  list of ingredients
+}
+
+// Knead, Mix, Stir, Toss, Rub Into, etc.
+interface Action {
+  name
+}
+
+Flow would be:
++ Call Action on IngredientMixture
+  - Get all recipes with Action as a transformation
+  - If the IngredientMixture matches the recipe:
+    + Transform IngredientMixture into Recipe
+      - Resolve properties
+  - Else
+    + Special-case handling or failure
+
+You basiclly repeat this until you reach the targeted recipe. The properties can
+be pulled upwards such that if you undersalt your sauce your whole dish ends up
+undersalted, or if you dump raisins into your dough your bread is now raisin
+bread. This requires substantial special rules on the part of each recipe, but
+you're never gonna get away from that.
