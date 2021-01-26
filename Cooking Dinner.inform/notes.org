@@ -209,7 +209,7 @@ you're never gonna get away from that.
 
 ** Inform 7
 
-Ingredient is a kind of thing.
+An Ingredient is a kind of thing.
 
 |-----------------+--------------------------------------+--------------+-----------------|
 | product         | ingredients                          | ratios       | transformations |
@@ -220,3 +220,24 @@ Ingredient is a kind of thing.
 | dry ingredients | { flour, salt }                      | { 252, 1 }   | --              |
 | wet ingredients | { water, sugar, active dry yeast }   | { 96, 1, 1 } | { beat }        |
 |-----------------+--------------------------------------+--------------+-----------------|
+
+** Inform 7, Part 2
+
+I am having a hell of a time setting this up.
+
+So, basically, what I'd like to be able to say is "To make the dry ingredients,
+you need N flour and Y salt" - simple to the point of triviality. However, when
+I make a list of flour and salt, it doesn't allow me to make a list of *kinds*,
+only a list of actual things. I think. For example, you can't type `let X be a
+list of kinds` though it's entirely possible that I just don't know the handle
+for "kind".
+
+In other words, it's trivial to say "To make the dry ingredients, you need
+[specific instance of flour] and [specific instance of salt]" but it seems to be
+verging on impossible to say "To make the dry ingredients, you need [an object
+of the class of flour] and [an object with the class of salt]."
+
+A possible idea is getting around this by making Ingredient a God Object, and
+just treating everything is a property on Ingredient. This also solves my issues
+with spawning new ingredients because I can just make like 200 of them offstage
+and dynamically reassign their values to what I need when I spawn them.

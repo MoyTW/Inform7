@@ -15,7 +15,8 @@ An IngredientMixture is a kind of thing.
 An IngredientMixture has a list of Ingredients called the ingredients_list.
 An IngredientMixture has a list of volumes called the volumes_list.
 
-BaseFlour is a kind of Ingredient. Flour is a kind of BaseFlour. There are 10 flours.
+[ BaseFlour is a kind of Ingredient. Flour is a kind of BaseFlour. There are 10 flours. ]
+BaseFlour is a kind of Ingredient. Flour is a BaseFlour.
 BaseSalt is a kind of Ingredient. Salt is a BaseSalt.
 BaseWater is a kind of Ingredient. Water is a BaseWater.
 BaseSugar is a kind of Ingredient. Sugar is a BaseSugar.
@@ -60,8 +61,12 @@ Carry out combining it:
 	if there is a product corresponding to an ingredients of candidates in the Table of Recipes:
 		choose the row with the ingredients of candidates in the Table of Recipes;
 		if the transformations entry is empty:
+			let L be a list of numbers;
+			let M be a list of Ingredients;
+			let Y be a list of CompoundIngredients;
+			[ let X be a list of kinds; <- This, I think, isn't legal? ]
 			say "Combined to create [product entry].";
-			now product entry is in the big bowl;
+			now a random off-stage product entry is in the big bowl;
 		else:
 			say "Needs a transformation.";
 	else:
