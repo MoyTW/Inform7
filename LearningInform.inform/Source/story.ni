@@ -8,6 +8,7 @@ An IngredientInfo is a kind of value. The IngredientInfo are defined by the Tabl
 
 Table of Ingredient Info
 ingredient_id	ingredient_name
+id_uninitualized	"UNINITUALIZED INGREDIENT"
 id_flour	"flour"
 id_salt	"salt"
 id_water	"water"
@@ -21,14 +22,19 @@ id_wet_ingredients	"wet ingredients"
 id_loaf_of_bread	"loaf of bread" [ Isn't REALLY an ingredient but ok ]
 
 An Ingredient is a kind of thing.
-An Ingredient has an IngredientInfo called ingredient_info.
+An Ingredient has an IngredientInfo called ingredient_info. The ingredient_info of an Ingredient is usually id_uninitualized.
+An Ingredient has a text called info_name.
 An Ingredient has a volume called current_volume.
 An Ingredient has a list of Ingredients called the ingredients_list.
 An Ingredient has a list of volumes called the volumes_list.
 
+To init_ingredient target (ingredient - an Ingredient) with (info - an IngredientInfo):
+	choose the row with ingredient_id of info in the Table of Ingredient Info;
+	now the ingredient_info of the ingredient is the info;
+	now the info_name of the ingredient is the ingredient_name entry;
+
 Rule for printing the name of an ingredient:
-	choose the row with ingredient_id of ingredient_info in the Table of Ingredient Info;
-	say "[ingredient_name entry]";
+	say "[the info_name]";
 
 An IngredientMixture is a kind of thing.
 An IngredientMixture has a list of Ingredients called the ingredients_list.
@@ -72,9 +78,7 @@ Carry out combining it:
 				now i is nowhere;
 			let result be a random off-stage Ingredient;
 			now result is in the noun;
-			now the ingredient_info of the result is the product entry;
-			[TODO: Override the ingredient description/inspect]
-			[now the result is called the ingredient_name of the result;]
+			init_ingredient target result with the product entry;
 		else:
 			say "Needs transformation(s): [transformations entry]";
 	else:
@@ -90,10 +94,15 @@ The Corian countertop is in the kitchen. The countertop is a supporter. It is fi
 
 The big bowl is on the Corian countertop. It is a container.
 The small bowl is on the Corian countertop. It is a container.
-On the Corian countertop is an Ingredient with ingredient_info of id_flour.
+On the Corian countertop is an Ingredient called flour. The ingredient_info of flour is id_flour.
 On the Corian countertop is an Ingredient called salt. The ingredient_info of salt is id_salt.
 On the Corian countertop is an Ingredient called water. The ingredient_info of the water is id_water.
 On the Corian countertop is an Ingredient called sugar. The ingredient_info of the sugar is id_sugar.
-On the Corian countertop is an Ingredient called active dry yeast. The ingredient_info of the active dry yeast is id_ady.
+[On the Corian countertop is an Ingredient called active dry yeast. The ingredient_info of the active dry yeast is id_ady.]
+
+When play begins:
+	repeat with i running through the list of Ingredients:
+		say ingredient_info of i;
+		init_ingredient target i with ingredient_info of i;
 
 test game with "put one flour in big bowl / put one salt in big bowl / combine big bowl / x big bowl / put one flour in small bowl / put one salt in small bowl / combine small bowl / x small bowl"
