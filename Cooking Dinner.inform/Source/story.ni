@@ -538,9 +538,9 @@ Chapter 2 - East wall
 
 [ Stove & fume hood ]
 
-A fume hood is here. It is fixed in place. It is scenery.
+A fume hood is in the kitchen. It is fixed in place. It is scenery.
 
-A gas stovetop is here. It is fixed in place. It is scenery.
+A gas stovetop is in the kitchen. It is fixed in place. It is scenery.
 
 The upper-left burner, the upper-right burner, the lower-left burner, and the lower-right burner are parts of the stovetop.
 
@@ -548,7 +548,7 @@ Understand "stove" as gas stovetop.
 
 [ Tall double wall oven ]
 
-A tall double wall oven is here. It is fixed in place. It is scenery.
+A tall double wall oven is in the kitchen. It is fixed in place. It is scenery.
 The upper oven is an AbstractOven. It is part of the double wall oven.
 The lower oven is an AbstractOven. It is part of the double wall oven.
 
@@ -560,7 +560,7 @@ Understand "small tile counter" as small tile countertop.
 
 [ Refrigerator ]
 
-A refrigerator is here. It is fixed in place. It is scenery. It is a container.
+A refrigerator is in the kitchen. It is fixed in place. It is scenery. It is a container.
 
 Understand "fridge" as refrigerator.
 
@@ -568,15 +568,15 @@ A small active dry yeast bottle is in the refrigerator. It is an IngredientConta
 
 Chapter 3 - Drawers
 
-A drawers is here. It is fixed in place. It is scenery. "You list off the drawers in your head. Dinnerware is in the [bold type]utensil drawer[roman type] on the left of the washing machine, and instruments are in the [bold type]instrument drawer[roman type] to the right of the sink."
+A drawers is in the kitchen. It is fixed in place. It is scenery. "You list off the drawers in your head. Dinnerware is in the [bold type]utensil drawer[roman type] on the left of the washing machine, and instruments are in the [bold type]instrument drawer[roman type] to the right of the sink."
 
 [ Utensil drawer ]
 
-A utensil drawer is here. It is fixed in place. It is scenery.
+A utensil drawer is in the kitchen. It is fixed in place. It is scenery.
 
 [ Small instrument drawer ]
 
-An instrument cabinet is here. It is fixed in place. It is scenery. It is a container.
+An instrument cabinet is in the kitchen. It is fixed in place. It is scenery. It is a container.
 
 A 1/4-tsp measuring spoon is in the instrument cabinet. It is an IngredientContainer with capacity 0.25 tsp.
 Understand "quarter-teaspoon measuring spoon" as 1/4-tsp measuring spoon. Understand "quarter-teaspoon" as 1/4-tsp measuring spoon.
@@ -605,11 +605,11 @@ A 12-inch wooden slotted spoon is in the instrument cabinet.
 
 Chapter 4 - Cabinets
 
-A cabinets is here. It is fixed in place. It is scenery. "You list off the cabinets in your head. The [bold type]spice rack[roman type] is over to the right of the sink, and the [bold type]mixing bowl cabinet[roman type] (which also has the liquid measuring cups) is the one next to it. The [bold type]pantry[roman type]'s down under the L-countertop near the dining room. Pans and saucepans are in the [bold type]under-stove cabinet[roman type], and pots proper are in the [bold type]pot cabinet[roman type] near the sliding door. Cleaning supplies (hopefully unnecessary) are in the [bold type]under-sink cabinet.[roman type] Good thing you know where everything is, right?"
+A cabinets is in the kitchen. It is fixed in place. It is scenery. "You list off the cabinets in your head. The [bold type]spice rack[roman type] is over to the right of the sink, and the [bold type]mixing bowl cabinet[roman type] (which also has the liquid measuring cups) is the one next to it. The [bold type]pantry[roman type]'s down under the L-countertop near the dining room. Pans and saucepans are in the [bold type]under-stove cabinet[roman type], and pots proper are in the [bold type]pot cabinet[roman type] near the sliding door. Cleaning supplies (hopefully unnecessary) are in the [bold type]under-sink cabinet.[roman type] Good thing you know where everything is, right?"
 
 [ Bowl cabinet ]
 
-A mixing bowl cabinet is here. It is fixed in place. It is scenery. It is a container.
+A mixing bowl cabinet is in the kitchen. It is fixed in place. It is scenery. It is a container.
 
 A 1.5-qt mixing bowl is in the bowl cabinet. It is a IngredientContainer with capacity 1.5 quarts.
 
@@ -621,17 +621,17 @@ A 4-cup wet measuring cup is in the bowl cabinet. It is an IngredientContainer w
 
 [ Towel cabinet ]
 
-A towel cabinet is here. It is fixed in place. It is scenery.
+A towel cabinet is in the kitchen. It is fixed in place. It is scenery.
 
 [ Spice rack ]
 
-A spice rack is here. It is fixed in place. It is scenery.
+A spice rack is in the kitchen. It is fixed in place. It is scenery.
 
 A 500g cylinder of salt is in the spice rack. It is an IngredientContainer with capacity 30 tbsp and ingredients_list {salt} and volumes_list {19 tbsp}. It is an ingredient_source.
 
 [ Pantry ]
 
-A pantry cabinet is here. It is fixed in place. It is scenery.
+A pantry cabinet is in the kitchen. It is fixed in place. It is scenery.
 
 A all-purpose flour bin is in the pantry cabinet. It is an IngredientContainer with capacity 4 quarts and ingredients_list {all-purpose flour} and volumes_list {3.1 quarts}. It is an ingredient_source.
 
@@ -649,7 +649,7 @@ A instrument wall hook rack is a supporter in the Kitchen. It is fixed in place.
 
 [ Saucepan rack ]
 
-A saucepan wall hook rack is here. It is fixed in place. It is scenery.
+A saucepan wall hook rack is in the kitchen. It is fixed in place. It is scenery.
 
 Part 2 - Dining Room
 
