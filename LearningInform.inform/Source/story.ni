@@ -26,6 +26,10 @@ An Ingredient has a volume called current_volume.
 An Ingredient has a list of Ingredients called the ingredients_list.
 An Ingredient has a list of volumes called the volumes_list.
 
+Rule for printing the name of an ingredient:
+	choose the row with ingredient_id of ingredient_info in the Table of Ingredient Info;
+	say "[ingredient_name entry]";
+
 An IngredientMixture is a kind of thing.
 An IngredientMixture has a list of Ingredients called the ingredients_list.
 An IngredientMixture has a list of volumes called the volumes_list.
@@ -63,13 +67,22 @@ Carry out combining it:
 	if there is a product corresponding to required_ingredient_ids of candidate_ids in the Table of Recipes:
 		choose the row with the required_ingredient_ids of candidate_ids in the Table of Recipes;
 		if the transformations entry is empty:
-			say "Combined to create [product entry].";
+			say "TODO: Combined to create [product entry].";
+			repeat with i running through the list of things held by the noun:
+				now i is nowhere;
+			let result be a random off-stage Ingredient;
+			now result is in the noun;
+			now the ingredient_info of the result is the product entry;
+			[TODO: Override the ingredient description/inspect]
+			[now the result is called the ingredient_name of the result;]
 		else:
-			say "Needs a transformation.";
+			say "Needs transformation(s): [transformations entry]";
 	else:
-		say "No such combination found.";
+		say "No such combination found for [candidate_ids].";
 
 Section Kitchen
+
+10 Ingredients are in ingredient_storage.
 
 The kitchen is a room.
 
@@ -77,8 +90,8 @@ The Corian countertop is in the kitchen. The countertop is a supporter. It is fi
 
 The big bowl is on the Corian countertop. It is a container.
 The small bowl is on the Corian countertop. It is a container.
-On the Corian countertop is an Ingredient called flour. The ingredient_info of the flour is id_flour.
-On the Corian countertop is an Ingredient called salt. The ingredient_info of the salt is id_salt.
+On the Corian countertop is an Ingredient with ingredient_info of id_flour.
+On the Corian countertop is an Ingredient called salt. The ingredient_info of salt is id_salt.
 On the Corian countertop is an Ingredient called water. The ingredient_info of the water is id_water.
 On the Corian countertop is an Ingredient called sugar. The ingredient_info of the sugar is id_sugar.
 On the Corian countertop is an Ingredient called active dry yeast. The ingredient_info of the active dry yeast is id_ady.
