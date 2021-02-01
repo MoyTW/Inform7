@@ -36,6 +36,9 @@ To init_ingredient target (ingredient - an Ingredient) with (info - an Ingredien
 Rule for printing the name of an ingredient:
 	say "[the info_name]";
 
+[ TODO: This doesn't work properly with multi-word names - see https://intfiction.org/t/inform-7-changing-the-name-of-an-object/2507 for a possible, if awfully hacky, example. ]
+Understand the info_name property as describing an Ingredient;
+
 An IngredientMixture is a kind of thing.
 An IngredientMixture has a list of Ingredients called the ingredients_list.
 An IngredientMixture has a list of volumes called the volumes_list.
@@ -94,15 +97,14 @@ The Corian countertop is in the kitchen. The countertop is a supporter. It is fi
 
 The big bowl is on the Corian countertop. It is a container.
 The small bowl is on the Corian countertop. It is a container.
-On the Corian countertop is an Ingredient called flour. The ingredient_info of flour is id_flour.
-On the Corian countertop is an Ingredient called salt. The ingredient_info of salt is id_salt.
-On the Corian countertop is an Ingredient called water. The ingredient_info of the water is id_water.
-On the Corian countertop is an Ingredient called sugar. The ingredient_info of the sugar is id_sugar.
-[On the Corian countertop is an Ingredient called active dry yeast. The ingredient_info of the active dry yeast is id_ady.]
+On the Corian countertop is an Ingredient. The ingredient_info of it is id_flour.
+On the Corian countertop is an Ingredient. The ingredient_info of it is id_salt.
+On the Corian countertop is an Ingredient. The ingredient_info of it is id_water.
+On the Corian countertop is an Ingredient. The ingredient_info of it is id_sugar.
+On the Corian countertop is an Ingredient. The ingredient_info of it is id_ady.
 
 When play begins:
 	repeat with i running through the list of Ingredients:
-		say ingredient_info of i;
 		init_ingredient target i with ingredient_info of i;
 
 test game with "put one flour in big bowl / put one salt in big bowl / combine big bowl / x big bowl / put one flour in small bowl / put one salt in small bowl / combine small bowl / x small bowl"
