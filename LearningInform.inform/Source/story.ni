@@ -71,17 +71,21 @@ Understand "combine [container]" as combining it. Combining it is an action appl
 To decide what IngredientInfo is the id of (ing - an Ingredient) (this is getting the id of):
 	decide on the ingredient_info of ing;
 
+To decide what text is the name of (ing - an Ingredient) (this is getting the name of):
+	decide on the info_name of ing;
+
 Carry out combining it:
 	let candidate_ids be getting the id of applied to the list of things held by the noun;
 	if there is a product corresponding to required_ingredient_ids of candidate_ids in the Table of Recipes:
 		choose the row with the required_ingredient_ids of candidate_ids in the Table of Recipes;
 		if the transformations entry is empty:
-			say "TODO: Combined to create [product entry].";
+			let candidate_names be getting the name of applied to the list of things held by the noun;
 			repeat with i running through the list of things held by the noun:
 				now i is nowhere;
 			let result be a random off-stage Ingredient;
 			now result is in the noun;
 			init_ingredient target result with the product entry;
+			say "You combied the [candidate_names] to create [the info_name of result].";
 		else:
 			say "Needs transformation(s): [transformations entry]";
 	else:
@@ -107,4 +111,4 @@ When play begins:
 	repeat with i running through the list of Ingredients:
 		init_ingredient target i with ingredient_info of i;
 
-test game with "put one flour in big bowl / put one salt in big bowl / combine big bowl / x big bowl / put one flour in small bowl / put one salt in small bowl / combine small bowl / x small bowl"
+test game with "put one flour in big bowl / put one salt in big bowl / combine big bowl / x big bowl / l"
