@@ -34,15 +34,17 @@ To init_ingredient target (ingredient - an Ingredient) with (info - an Ingredien
 	now the ingredient_info of the ingredient is the info;
 	now the info_name of the ingredient is the ingredient_name entry;
 
-Rule for printing the name of an ingredient:
+Rule for printing the name of an Ingredient:
 	say "[the info_name]";
 
 [ TODO: This doesn't work properly with multi-word names - see https://intfiction.org/t/inform-7-changing-the-name-of-an-object/2507 for a possible, if awfully hacky, example. ]
 Understand the info_name property as describing an Ingredient;
 
-An IngredientMixture is a kind of thing.
-An IngredientMixture has a list of Ingredients called the ingredients_list.
-An IngredientMixture has a list of volumes called the volumes_list.
+Check taking an Ingredient: [ TODO: Add column for "solid" or "carryable" to ingredients ]
+	say "Carrying [the info_name] in your hands would be at best messy. Try pouring [the holder of the noun] into a container, or filling a container from the [the holder of the noun].";
+	stop the action.
+
+Part Recipes
 
 A transformation is a kind of value. The transformations are defined by the Table of Transformations.
 
@@ -62,6 +64,36 @@ r_rd	id_risen_dough	{ id_unrisen_dough }	{ 1 }	{ RISE_90 }
 r_urd	id_unrisen_dough	{ id_dry_ingredients, id_wet_ingredients }	{ 1, 1 }	--
 r_di	id_dry_ingredients	{ id_flour, id_salt }	{ 252, 1 }	--
 r_wi	id_wet_ingredients	{ id_water, id_sugar, id_ady }	{ 96, 1, 1 }	{ BEAT }
+
+Part IngredientContainer
+
+An IngredientContainer is a kind of container.
+
+An IngredientContainer is either graduated or ungraduated. An IngredientContainer is usually ungraduated.
+An IngredientContainer has a volume called capacity.
+An IngredientContainer can be a ingredient_source. An IngredientContainer is usually not an ingredient_source.
+
+Check inserting something into an IngredientContainer (this is the can't put objects an ingredient container rule):
+	say "The [second noun] [hold] only ingredients." instead.
+
+[ TODO: Modify descriptions to fit & graduated/ungraduated ]
+Rule after printing the name of an IngredientContainer (called container) when printing the locale description:
+	let n be the number of things held by the container;
+	if n > 1:
+		say " (containing a mixture of [list of things held by the container])";
+	else if n is 1:
+		say " (containing some [list of things held by the container])";
+	omit contents in listing;
+
+Instead of examining an IngredientContainer (called container):
+	say "[The noun] ";
+	let n be the number of things held by the container;
+	if n is 0:
+		say "is empty.";
+	else if n is 1:
+		say "contains some [the list of things held by the container].";
+	else:
+		say "contains a mixture of [the list of things held by the container] - TODO: reformat.";
 
 Section Verbs
 
@@ -102,11 +134,12 @@ The Corian countertop is in the kitchen. The countertop is a supporter. It is fi
 
 The big bowl is on the Corian countertop. It is a container.
 The small bowl is on the Corian countertop. It is a container.
-On the Corian countertop is an Ingredient. The ingredient_info of it is id_flour.
-On the Corian countertop is an Ingredient. The ingredient_info of it is id_salt.
-On the Corian countertop is an Ingredient. The ingredient_info of it is id_water.
-On the Corian countertop is an Ingredient. The ingredient_info of it is id_sugar.
-On the Corian countertop is an Ingredient. The ingredient_info of it is id_ady.
+On the Corian countertop is an IngredientContainer called the large tub. In the large tub is an Ingredient. The ingredient_info of it is id_flour.
+On the corian countertop is an IngredientContainer called the shaker. In the shaker is an Ingredient. The ingredient_info of it is id_salt.
+On the Corian countertop is an IngredientContainer called the pitcher. In the pitcher is an Ingredient. The ingredient_info of it is id_water.
+On the Corian countertop is an IngredientContainer called the small tub. In the small tub is an Ingredient. The ingredient_info of it is id_sugar.
+On the Corian countertop is an IngredientContainer called the bottle. In the bottle is an Ingredient. The ingredient_info of it is id_ady.
+On the Corian countertop is an IngredientContainer called the jar.
 
 When play begins:
 	repeat with i running through the list of Ingredients:
