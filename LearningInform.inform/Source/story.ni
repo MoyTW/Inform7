@@ -2,15 +2,14 @@
 
 Include Ingredients And Containers by MoyTW.
 
-Section Definitions
+Volume Setup
 
-A volume is a kind of value. 1.0 tsp (in US units, in tsp) or 1 teaspoon (in tsp, singular) or 2 teaspoons (in tsp, plural) specifies a volume.
+Book Definitions
 
-An IngredientInfo is a kind of value. The IngredientInfo are defined by the Table of Ingredient Info.
+Part Ingredients
 
-Table of Ingredient Info
+Table of Ingredient Info (continued)
 ingredient_id	ingredient_name
-id_uninitualized	"UNINITUALIZED INGREDIENT"
 id_flour	"flour"
 id_salt	"salt"
 id_water	"water"
