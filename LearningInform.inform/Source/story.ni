@@ -2,8 +2,6 @@
 
 Include Ingredients And Containers by MoyTW.
 
-Volume Setup
-
 Book Definitions
 
 Part Ingredients
@@ -25,7 +23,7 @@ id_loaf_of_bread	"loaf of bread" [ Isn't REALLY an ingredient but ok ]
 An Ingredient is a kind of thing.
 An Ingredient has an IngredientInfo called ingredient_info. The ingredient_info of an Ingredient is usually id_uninitualized.
 An Ingredient has a text called info_name.
-An Ingredient has a volume called current_volume. The current_volume of an Ingredient is usually 1 tsp.
+An Ingredient has a volume called current_volume. The current_volume of an Ingredient is usually 1.0 tsp.
 An Ingredient has a list of Ingredients called the ingredients_list.
 
 To init_ingredient target (ingredient - an Ingredient) with (info - an IngredientInfo):
@@ -163,10 +161,12 @@ Setting action variables for pouring something (called the source) into somethin
 		let target_remaining_capacity be capacity of target;
 		repeat with held running through the list of ingredients held by the target:
 			decrease target_remaining_capacity by the current_volume of held;
+		say "target remaining capavcity: [target_remaining_capacity].";
 		[ source total ]
 		let source_total_amount be 0 tsp;
 		repeat with poured running through the list of ingredients held by the source:
 			increase source_total_amount by current_volume of poured;
+		say "source total amount: [source_total_amount].";
 		[ amount poured ]
 		if target_remaining_capacity is greater than the source_total_amount:
 			let new_volumes be a list of volumes;
@@ -175,10 +175,13 @@ Setting action variables for pouring something (called the source) into somethin
 			now the amounts_poured is new_volumes;
 		otherwise:
 			let new_volumes be a list of volumes;
-			let scalar be target_remaining_capacity / source_total_amount;
+			[ let scalar be target_remaining_capacity / source_total_amount; ]
+			let scalar be 1.0 tsp divided by 1.0 tsp;
 			repeat with poured running through the list of ingredients held by the source:
-				add scalar * the current_volume of poured to new_volumes;
+				say "scalar: [scalar], trc [target_remaining_capacity], sta [source_total_amount], d [target_remaining_capacity - source_total_amount], poured [the current_volume of poured].";
+				add 1.5 tsp multiplied by 2.7 to new_volumes;
 			now the amounts_poured is new_volumes;
+		say "amounts poured: [amounts_poured]";
 
 [ TODO: can't pour two untouched things rule ]
 
