@@ -90,7 +90,7 @@ Instead of examining an IngredientContainer (called container):
 	else if n is 1:
 		say "contains some [list of things held by the container].";
 	else:
-		say "contains a mixture of [list of things held by the container] - TODO: reformat.";
+		say "contains a mixture of [list of things held by the container] .";
 
 Book Verbs
 
@@ -161,27 +161,18 @@ Setting action variables for pouring something (called the source) into somethin
 		let target_remaining_capacity be capacity of target;
 		repeat with held running through the list of ingredients held by the target:
 			decrease target_remaining_capacity by the current_volume of held;
-		say "target remaining capavcity: [target_remaining_capacity].";
 		[ source total ]
 		let source_total_amount be 0 tsp;
 		repeat with poured running through the list of ingredients held by the source:
 			increase source_total_amount by current_volume of poured;
-		say "source total amount: [source_total_amount].";
 		[ amount poured ]
 		if target_remaining_capacity is greater than the source_total_amount:
-			let new_volumes be a list of volumes;
 			repeat with poured running through the list of ingredients held by the source:
-				add current_volume of poured to new_volumes;
-			now the amounts_poured is new_volumes;
+				add current_volume of poured to amounts_poured;
 		otherwise:
-			let new_volumes be a list of volumes;
-			[ let scalar be target_remaining_capacity / source_total_amount; ]
-			let scalar be 1.0 tsp divided by 1.0 tsp;
+			let scalar be target_remaining_capacity / source_total_amount;
 			repeat with poured running through the list of ingredients held by the source:
-				say "scalar: [scalar], trc [target_remaining_capacity], sta [source_total_amount], d [target_remaining_capacity - source_total_amount], poured [the current_volume of poured].";
-				add 1.5 tsp multiplied by 2.7 to new_volumes;
-			now the amounts_poured is new_volumes;
-		say "amounts poured: [amounts_poured]";
+				add scalar * the current_volume of poured to amounts_poured;
 
 [ TODO: can't pour two untouched things rule ]
 
@@ -274,7 +265,7 @@ On the Corian countertop is an IngredientContainer called the bottle. In the bot
 On the Corian countertop is an IngredientContainer called the jar.
 
 When play begins:
-	repeat with i running through the list of Ingredients:
+	repeat with i running through Ingredients:
 		init_ingredient target i with ingredient_info of i;
 
 test game with "put one flour in big bowl / put one salt in big bowl / combine big bowl / x big bowl / l"
