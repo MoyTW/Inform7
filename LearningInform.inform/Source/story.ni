@@ -24,7 +24,7 @@ An IngredientTag is a kind of value. The IngredientTag are defined by the Table 
 
 Table of Ingredient Tags
 ingredient_tag
-BEATEN
+TAG_BEATEN
 
 An Ingredient is a kind of thing.
 An Ingredient has an IngredientInfo called ingredient_info. The ingredient_info of an Ingredient is usually id_uninitualized.
@@ -32,10 +32,11 @@ An Ingredient has a text called info_name.
 An Ingredient has a volume called current_volume. The current_volume of an Ingredient is usually 1.0 tsp.
 An Ingredient has a list of IngredientTags called ingredient_tags.
 
-To init_ingredient target (ingredient - an Ingredient) with (info - an IngredientInfo):
+To init_ingredient (ingredient - an Ingredient) with (info - an IngredientInfo) and (volume - a volume):
 	choose the row with ingredient_id of info in the Table of Ingredient Info;
 	now the ingredient_info of the ingredient is the info;
 	now the info_name of the ingredient is the ingredient_name entry;
+	now the current_volume of the ingredient is the volume;
 
 Rule for printing the name of an Ingredient:
 	say "[the info_name] ([current_volume])";
@@ -49,24 +50,24 @@ Check taking an Ingredient: [ TODO: Add column for "solid" or "carryable" to ing
 
 Part Recipes
 
-A RequiredTransformation is a kind of value. The RequiredTransformation are defined by the Table of Transformations.
+A RequiredTransformation is a kind of value. The RequiredTransformation are defined by the Table of Required Transformations.
 
-Table of Transformations
+Table of Required Transformations
 name	duration_min	duration_max	temperature
-BAKE_450F_20-25	20	25	450
-RISE_90	80	100	--
-KNEAD_8	6	10	--
-BEAT	--	--	--
+REQ_BAKE_450F_20-25	20	25	450
+REQ_RISE_90	80	100	--
+REQ_KNEAD_8	6	10	--
+REQ_BEAT	--	--	--
 
 A recipe is a kind of value. The recipes are defined by the Table of Recipes.
 
 Table of Recipes
 name	product	required_ingredient_ids	ratios	required_transformations
-r_lob	id_loaf_of_bread	{ id_bread_dough }	{ 1 }	{ BAKE_450F_20-25 }
-r_rd	id_risen_dough	{ id_unrisen_dough }	{ 1 }	{ RISE_90 }
+r_lob	id_loaf_of_bread	{ id_bread_dough }	{ 1 }	{ REQ_BAKE_450F_20-25 }
+r_rd	id_risen_dough	{ id_unrisen_dough }	{ 1 }	{ REQ_RISE_90 }
 r_urd	id_unrisen_dough	{ id_dry_ingredients, id_wet_ingredients }	{ 1, 1 }	--
 r_di	id_dry_ingredients	{ id_flour, id_salt }	{ 252, 1 }	--
-r_wi	id_wet_ingredients	{ id_water, id_sugar, id_ady }	{ 96, 1, 1 }	{ BEAT }
+r_wi	id_wet_ingredients	{ id_water, id_sugar, id_ady }	{ 96, 1, 1 }	{ REQ_BEAT }
 
 Part IngredientContainer
 
@@ -104,36 +105,58 @@ Part - Combine Verb
 
 test combine with "beat water with jar";
 
-To combine is a verb.
-
-Understand "combine [container]" as combining it ingredients. Combining it ingredients is an action applying to one thing.
-
 To decide what IngredientInfo is the id of (ing - an Ingredient) (this is getting the id of):
 	decide on the ingredient_info of ing;
 
 To decide what text is the name of (ing - an Ingredient) (this is getting the name of):
 	decide on the info_name of ing;
 
-To combine (container - an IngredientContainer):
-	say "combine [container]";
+To transform the ingredients of (container - an IngredientContainer) into (new_info - an IngredientInfo):
+	let src_ingredients be the list of things held by the container;
+	let result be a random off-stage Ingredient;
+	[ Build the new ingredient ]
+	let new_volume be 0 tsp;
+	repeat with i running through src_ingredients:
+		increase new_volume by the current_volume of i;
+	init_ingredient result with new_info and new_volume;
+	[ Physically swap them ]
+	repeat with i running through the src_ingredients:
+		now i is nowhere;
+	now result is in the container;
 
-Carry out combining it ingredients:
-	let candidate_ids be getting the id of applied to the list of things held by the noun;
+To decide whether (requirement - a RequiredTransformation) with (container - an IngredientContainer) is failed:
+	if the requirement is REQ_BEAT:
+		let success be true;
+		repeat with i running through the list of things held by the container:
+			if TAG_BEATEN is not listed in the ingredient_tags of i:
+				now success is false;
+		[ There's GOT to be a way to reverse truth value, what the hell. http://inform7.com/book/WI_11_5.html doesn't explain and 'not' doesn't work. ]
+		if success is true:
+			decide on false;
+		else:
+			decide on true;  
+	else:
+		decide on true;
+
+To attempt to process (container - an IngredientContainer) by recipe:
+	let candidate_ids be getting the id of applied to the list of things held by the container;
 	sort candidate_ids;
 	if there is a product corresponding to required_ingredient_ids of candidate_ids in the Table of Recipes:
 		choose the row with the required_ingredient_ids of candidate_ids in the Table of Recipes;
+		let candidate_names be getting the name of applied to the list of things held by the container;
 		if the required_transformations entry is empty:
-			let candidate_names be getting the name of applied to the list of things held by the noun;
-			combine the noun;
-			repeat with i running through the list of things held by the noun:
-				now i is nowhere;
-			let result be a random off-stage Ingredient;
-			now result is in the noun;
-			init_ingredient target result with the product entry;
-			say "You combined the [candidate_names] to create [the info_name of result].";
+			transform the ingredients of the container into the product entry;
+			say "You combined the [candidate_names] to create [the list of things in the container].";
 		else:
-			combine the noun;
-			say "Needs transformation(s): [required_transformations entry]";
+			let success be true;
+			repeat with r running through required_transformations entry:
+				if r with container is failed:
+					now success is false;
+			if success is true:
+				transform the ingredients of the container into the product entry;
+				say "You combined the [candidate_names] to create [the list of things in the container].";
+			else:
+				say "Transformation failed.";
 	else:
 		say "No such combination found for [candidate_ids].";
 
@@ -250,8 +273,7 @@ Carry out an actor pouring something (called source) into something (called targ
 		else:
 			let new_ingredient be a random off-stage Ingredient;
 			now new_ingredient is in the target;
-			init_ingredient target new_ingredient with the ingredient_info of the poured_ingredient;
-			now the current_volume of the new_ingredient is the poured_volume;
+			init_ingredient new_ingredient with ingredient_info of the poured_ingredient and poured_volume;
 		[ Increment loop ]
 		increment src_idx;
 
@@ -273,14 +295,16 @@ Rule for supplying a missing second noun while beating:
 	say "You have to specify an implement to beat [the noun] with.";
 
 Carry out beating something (called ingredient) with something (called the beater):
-	if the holder of the ingredient is an IngredientContainer:
-		repeat with adjacent running through the ingredients held by the holder of the ingredient:
-			add BEATEN to the ingredient_tags of adjacent;
-		try combining the holder of the ingredient ingredients;
-		say "You beat [the list of ingredients held by the holder of the ingredient] in [the holder of the ingredient] with [the beater].";
+	let container be the holder of the ingredient;
+	if the container is an IngredientContainer:
+		say "You beat [the list of ingredients held by the container] in [the container] with [the beater].";
+		repeat with adjacent running through the ingredients held by container:
+			add TAG_BEATEN to the ingredient_tags of adjacent;
+		attempt to process the holder of the ingredient by recipe;
 	else:
-		add BEATEN to the ingredient_tags of the ingredient;
 		say "You beat [the ingredient] with [the beater]."; 
+		add TAG_BEATEN to the ingredient_tags of the ingredient;
+		attempt to process the holder of the ingredient by recipe;
 
 Test beat with "beat water with bottle"; 
 [Test beat with "fill 4-cup from sink / beat asdf / beat water / beat water with mixing spoon / beat 4-cup with mixing spoon / fill 1-cup from sink / beat water"]
@@ -308,6 +332,6 @@ On the Corian countertop is an IngredientContainer called the cup. In the cup is
 
 When play begins:
 	repeat with i running through Ingredients:
-		init_ingredient target i with ingredient_info of i;
+		init_ingredient i with ingredient_info of i and current_volume of i;
 
 test game with "put one flour in big bowl / put one salt in big bowl / combine big bowl / x big bowl / l"
