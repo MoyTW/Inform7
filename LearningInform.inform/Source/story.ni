@@ -20,11 +20,17 @@ id_dry_ingredients	"dry ingredients"
 id_wet_ingredients	"wet ingredients"
 id_loaf_of_bread	"loaf of bread" [ Isn't REALLY an ingredient but ok ]
 
+An IngredientTag is a kind of value. The IngredientTag are defined by the Table of Ingredient Tags.
+
+Table of Ingredient Tags
+ingredient_tag
+BEATEN
+
 An Ingredient is a kind of thing.
 An Ingredient has an IngredientInfo called ingredient_info. The ingredient_info of an Ingredient is usually id_uninitualized.
 An Ingredient has a text called info_name.
 An Ingredient has a volume called current_volume. The current_volume of an Ingredient is usually 1.0 tsp.
-An Ingredient has a list of Ingredients called the ingredients_list.
+An Ingredient has a list of IngredientTags called ingredient_tags.
 
 To init_ingredient target (ingredient - an Ingredient) with (info - an IngredientInfo):
 	choose the row with ingredient_id of info in the Table of Ingredient Info;
@@ -43,7 +49,7 @@ Check taking an Ingredient: [ TODO: Add column for "solid" or "carryable" to ing
 
 Part Recipes
 
-A transformation is a kind of value. The transformations are defined by the Table of Transformations.
+A RequiredTransformation is a kind of value. The RequiredTransformation are defined by the Table of Transformations.
 
 Table of Transformations
 name	duration_min	duration_max	temperature
@@ -55,7 +61,7 @@ BEAT	--	--	--
 A recipe is a kind of value. The recipes are defined by the Table of Recipes.
 
 Table of Recipes
-name	product	required_ingredient_ids	ratios	transformations
+name	product	required_ingredient_ids	ratios	required_transformations
 r_lob	id_loaf_of_bread	{ id_bread_dough }	{ 1 }	{ BAKE_450F_20-25 }
 r_rd	id_risen_dough	{ id_unrisen_dough }	{ 1 }	{ RISE_90 }
 r_urd	id_unrisen_dough	{ id_dry_ingredients, id_wet_ingredients }	{ 1, 1 }	--
@@ -96,9 +102,11 @@ Book Verbs
 
 Part - Combine Verb
 
+test combine with "beat water with jar";
+
 To combine is a verb.
 
-Understand "combine [container]" as combining it. Combining it is an action applying to one thing.
+Understand "combine [container]" as combining it ingredients. Combining it ingredients is an action applying to one thing.
 
 To decide what IngredientInfo is the id of (ing - an Ingredient) (this is getting the id of):
 	decide on the ingredient_info of ing;
@@ -106,20 +114,26 @@ To decide what IngredientInfo is the id of (ing - an Ingredient) (this is gettin
 To decide what text is the name of (ing - an Ingredient) (this is getting the name of):
 	decide on the info_name of ing;
 
-Carry out combining it:
+To combine (container - an IngredientContainer):
+	say "combine [container]";
+
+Carry out combining it ingredients:
 	let candidate_ids be getting the id of applied to the list of things held by the noun;
+	sort candidate_ids;
 	if there is a product corresponding to required_ingredient_ids of candidate_ids in the Table of Recipes:
 		choose the row with the required_ingredient_ids of candidate_ids in the Table of Recipes;
-		if the transformations entry is empty:
+		if the required_transformations entry is empty:
 			let candidate_names be getting the name of applied to the list of things held by the noun;
+			combine the noun;
 			repeat with i running through the list of things held by the noun:
 				now i is nowhere;
 			let result be a random off-stage Ingredient;
 			now result is in the noun;
 			init_ingredient target result with the product entry;
-			say "You combied the [candidate_names] to create [the info_name of result].";
+			say "You combined the [candidate_names] to create [the info_name of result].";
 		else:
-			say "Needs transformation(s): [transformations entry]";
+			combine the noun;
+			say "Needs transformation(s): [required_transformations entry]";
 	else:
 		say "No such combination found for [candidate_ids].";
 
@@ -138,7 +152,7 @@ Carry out an actor filling something with something (this is the convert filling
 Rule for supplying a missing second noun while an actor filling (this is the query player for source rule):
 	say "You'll need to specify what to fill [the noun] with."
 
-Part 2 - Pour Verb
+Part - Pour Verb
 
 To pour is a verb.
 
@@ -247,6 +261,31 @@ Report an actor pouring something (called source) into something (called target)
 	else:
 		say "[The actor] [pour] [the source] into [the target].";
 
+Part - Beat verb
+
+To beat is a verb.
+
+Understand "beat [Ingredient]" as beating it with.
+Understand "beat [Ingredient] with [something]" as beating it with.
+Beating it with is an action applying to two things.
+
+Rule for supplying a missing second noun while beating:
+	say "You have to specify an implement to beat [the noun] with.";
+
+Carry out beating something (called ingredient) with something (called the beater):
+	if the holder of the ingredient is an IngredientContainer:
+		repeat with adjacent running through the ingredients held by the holder of the ingredient:
+			add BEATEN to the ingredient_tags of adjacent;
+		try combining the holder of the ingredient ingredients;
+		say "You beat [the list of ingredients held by the holder of the ingredient] in [the holder of the ingredient] with [the beater].";
+	else:
+		add BEATEN to the ingredient_tags of the ingredient;
+		say "You beat [the ingredient] with [the beater]."; 
+
+Test beat with "beat water with bottle"; 
+[Test beat with "fill 4-cup from sink / beat asdf / beat water / beat water with mixing spoon / beat 4-cup with mixing spoon / fill 1-cup from sink / beat water"]
+
+
 Section Kitchen
 
 10 Ingredients are in ingredient_storage.
@@ -259,10 +298,13 @@ The big bowl is on the Corian countertop. It is a container.
 The small bowl is on the Corian countertop. It is a container.
 On the Corian countertop is an IngredientContainer called the large tub. In the large tub is an Ingredient. The ingredient_info of it is id_flour.
 On the corian countertop is an IngredientContainer called the shaker. In the shaker is an Ingredient with ingredient_info id_salt and current_volume 3 cups.
-On the Corian countertop is an IngredientContainer called the pitcher. The capacity of it is 1 cup. In the pitcher is an Ingredient. The ingredient_info of it is id_water.
+On the corian countertop is an IngredientContainer called the well. In the well is an Ingredient with ingredient_info id_salt and current_volume 2 tbsp.
+[On the Corian countertop is an IngredientContainer called the pitcher. The capacity of it is 1 cup. In the pitcher is an Ingredient. The ingredient_info of it is id_water.]
 On the Corian countertop is an IngredientContainer called the small tub. In the small tub is an Ingredient. The ingredient_info of it is id_sugar.
 On the Corian countertop is an IngredientContainer called the bottle. In the bottle is an Ingredient. The ingredient_info of it is id_ady.
 On the Corian countertop is an IngredientContainer called the jar.
+On the Corian countertop is an ingredient. The ingredient_info of it is id_risen_dough.
+On the Corian countertop is an IngredientContainer called the cup. In the cup is an Ingredient with ingredient_info id_water and current_volume 96 tsp. In the cup is an Ingredient with ingredient_info id_ady and current_volume 1 tsp. In the cup is an Ingredient with ingredient_info id_sugar and current_volume 1 tsp.
 
 When play begins:
 	repeat with i running through Ingredients:
