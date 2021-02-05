@@ -27,25 +27,25 @@ Table of Ingredient Tags
 ingredient_tag
 TAG_BEATEN
 
-An Ingredient is a kind of thing.
-An Ingredient has an IngredientInfo called ingredient_info. The ingredient_info of an Ingredient is usually id_uninitualized.
-An Ingredient has a text called info_name.
-An Ingredient has a volume called current_volume. The current_volume of an Ingredient is usually 1.0 tsp.
-An Ingredient has a list of IngredientTags called ingredient_tags.
+An _Ingredient is a kind of thing.
+An _Ingredient has an IngredientInfo called ingredient_info. The ingredient_info of an _Ingredient is usually id_uninitualized.
+An _Ingredient has a text called info_name.
+An _Ingredient has a volume called current_volume. The current_volume of an _Ingredient is usually 1.0 tsp.
+An _Ingredient has a list of IngredientTags called ingredient_tags.
 
-To init_ingredient (ingredient - an Ingredient) with (info - an IngredientInfo) and (volume - a volume):
+To init_ingredient (ingredient - an _Ingredient) with (info - an IngredientInfo) and (volume - a volume):
 	choose the row with ingredient_id of info in the Table of Ingredient Info;
 	now the ingredient_info of the ingredient is the info;
 	now the info_name of the ingredient is the ingredient_name entry;
 	now the current_volume of the ingredient is the volume;
 
-Rule for printing the name of an Ingredient:
+Rule for printing the name of an _Ingredient:
 	say "[the info_name] ([current_volume])";
 
 [ TODO: This doesn't work properly with multi-word names - see https://intfiction.org/t/inform-7-changing-the-name-of-an-object/2507 for a possible, if awfully hacky, example. ]
-Understand the info_name property as describing an Ingredient;
+Understand the info_name property as describing an _Ingredient;
 
-Check taking an Ingredient: [ TODO: Add column for "solid" or "carryable" to ingredients ]
+Check taking an _Ingredient: [ TODO: Add column for "solid" or "carryable" to ingredients ]
 	say "Carrying [the info_name] in your hands would be at best messy. Try pouring [the holder of the noun] into a container, or filling a container from the [the holder of the noun].";
 	stop the action.
 
@@ -105,15 +105,15 @@ Book Verbs
 
 Part - Proceess Function
 
-To decide what IngredientInfo is the id of (ing - an Ingredient) (this is getting the id of):
+To decide what IngredientInfo is the id of (ing - an _Ingredient) (this is getting the id of):
 	decide on the ingredient_info of ing;
 
-To decide what text is the name of (ing - an Ingredient) (this is getting the name of):
+To decide what text is the name of (ing - an _Ingredient) (this is getting the name of):
 	decide on the info_name of ing;
 
 To transform the ingredients of (container - an IngredientContainer) into (new_info - an IngredientInfo):
 	let src_ingredients be the list of things held by the container;
-	let result be a random off-stage Ingredient;
+	let result be a random off-stage _Ingredient;
 	[ Build the new ingredient ]
 	let new_volume be 0 tsp;
 	repeat with i running through src_ingredients:
@@ -164,13 +164,13 @@ Part - Stir/Mix/Combine Verb
 
 To combine is a verb.
 
-Understand "combine [ingredient] with/and [ingredient]" as combining it with.
-Understand "mix [ingredient] with/and [ingredient]" as combining it with.
-Understand "stir [ingredient] with/and [ingredient]" as combining it with.
+Understand "combine [_Ingredient] with/and [_Ingredient]" as combining it with.
+Understand "mix [_Ingredient] with/and [_Ingredient]" as combining it with.
+Understand "stir [_Ingredient] with/and [_Ingredient]" as combining it with.
 
 Combining it with is an action applying to two things. 
 
-Check combining ingredient (called left) with ingredient (called right) (this is the ingredients must be in same container rule):
+Check combining _Ingredient (called left) with _Ingredient (called right) (this is the ingredients must be in same container rule):
 	if the holder of left is not the holder of right:
 		say "The two ingredients have to be in the same container!";
 		stop the action.
@@ -178,7 +178,6 @@ Check combining ingredient (called left) with ingredient (called right) (this is
 Carry out combining it with (this is the standard combining it with rule):
 	try combining ingredients in the container the holder of the noun;
 
-[ TODO: lol, ok, so...it turns out 'ingredients' matches 'all instances of Ingredient'. Easiest way to deal with this is to call 'Ingredient' something else. ]
 Understand "combine ingredients in [container]" as combining ingredients in the container.
 Understand "mix ingredients in [container]" as combining ingredients in the container.
 Understand "stir ingredients in [container]" as combining ingredients in the container.
@@ -212,30 +211,30 @@ Understand "empty [something] in/into/with [something]" as pouring it into.
 [ TODO: Discourage the player pouring something into an ingredient source container ]
 
 Pouring it into is an action applying to two things.
-The pouring it into action has a list of ingredients called the ingredients_poured.
+The pouring it into action has a list of _Ingredients called the ingredients_poured.
 The pouring it into action has a list of volumes called the amounts_poured.
 
 Setting action variables for pouring something into something (this is the setting ingredients poured rule):
 	if the noun is an IngredientContainer:
-		now the ingredients_poured is the list of ingredients held by the noun.
+		now the ingredients_poured is the list of _Ingredients held by the noun.
 
 Setting action variables for pouring something (called the source) into something (called the target) (this is the setting amounts poured rule):
 	if the source is an IngredientContainer and the target is an IngredientContainer:
 		[ target capacity ]
 		let target_remaining_capacity be capacity of target;
-		repeat with held running through the list of ingredients held by the target:
+		repeat with held running through the list of _Ingredients held by the target:
 			decrease target_remaining_capacity by the current_volume of held;
 		[ source total ]
 		let source_total_amount be 0 tsp;
-		repeat with poured running through the list of ingredients held by the source:
+		repeat with poured running through the list of _Ingredients held by the source:
 			increase source_total_amount by current_volume of poured;
 		[ amount poured ]
 		if target_remaining_capacity is greater than the source_total_amount:
-			repeat with poured running through the list of ingredients held by the source:
+			repeat with poured running through the list of _Ingredients held by the source:
 				add current_volume of poured to amounts_poured;
 		otherwise:
 			let scalar be target_remaining_capacity / source_total_amount;
-			repeat with poured running through the list of ingredients held by the source:
+			repeat with poured running through the list of _Ingredients held by the source:
 				add scalar * the current_volume of poured to amounts_poured;
 
 [ TODO: can't pour two untouched things rule ]
@@ -257,7 +256,7 @@ Check an actor pouring something into something (this is the can't pour somethin
 
 Check an actor pouring something into something (this is the can't pour out of empty containers rule):
 	let total_taken_capacity be 0 tsp;
-	repeat with held running through the list of ingredients held by the noun:
+	repeat with held running through the list of _Ingredients held by the noun:
 		increase total_taken_capacity by current_volume of held;
 	if total_taken_capacity is 0 tsp:
 		say "[The noun] [are] empty.";
@@ -265,14 +264,14 @@ Check an actor pouring something into something (this is the can't pour out of e
 
 Check an actor pouring something into something (this is the can't pour into a full container rule):
 	let total_taken_capacity be 0 tsp;
-	repeat with poured running through the list of ingredients held by the second noun:
+	repeat with poured running through the list of _Ingredients held by the second noun:
 		increase total_taken_capacity by current_volume of poured;
 	if total_taken_capacity is the capacity of the second noun:
 		say "[The second noun] [are] full!";
 		stop the action.
 
 Check an actor pouring something into something (this is the ingredient pool not exhausted rule):
-	let new_ingredient be a random off-stage Ingredient;
+	let new_ingredient be a random off-stage _Ingredient;
 	if new_ingredient is nothing:
 		say "Failed to pour - no remaining ingredients in ingredient pool.";
 		stop the action.
@@ -291,14 +290,14 @@ Carry out an actor pouring something (called source) into something (called targ
 			now poured_ingredient is nowhere;
 		[ Add the appropriate volume to the target container ]
 		let matching_ingredient be poured_ingredient;
-		repeat with candidate running through the list of ingredients held by the target:
+		repeat with candidate running through the list of _Ingredients held by the target:
 			if ingredient_info of poured_ingredient is ingredient_info of candidate:
 				now matching_ingredient is candidate;
 				break;
 		if matching_ingredient is not poured_ingredient:
 			increase current_volume of matching_ingredient by poured_volume;
 		else:
-			let new_ingredient be a random off-stage Ingredient;
+			let new_ingredient be a random off-stage _Ingredient;
 			now new_ingredient is in the target;
 			init_ingredient new_ingredient with ingredient_info of the poured_ingredient and poured_volume;
 		[ Increment loop ]
@@ -315,8 +314,8 @@ Part - Beat verb
 
 To beat is a verb.
 
-Understand "beat [Ingredient]" as beating it with.
-Understand "beat [Ingredient] with [something]" as beating it with.
+Understand "beat [_Ingredient]" as beating it with.
+Understand "beat [_Ingredient] with [something]" as beating it with.
 Beating it with is an action applying to two things.
 
 Rule for supplying a missing second noun while beating:
@@ -325,8 +324,8 @@ Rule for supplying a missing second noun while beating:
 Carry out beating something (called ingredient) with something (called the beater):
 	let container be the holder of the ingredient;
 	if the container is an IngredientContainer:
-		say "You beat [the list of ingredients held by the container] in [the container] with [the beater].";
-		repeat with adjacent running through the ingredients held by container:
+		say "You beat [the list of _Ingredients held by the container] in [the container] with [the beater].";
+		repeat with adjacent running through the _Ingredients held by container:
 			add TAG_BEATEN to the ingredient_tags of adjacent;
 		attempt to process the holder of the ingredient by recipe;
 	else:
@@ -347,22 +346,22 @@ The kitchen is a room.
 The Corian countertop is in the kitchen. The countertop is a supporter. It is fixed in place.
 
 The spoon is on the Corian countertop.
-The big bowl is on the Corian countertop. It is an IngredientContainer with capacity 12 cups. In the big bowl is an ingredient with ingredient_info id_flour and current_volume 252 tsp.
-On the corian countertop is an IngredientContainer called the shaker. In the shaker is an Ingredient with ingredient_info id_salt and current_volume 1 tsp.
+The big bowl is on the Corian countertop. It is an IngredientContainer with capacity 12 cups. In the big bowl is an _Ingredient with ingredient_info id_flour and current_volume 252 tsp.
+On the corian countertop is an IngredientContainer called the shaker. In the shaker is an _Ingredient with ingredient_info id_salt and current_volume 1 tsp.
 [
 The small bowl is on the Corian countertop. It is a container.
 On the Corian countertop is an IngredientContainer called the large tub. In the large tub is an Ingredient. The ingredient_info of it is id_flour.
-On the corian countertop is an IngredientContainer called the well. In the well is an Ingredient with ingredient_info id_salt and current_volume 2 tbsp.
+On the corian countertop is an IngredientContainer called the well. In the well is an _Ingredient with ingredient_info id_salt and current_volume 2 tbsp.
 [On the Corian countertop is an IngredientContainer called the pitcher. The capacity of it is 1 cup. In the pitcher is an Ingredient. The ingredient_info of it is id_water.]
 On the Corian countertop is an IngredientContainer called the small tub. In the small tub is an Ingredient. The ingredient_info of it is id_sugar.
 On the Corian countertop is an IngredientContainer called the bottle. In the bottle is an Ingredient. The ingredient_info of it is id_ady.
 On the Corian countertop is an IngredientContainer called the jar.
 On the Corian countertop is an ingredient. The ingredient_info of it is id_risen_dough.
 ]
-On the Corian countertop is an IngredientContainer called the cup. In the cup is an Ingredient with ingredient_info id_water and current_volume 96 tsp. In the cup is an Ingredient with ingredient_info id_ady and current_volume 1 tsp. In the cup is an Ingredient with ingredient_info id_sugar and current_volume 1 tsp.
+On the Corian countertop is an IngredientContainer called the cup. In the cup is an _Ingredient with ingredient_info id_water and current_volume 96 tsp. In the cup is an _Ingredient with ingredient_info id_ady and current_volume 1 tsp. In the cup is an _Ingredient with ingredient_info id_sugar and current_volume 1 tsp.
 
 When play begins:
-	repeat with i running through Ingredients:
+	repeat with i running through _Ingredients:
 		init_ingredient i with ingredient_info of i and current_volume of i;
 
 test game with "beat water with spoon / pour shaker into bowl / pour cup into bowl / l"
