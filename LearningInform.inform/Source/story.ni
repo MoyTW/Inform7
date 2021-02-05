@@ -103,9 +103,7 @@ Instead of examining an IngredientContainer (called container):
 
 Book Verbs
 
-Part - Combine Verb
-
-test combine with "beat water with jar";
+Part - Proceess Function
 
 To decide what IngredientInfo is the id of (ing - an Ingredient) (this is getting the id of):
 	decide on the ingredient_info of ing;
@@ -162,12 +160,39 @@ To attempt to process (container - an IngredientContainer) by recipe:
 	else:
 		say "No such combination found for [candidate_ids].";
 
+Part - Stir/Mix/Combine Verb
+
+To combine is a verb.
+
+Understand "combine [ingredient] with/and [ingredient]" as combining it with.
+Understand "mix [ingredient] with/and [ingredient]" as combining it with.
+Understand "stir [ingredient] with/and [ingredient]" as combining it with.
+
+Combining it with is an action applying to two things. 
+
+Check combining ingredient (called left) with ingredient (called right) (this is the ingredients must be in same container rule):
+	if the holder of left is not the holder of right:
+		say "The two ingredients have to be in the same container!";
+		stop the action.
+
+Carry out combining it with (this is the standard combining it with rule):
+	try combining ingredients in the container the holder of the noun;
+
+[ TODO: lol, ok, so...it turns out 'ingredients' matches 'all instances of Ingredient'. Easiest way to deal with this is to call 'Ingredient' something else. ]
+Understand "combine ingredients in [container]" as combining ingredients in the container.
+Understand "mix ingredients in [container]" as combining ingredients in the container.
+Understand "stir ingredients in [container]" as combining ingredients in the container.
+
+Combining ingredients in the container is an action applying to one thing.
+
+Carry out combining ingredients in the container (this is the standard combining ingredients in it rule):
+	attempt to process the noun by recipe;
+
 Part - Fill Verb
 
 To fill is a verb.
 
 Understand "fill [something] with/from [something]" as filling it with.
-Understand "fill [something]" as filling it with.
 
 Filling it with is an action applying to two things.
 
