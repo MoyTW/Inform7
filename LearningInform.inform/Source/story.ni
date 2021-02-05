@@ -16,6 +16,7 @@ id_ady	"active dry yeast"
 id_bread_dough	"bread dough"
 id_risen_dough	"risen dough"
 id_unrisen_dough	"unrisen dough"
+id_shaggy_dough	"shaggy dough"
 id_dry_ingredients	"dry ingredients"
 id_wet_ingredients	"wet ingredients"
 id_loaf_of_bread	"loaf of bread" [ Isn't REALLY an ingredient but ok ]
@@ -65,7 +66,8 @@ Table of Recipes
 name	product	required_ingredient_ids	ratios	required_transformations
 r_lob	id_loaf_of_bread	{ id_bread_dough }	{ 1 }	{ REQ_BAKE_450F_20-25 }
 r_rd	id_risen_dough	{ id_unrisen_dough }	{ 1 }	{ REQ_RISE_90 }
-r_urd	id_unrisen_dough	{ id_dry_ingredients, id_wet_ingredients }	{ 253, 98 }	--
+r_urd	id_unrisen_dough	{ id_shaggy_dough }	{ 1 }	{ REQ_KNEAD_8 }
+r_sd	id_shaggy_dough	{ id_dry_ingredients, id_wet_ingredients }	{ 253, 98 }	--
 r_di	id_dry_ingredients	{ id_flour, id_salt }	{ 252, 1 }	--
 r_wi	id_wet_ingredients	{ id_water, id_sugar, id_ady }	{ 96, 1, 1 }	{ REQ_BEAT }
 
@@ -319,6 +321,7 @@ The kitchen is a room.
 
 The Corian countertop is in the kitchen. The countertop is a supporter. It is fixed in place.
 
+The spoon is on the Corian countertop.
 The big bowl is on the Corian countertop. It is an IngredientContainer with capacity 12 cups. In the big bowl is an ingredient with ingredient_info id_flour and current_volume 252 tsp.
 On the corian countertop is an IngredientContainer called the shaker. In the shaker is an Ingredient with ingredient_info id_salt and current_volume 1 tsp.
 [
@@ -337,4 +340,4 @@ When play begins:
 	repeat with i running through Ingredients:
 		init_ingredient i with ingredient_info of i and current_volume of i;
 
-test game with "put one flour in big bowl / put one salt in big bowl / combine big bowl / x big bowl / l"
+test game with "beat water with spoon / pour shaker into bowl / pour cup into bowl / l"
