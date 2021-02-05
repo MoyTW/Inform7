@@ -65,7 +65,7 @@ Table of Recipes
 name	product	required_ingredient_ids	ratios	required_transformations
 r_lob	id_loaf_of_bread	{ id_bread_dough }	{ 1 }	{ REQ_BAKE_450F_20-25 }
 r_rd	id_risen_dough	{ id_unrisen_dough }	{ 1 }	{ REQ_RISE_90 }
-r_urd	id_unrisen_dough	{ id_dry_ingredients, id_wet_ingredients }	{ 1, 1 }	--
+r_urd	id_unrisen_dough	{ id_dry_ingredients, id_wet_ingredients }	{ 253, 98 }	--
 r_di	id_dry_ingredients	{ id_flour, id_salt }	{ 252, 1 }	--
 r_wi	id_wet_ingredients	{ id_water, id_sugar, id_ady }	{ 96, 1, 1 }	{ REQ_BEAT }
 
@@ -276,6 +276,7 @@ Carry out an actor pouring something (called source) into something (called targ
 			init_ingredient new_ingredient with ingredient_info of the poured_ingredient and poured_volume;
 		[ Increment loop ]
 		increment src_idx;
+	attempt to process target by recipe;
 
 Report an actor pouring something (called source) into something (called target) (this is the standard report someone pouring rule):
 	if the capacity of the source is greater than the capacity of the target:
@@ -318,16 +319,18 @@ The kitchen is a room.
 
 The Corian countertop is in the kitchen. The countertop is a supporter. It is fixed in place.
 
-The big bowl is on the Corian countertop. It is a container.
+The big bowl is on the Corian countertop. It is an IngredientContainer with capacity 12 cups. In the big bowl is an ingredient with ingredient_info id_flour and current_volume 252 tsp.
+On the corian countertop is an IngredientContainer called the shaker. In the shaker is an Ingredient with ingredient_info id_salt and current_volume 1 tsp.
+[
 The small bowl is on the Corian countertop. It is a container.
 On the Corian countertop is an IngredientContainer called the large tub. In the large tub is an Ingredient. The ingredient_info of it is id_flour.
-On the corian countertop is an IngredientContainer called the shaker. In the shaker is an Ingredient with ingredient_info id_salt and current_volume 3 cups.
 On the corian countertop is an IngredientContainer called the well. In the well is an Ingredient with ingredient_info id_salt and current_volume 2 tbsp.
 [On the Corian countertop is an IngredientContainer called the pitcher. The capacity of it is 1 cup. In the pitcher is an Ingredient. The ingredient_info of it is id_water.]
 On the Corian countertop is an IngredientContainer called the small tub. In the small tub is an Ingredient. The ingredient_info of it is id_sugar.
 On the Corian countertop is an IngredientContainer called the bottle. In the bottle is an Ingredient. The ingredient_info of it is id_ady.
 On the Corian countertop is an IngredientContainer called the jar.
 On the Corian countertop is an ingredient. The ingredient_info of it is id_risen_dough.
+]
 On the Corian countertop is an IngredientContainer called the cup. In the cup is an Ingredient with ingredient_info id_water and current_volume 96 tsp. In the cup is an Ingredient with ingredient_info id_ady and current_volume 1 tsp. In the cup is an Ingredient with ingredient_info id_sugar and current_volume 1 tsp.
 
 When play begins:
