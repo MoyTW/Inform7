@@ -339,7 +339,7 @@ Test beat with "beat water with bottle";
 
 Section Kitchen
 
-10 Ingredients are in ingredient_storage.
+100 _Ingredients are in ingredient_storage.
 
 The kitchen is a room.
 
