@@ -27,6 +27,7 @@ Table of Ingredient Tags
 ingredient_tag
 TAG_BEATEN
 TAG_COMBINE
+TAG_HAND_KNEADED
 
 An _Ingredient is a kind of thing.
 An _Ingredient has an IngredientInfo called ingredient_info. The ingredient_info of an _Ingredient is usually id_uninitualized.
@@ -141,6 +142,19 @@ To decide whether (requirement - a RequiredTransformation) with (container - an 
 		let success be true;
 		repeat with i running through the list of things held by the container:
 			if TAG_COMBINE is not listed in the ingredient_tags of i:
+				now success is false;
+		if success is true:
+			decide on false;
+		else:
+			decide on true;
+	if the requirement is REQ_KNEAD_8:
+		let success be true;
+		repeat with i running through the list of things held by the container:
+			let times_hand_kneaded be 0;
+			repeat with t running through the ingredient_tags of i:
+				if t is TAG_HAND_KNEADED:
+					increase times_hand_kneaded by 1;
+			if times_hand_kneaded is less than 5:
 				now success is false;
 		if success is true:
 			decide on false;
@@ -362,6 +376,24 @@ Carry out beating something (called ingredient) with something (called the beate
 Test beat with "beat water with bottle"; 
 [Test beat with "fill 4-cup from sink / beat asdf / beat water / beat water with mixing spoon / beat 4-cup with mixing spoon / fill 1-cup from sink / beat water"]
 
+Part - Knead verb
+
+To knead is a verb.
+
+Understand "knead [something]" as kneading an ingredient.
+Kneading an ingredient is an action applying to one thing.
+
+Check kneading an ingredient (this is the can only knead ingredients rule):
+	if the noun is not an _Ingredient:
+		say "You can't knead that!";
+		stop the action.
+
+[ TODO: Restrict kneading to sane ingredients. ]
+[ TODO: Contemplate how to make this work with turning it out onto the countertop. ]
+Carry out kneading an ingredient (this is the standard kneading rule):
+	say "You knead [the noun]. [the holder of the noun].";
+	add TAG_HAND_KNEADED to the ingredient_tags of the noun;
+	attempt to process the holder of the noun by recipe;
 
 Section Kitchen
 
@@ -391,4 +423,4 @@ When play begins:
 	repeat with i running through _Ingredients:
 		init_ingredient i with ingredient_info of i and current_volume of i;
 
-test game with "beat water with spoon / pour shaker into bowl / pour cup into bowl / combine ingredients in bowl / l"
+test game with "beat water with spoon / pour shaker into bowl / pour cup into bowl / combine ingredients in bowl / l / knead shaggy dough / knead shaggy dough / knead shaggy dough / knead shaggy dough / knead shaggy dough / knead shaggy dough"
