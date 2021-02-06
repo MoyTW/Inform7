@@ -26,6 +26,7 @@ An IngredientTag is a kind of value. The IngredientTag are defined by the Table 
 Table of Ingredient Tags
 ingredient_tag
 TAG_BEATEN
+TAG_COMBINE
 
 An _Ingredient is a kind of thing.
 An _Ingredient has an IngredientInfo called ingredient_info. The ingredient_info of an _Ingredient is usually id_uninitualized.
@@ -58,6 +59,7 @@ name	duration_min	duration_max	temperature
 REQ_BAKE_450F_20-25	20	25	450
 REQ_RISE_90	80	100	--
 REQ_KNEAD_8	6	10	--
+REQ_COMBINE	--	--	--
 REQ_BEAT	--	--	--
 
 A recipe is a kind of value. The recipes are defined by the Table of Recipes.
@@ -67,7 +69,7 @@ name	product	required_ingredient_ids	ratios	required_transformations
 r_lob	id_loaf_of_bread	{ id_bread_dough }	{ 1 }	{ REQ_BAKE_450F_20-25 }
 r_rd	id_risen_dough	{ id_unrisen_dough }	{ 1 }	{ REQ_RISE_90 }
 r_urd	id_unrisen_dough	{ id_shaggy_dough }	{ 1 }	{ REQ_KNEAD_8 }
-r_sd	id_shaggy_dough	{ id_dry_ingredients, id_wet_ingredients }	{ 253, 98 }	--
+r_sd	id_shaggy_dough	{ id_dry_ingredients, id_wet_ingredients }	{ 253, 98 }	{ REQ_COMBINE }
 r_di	id_dry_ingredients	{ id_flour, id_salt }	{ 252, 1 }	--
 r_wi	id_wet_ingredients	{ id_water, id_sugar, id_ady }	{ 96, 1, 1 }	{ REQ_BEAT }
 
@@ -134,7 +136,16 @@ To decide whether (requirement - a RequiredTransformation) with (container - an 
 		if success is true:
 			decide on false;
 		else:
-			decide on true;  
+			decide on true;
+	if the requirement is REQ_COMBINE:
+		let success be true;
+		repeat with i running through the list of things held by the container:
+			if TAG_COMBINE is not listed in the ingredient_tags of i:
+				now success is false;
+		if success is true:
+			decide on false;
+		else:
+			decide on true;
 	else:
 		decide on true;
 
@@ -152,6 +163,7 @@ To attempt to process (container - an IngredientContainer) by recipe:
 			repeat with r running through required_transformations entry:
 				if r with container is failed:
 					now success is false;
+					say "Failed to fulfill [r].";
 			if success is true:
 				transform the ingredients of the container into the product entry;
 				say "You combined the [candidate_names] to create [the list of things in the container].";
@@ -178,13 +190,27 @@ Check combining _Ingredient (called left) with _Ingredient (called right) (this 
 Carry out combining it with (this is the standard combining it with rule):
 	try combining ingredients in the container the holder of the noun;
 
-Understand "combine ingredients in [container]" as combining ingredients in the container.
-Understand "mix ingredients in [container]" as combining ingredients in the container.
-Understand "stir ingredients in [container]" as combining ingredients in the container.
+Understand "combine ingredients in [something]" as combining ingredients in the container.
+Understand "mix ingredients in [something]" as combining ingredients in the container.
+Understand "stir ingredients in [something]" as combining ingredients in the container.
 
 Combining ingredients in the container is an action applying to one thing.
 
+Check combining ingredients in the container (this is the can only combine in IngredientContainer rule):
+	if the noun is not an IngredientContainer:
+		say "[the noun] isn't appropriate for combining ingredients in!";
+		stop the action.
+
+Check combining ingredients in the container (this is the can only combine if ingredients present rule):
+	if the list of things held by the noun is empty:
+		say "There are no ingredients in [the noun].";
+		stop the action.
+
+[ TODO: Add failure case! ]
 Carry out combining ingredients in the container (this is the standard combining ingredients in it rule):
+	say "You combine [the list of _Ingredients held by the noun] in [the noun].";
+	repeat with adjacent running through the _Ingredients held by the noun:
+		add TAG_COMBINE to the ingredient_tags of adjacent;
 	attempt to process the noun by recipe;
 
 Part - Fill Verb
@@ -347,6 +373,7 @@ The Corian countertop is in the kitchen. The countertop is a supporter. It is fi
 
 The spoon is on the Corian countertop.
 The big bowl is on the Corian countertop. It is an IngredientContainer with capacity 12 cups. In the big bowl is an _Ingredient with ingredient_info id_flour and current_volume 252 tsp.
+On the Corian Countertop is an IngredientContainer called the vial with capacity 4 tsp.
 On the corian countertop is an IngredientContainer called the shaker. In the shaker is an _Ingredient with ingredient_info id_salt and current_volume 1 tsp.
 [
 The small bowl is on the Corian countertop. It is a container.
@@ -364,4 +391,4 @@ When play begins:
 	repeat with i running through _Ingredients:
 		init_ingredient i with ingredient_info of i and current_volume of i;
 
-test game with "beat water with spoon / pour shaker into bowl / pour cup into bowl / l"
+test game with "beat water with spoon / pour shaker into bowl / pour cup into bowl / combine ingredients in bowl / l"
