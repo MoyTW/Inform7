@@ -124,7 +124,7 @@ To transform the ingredients of (container - an IngredientContainer) into (new_i
 	init_ingredient result with new_info and new_volume;
 	[ Physically swap them ]
 	repeat with i running through the src_ingredients:
-		now i is nowhere;
+		now i is in the ingredient_storage;
 	now result is in the container;
 
 To decide whether (requirement - a RequiredTransformation) with (container - an IngredientContainer) is failed:
@@ -327,7 +327,7 @@ Carry out an actor pouring something (called source) into something (called targ
 		[ Remove the appropriate volume from source container ]
 		decrease current_volume of poured_ingredient by poured_volume;
 		if current_volume of poured_ingredient is 0 tsp:
-			now poured_ingredient is nowhere;
+			now poured_ingredient is in the ingredient_storage;
 		[ Add the appropriate volume to the target container ]
 		let matching_ingredient be poured_ingredient;
 		repeat with candidate running through the list of _Ingredients held by the target:
@@ -420,7 +420,7 @@ On the Corian countertop is an ingredient. The ingredient_info of it is id_risen
 On the Corian countertop is an IngredientContainer called the cup. In the cup is an _Ingredient with ingredient_info id_water and current_volume 96 tsp. In the cup is an _Ingredient with ingredient_info id_ady and current_volume 1 tsp. In the cup is an _Ingredient with ingredient_info id_sugar and current_volume 1 tsp.
 
 When play begins:
-	repeat with i running through _Ingredients:
+	repeat with i running through _Ingredients not in ingredient_storage:
 		init_ingredient i with ingredient_info of i and current_volume of i;
 
 test game with "beat water with spoon / pour shaker into bowl / pour cup into bowl / combine ingredients in bowl / l / knead shaggy dough / knead shaggy dough / knead shaggy dough / knead shaggy dough / knead shaggy dough / knead shaggy dough"
