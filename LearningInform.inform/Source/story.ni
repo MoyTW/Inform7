@@ -34,12 +34,14 @@ An _Ingredient has an IngredientInfo called ingredient_info. The ingredient_info
 An _Ingredient has a text called info_name.
 An _Ingredient has a volume called current_volume. The current_volume of an _Ingredient is usually 1.0 tsp.
 An _Ingredient has a list of IngredientTags called ingredient_tags.
+An _Ingredient has a time called created_at.
 
 To init_ingredient (ingredient - an _Ingredient) with (info - an IngredientInfo) and (volume - a volume):
 	choose the row with ingredient_id of info in the Table of Ingredient Info;
 	now the ingredient_info of the ingredient is the info;
 	now the info_name of the ingredient is the ingredient_name entry;
 	now the current_volume of the ingredient is the volume;
+	now the created_at of the ingredient is the time of day;
 
 Rule for printing the name of an _Ingredient:
 	say "[the info_name] ([current_volume])";
@@ -128,27 +130,17 @@ To transform the ingredients of (container - an IngredientContainer) into (new_i
 	now result is in the container;
 
 To decide whether (requirement - a RequiredTransformation) with (container - an IngredientContainer) is failed:
+	let success be true;
 	if the requirement is REQ_BEAT:
-		let success be true;
 		repeat with i running through the list of things held by the container:
 			if TAG_BEATEN is not listed in the ingredient_tags of i:
 				now success is false;
 		[ There's GOT to be a way to reverse truth value, what the hell. http://inform7.com/book/WI_11_5.html doesn't explain and 'not' doesn't work. ]
-		if success is true:
-			decide on false;
-		else:
-			decide on true;
-	if the requirement is REQ_COMBINE:
-		let success be true;
+	else if the requirement is REQ_COMBINE:
 		repeat with i running through the list of things held by the container:
 			if TAG_COMBINE is not listed in the ingredient_tags of i:
 				now success is false;
-		if success is true:
-			decide on false;
-		else:
-			decide on true;
-	if the requirement is REQ_KNEAD_8:
-		let success be true;
+	else if the requirement is REQ_KNEAD_8:
 		repeat with i running through the list of things held by the container:
 			let times_hand_kneaded be 0;
 			repeat with t running through the ingredient_tags of i:
@@ -156,10 +148,15 @@ To decide whether (requirement - a RequiredTransformation) with (container - an 
 					increase times_hand_kneaded by 1;
 			if times_hand_kneaded is less than 5:
 				now success is false;
-		if success is true:
-			decide on false;
-		else:
-			decide on true;
+	else if the requirement is REQ_RISE_90:
+		repeat with i running through the list of things held by the container:
+			let done_time be created_at of i + 80 minutes;
+			if done_time is greater than time of day:
+				now success is false;
+	else:
+		now success is false;
+	if success is true:
+		decide on false;
 	else:
 		decide on true;
 
