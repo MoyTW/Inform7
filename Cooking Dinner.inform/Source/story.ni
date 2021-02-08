@@ -452,9 +452,9 @@ A recipe is carried by the player. The description is "Dead-Easy Bread[line brea
 2 cups water[line break]
 1 tsp sugar[line break]
 1 tsp active dry yeast[line break]
-Dump the flour and salt into the mixer bowl. In another bowl, beat the sugar and yeast into the water. Pour the liquids into the flour and stir until it comes together into a dough. Using the dough hook for the mixer, put it to speed 2 and leave it on for ~8 minutes-ish until it's done - you can test it by poking it and seeing if it fills in the hole, but honestly it's probably fine. Most recipes will tell you to cover the dough with a cloth and leave it for an hour and a half at a warm-ish temperature, but what I like to do is actually boil some water, put the saucepan in the oven (off of course) and then put the dough in with it. The idea is you want to give it time to rise but don't want it to lose too much moisture. You'll be fine either way, bread's actually pretty hard to mess up.[line break]
-Anyways after it rises, prep the baking sheet by putting some parchment paper on it. Take out the dough, flour a board and gently knead it a bit then shape it into an oval. Stick it on the sheet and cover it with a cloth (or put it back in the oven) and leave for another 45-minutes-ish.[line break]
-Heat oven to 450 degrees and bake for ~20-25 minutes, then remove and cool.
+Pour flour and salt into the mixer bowl. In another bowl, beat the sugar and yeast into the water. Pour the liquids into the dry ingredients and stir until it comes together into a dough. Using the dough hook for the mixer, put it to speed 2 and leave it on for ~8 minutes-ish. Cover with a towel and leave it to rise for an hour and a half.[line break]
+After it rises, prep the baking sheet by putting some parchment paper on it. Take out the dough, flour a board and gently knead it a bit then shape it into an oval. Stick it on the sheet and cover it with a cloth and leave to rise for another 45-minutes-ish. Preheat the oven when appropriate (about 20 minutes before the rise is done with our oven) at 450 degrees.[line break]
+Bake for ~20-25 minutes at 450 degrees, then remove and cool.
 "
 
 test happy with "
