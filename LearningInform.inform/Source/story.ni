@@ -186,6 +186,11 @@ To attempt to process (container - an IngredientContainer) by recipe:
 	else:
 		say "No such combination found for [candidate_ids].";
 
+An every turn rule (this is the transform ingredients in world every turn rule):
+	repeat with c running through the IngredientContainers:
+		if c contains something:
+			attempt to process c by recipe;
+
 Part - Stir/Mix/Combine Verb
 
 To combine is a verb.
@@ -225,7 +230,6 @@ Carry out combining ingredients in the container (this is the standard combining
 	say "You combine [the list of _Ingredients held by the noun] in [the noun].";
 	repeat with adjacent running through the _Ingredients held by the noun:
 		add TAG_COMBINE to the ingredient_tags of adjacent;
-	attempt to process the noun by recipe;
 
 Part - Fill Verb
 
@@ -342,7 +346,6 @@ Carry out an actor pouring something (called source) into something (called targ
 			init_ingredient new_ingredient with ingredient_info of the poured_ingredient and poured_volume;
 		[ Increment loop ]
 		increment src_idx;
-	attempt to process target by recipe;
 
 Report an actor pouring something (called source) into something (called target) (this is the standard report someone pouring rule):
 	if the capacity of the source is greater than the capacity of the target:
@@ -367,11 +370,9 @@ Carry out beating something (called ingredient) with something (called the beate
 		say "You beat [the list of _Ingredients held by the container] in [the container] with [the beater].";
 		repeat with adjacent running through the _Ingredients held by container:
 			add TAG_BEATEN to the ingredient_tags of adjacent;
-		attempt to process the holder of the ingredient by recipe;
 	else:
 		say "You beat [the ingredient] with [the beater]."; 
 		add TAG_BEATEN to the ingredient_tags of the ingredient;
-		attempt to process the holder of the ingredient by recipe;
 
 Test beat with "beat water with bottle"; 
 [Test beat with "fill 4-cup from sink / beat asdf / beat water / beat water with mixing spoon / beat 4-cup with mixing spoon / fill 1-cup from sink / beat water"]
@@ -393,7 +394,6 @@ Check kneading an ingredient (this is the can only knead ingredients rule):
 Carry out kneading an ingredient (this is the standard kneading rule):
 	say "You knead [the noun]. [the holder of the noun].";
 	add TAG_HAND_KNEADED to the ingredient_tags of the noun;
-	attempt to process the holder of the noun by recipe;
 
 Section Kitchen
 
