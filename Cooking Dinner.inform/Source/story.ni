@@ -2,11 +2,11 @@
 
 [ Includes ]
 
-Volume 1 - Setup
+Volume - Setup
 
-Book 1 - Value Definitions
+Book - Value Definitions
 
-Part 1 - Units
+Part - Units
 
 A volume is a kind of value. 1.0 tsp (in US units, in tsp) or 1 teaspoon (in tsp, singular) or 2 teaspoons (in tsp, plural) specifies a volume.
 
@@ -26,29 +26,246 @@ A temperature is a kind of value. 1 degree farenheit (singular) or 2 degrees far
 
 The room temperature is always 70 F.
 
-Part 2 - Ingredients
+Part - Ingredients
 
-An ingredient is a kind of value. The ingredients are defined by the Table of Cooking Ingredients.
+An IngredientInfo is a kind of value. The IngredientInfo are defined by the Table of Ingredient Info.
 
-Table of Cooking Ingredients
-ingredient
-active dry yeast
-all-purpose flour
-bread flour
-cake flour
-raisins
-salt
-water
-white sugar
+Table of Ingredient Info
+ingredient_id	ingredient_name
+id_uninitualized	"UNINITUALIZED INGREDIENT"
+id_flour	"flour"
+id_salt	"salt"
+id_water	"water"
+id_sugar	"sugar"
+id_ady	"active dry yeast"
+id_bread_dough	"bread dough"
+id_risen_dough	"risen dough"
+id_unrisen_dough	"unrisen dough"
+id_shaggy_dough	"shaggy dough"
+id_dry_ingredients	"dry ingredients"
+id_wet_ingredients	"wet ingredients"
+id_loaf_of_bread	"loaf of bread" [ Isn't REALLY an ingredient but ok ]
+
+An IngredientTag is a kind of value. The IngredientTag are defined by the Table of Ingredient Tags.
+
+Table of Ingredient Tags
+ingredient_tag
+TAG_BEATEN
+TAG_COMBINE
+TAG_HAND_KNEADED
+
+An _Ingredient is a kind of thing.
+An _Ingredient has an IngredientInfo called ingredient_info. The ingredient_info of an _Ingredient is usually id_uninitualized.
+An _Ingredient has a text called info_name.
+An _Ingredient has a volume called current_volume. The current_volume of an _Ingredient is usually 1.0 tsp.
+An _Ingredient has a list of IngredientTags called ingredient_tags.
+An _Ingredient has a time called created_at.
+
+To init_ingredient (ingredient - an _Ingredient) with (info - an IngredientInfo) and (volume - a volume):
+	choose the row with ingredient_id of info in the Table of Ingredient Info;
+	now the ingredient_info of the ingredient is the info;
+	now the info_name of the ingredient is the ingredient_name entry;
+	now the current_volume of the ingredient is the volume;
+	now the created_at of the ingredient is the time of day;
+
+Rule for printing the name of an _Ingredient:
+	say "[the info_name] ([current_volume])";
+
+[ TODO: This doesn't work properly with multi-word names - see https://intfiction.org/t/inform-7-changing-the-name-of-an-object/2507 for a possible, if awfully hacky, example. ]
+Understand the info_name property as describing an _Ingredient;
+
+Check taking an _Ingredient: [ TODO: Add column for "solid" or "carryable" to ingredients ]
+	say "Carrying [the info_name] in your hands would be at best messy. Try pouring [the holder of the noun] into a container, or filling a container from the [the holder of the noun].";
+	stop the action.
+
+Chapter - Ingredients Setup
+
+100 _Ingredients are in ingredient_storage.
+
+When play begins:
+	repeat with i running through _Ingredients not in ingredient_storage:
+		init_ingredient i with ingredient_info of i and current_volume of i;
+
+Part - Recipes
+
+A RequiredTransformation is a kind of value. The RequiredTransformation are defined by the Table of Required Transformations.
+
+Table of Required Transformations
+name	duration_min	duration_max	temperature
+REQ_BAKE_450F_20-25	20	25	450
+REQ_RISE_90	80	100	--
+REQ_KNEAD_8	6	10	--
+REQ_COMBINE	--	--	--
+REQ_BEAT	--	--	--
+
+A recipe is a kind of value. The recipes are defined by the Table of Recipes.
+
+Table of Recipes
+name	product	required_ingredient_ids	ratios	required_transformations
+r_lob	id_loaf_of_bread	{ id_bread_dough }	{ 1 }	{ REQ_BAKE_450F_20-25 }
+r_rd	id_risen_dough	{ id_unrisen_dough }	{ 1 }	{ REQ_RISE_90 }
+r_urd	id_unrisen_dough	{ id_shaggy_dough }	{ 1 }	{ REQ_KNEAD_8 }
+r_sd	id_shaggy_dough	{ id_dry_ingredients, id_wet_ingredients }	{ 253, 98 }	{ REQ_COMBINE }
+r_di	id_dry_ingredients	{ id_flour, id_salt }	{ 252, 1 }	--
+r_wi	id_wet_ingredients	{ id_water, id_sugar, id_ady }	{ 96, 1, 1 }	{ REQ_BEAT }
+
+Part - IngredientContainer
+
+An IngredientContainer is a kind of container.
+
+An IngredientContainer is either graduated or ungraduated. An IngredientContainer is usually ungraduated.
+An IngredientContainer has a volume called capacity. The capacity of an IngredientContainer is usually 4 cups.
+An IngredientContainer can be a ingredient_source. An IngredientContainer is usually not an ingredient_source.
+
+Check inserting something into an IngredientContainer (this is the can't put objects an ingredient container rule):
+	say "The [second noun] [hold] only ingredients." instead.
+
+[ TODO: Modify descriptions to fit & graduated/ungraduated ]
+Rule after printing the name of an IngredientContainer (called container) when printing the locale description:
+	let n be the number of things held by the container;
+	if n > 1:
+		say " (containing a mixture of [list of things held by the container])";
+	else if n is 1:
+		say " (containing some [list of things held by the container])";
+	omit contents in listing;
+
+Instead of examining an IngredientContainer (called container):
+	say "[The noun] ";
+	let n be the number of things held by the container;
+	if n is 0:
+		say "is empty.";
+	else if n is 1:
+		say "contains some [list of things held by the container].";
+	else:
+		say "contains a mixture of [list of things held by the container] .";
 
 Book 2 - Verb Definitions
 
-Part 1 - Fill Verb
+Part - Proceess Function
+
+To decide what IngredientInfo is the id of (ing - an _Ingredient) (this is getting the id of):
+	decide on the ingredient_info of ing;
+
+To decide what text is the name of (ing - an _Ingredient) (this is getting the name of):
+	decide on the info_name of ing;
+
+To transform the ingredients of (container - an IngredientContainer) into (new_info - an IngredientInfo):
+	let src_ingredients be the list of things held by the container;
+	let result be a random off-stage _Ingredient;
+	[ Build the new ingredient ]
+	let new_volume be 0 tsp;
+	repeat with i running through src_ingredients:
+		increase new_volume by the current_volume of i;
+	init_ingredient result with new_info and new_volume;
+	[ Physically swap them ]
+	repeat with i running through the src_ingredients:
+		now i is in the ingredient_storage;
+	now result is in the container;
+
+To decide whether (requirement - a RequiredTransformation) with (container - an IngredientContainer) is failed:
+	let success be true;
+	if the requirement is REQ_BEAT:
+		repeat with i running through the list of things held by the container:
+			if TAG_BEATEN is not listed in the ingredient_tags of i:
+				now success is false;
+		[ There's GOT to be a way to reverse truth value, what the hell. http://inform7.com/book/WI_11_5.html doesn't explain and 'not' doesn't work. ]
+	else if the requirement is REQ_COMBINE:
+		repeat with i running through the list of things held by the container:
+			if TAG_COMBINE is not listed in the ingredient_tags of i:
+				now success is false;
+	else if the requirement is REQ_KNEAD_8:
+		repeat with i running through the list of things held by the container:
+			let times_hand_kneaded be 0;
+			repeat with t running through the ingredient_tags of i:
+				if t is TAG_HAND_KNEADED:
+					increase times_hand_kneaded by 1;
+			if times_hand_kneaded is less than 5:
+				now success is false;
+	else if the requirement is REQ_RISE_90:
+		repeat with i running through the list of things held by the container:
+			let done_time be created_at of i + 80 minutes;
+			if done_time is greater than time of day:
+				now success is false;
+	else:
+		now success is false;
+	if success is true:
+		decide on false;
+	else:
+		decide on true;
+
+To attempt to process (container - an IngredientContainer) by recipe:
+	let candidate_ids be getting the id of applied to the list of things held by the container;
+	sort candidate_ids;
+	if there is a product corresponding to required_ingredient_ids of candidate_ids in the Table of Recipes:
+		choose the row with the required_ingredient_ids of candidate_ids in the Table of Recipes;
+		let candidate_names be getting the name of applied to the list of things held by the container;
+		if the required_transformations entry is empty:
+			transform the ingredients of the container into the product entry;
+			[ say "You combined the [candidate_names] to create [the list of things in the container]."; ]
+		else:
+			let success be true;
+			repeat with r running through required_transformations entry:
+				if r with container is failed:
+					now success is false;
+					[ say "Failed to fulfill [r]."; ]
+			if success is true:
+				transform the ingredients of the container into the product entry;
+				[ say "You combined the [candidate_names] to create [the list of things in the container]."; ]
+			[ else:
+				say "Transformation failed."; ]
+	[ else:
+		say "No such combination found for [candidate_ids]."; ]
+
+An every turn rule (this is the transform ingredients in world every turn rule):
+	repeat with c running through the IngredientContainers:
+		if c contains something:
+			attempt to process c by recipe;
+
+Part - Stir/Mix/Combine Verb
+
+To combine is a verb.
+
+Understand "combine [_Ingredient] with/and [_Ingredient]" as combining it with.
+Understand "mix [_Ingredient] with/and [_Ingredient]" as combining it with.
+Understand "stir [_Ingredient] with/and [_Ingredient]" as combining it with.
+
+Combining it with is an action applying to two things. 
+
+Check combining _Ingredient (called left) with _Ingredient (called right) (this is the ingredients must be in same container rule):
+	if the holder of left is not the holder of right:
+		say "The two ingredients have to be in the same container!";
+		stop the action.
+
+Carry out combining it with (this is the standard combining it with rule):
+	try combining ingredients in the container the holder of the noun;
+
+Understand "combine ingredients in [something]" as combining ingredients in the container.
+Understand "mix ingredients in [something]" as combining ingredients in the container.
+Understand "stir ingredients in [something]" as combining ingredients in the container.
+
+Combining ingredients in the container is an action applying to one thing.
+
+Check combining ingredients in the container (this is the can only combine in IngredientContainer rule):
+	if the noun is not an IngredientContainer:
+		say "[the noun] isn't appropriate for combining ingredients in!";
+		stop the action.
+
+Check combining ingredients in the container (this is the can only combine if ingredients present rule):
+	if the list of things held by the noun is empty:
+		say "There are no ingredients in [the noun].";
+		stop the action.
+
+[ TODO: Add failure case! ]
+Carry out combining ingredients in the container (this is the standard combining ingredients in it rule):
+	say "You combine [the list of _Ingredients held by the noun] in [the noun].";
+	repeat with adjacent running through the _Ingredients held by the noun:
+		add TAG_COMBINE to the ingredient_tags of adjacent;
+
+Part - Fill Verb
 
 To fill is a verb.
 
 Understand "fill [something] with/from [something]" as filling it with.
-Understand "fill [something]" as filling it with.
 
 Filling it with is an action applying to two things.
 
@@ -58,7 +275,7 @@ Carry out an actor filling something with something (this is the convert filling
 Rule for supplying a missing second noun while an actor filling (this is the query player for source rule):
 	say "You'll need to specify what to fill [the noun] with."
 
-Part 2 - Pour Verb
+Part - Pour Verb
 
 To pour is a verb.
 
@@ -68,32 +285,31 @@ Understand "empty [something] in/into/with [something]" as pouring it into.
 [ TODO: Discourage the player pouring something into an ingredient source container ]
 
 Pouring it into is an action applying to two things.
-The pouring it into action has a list of ingredients called the ingredients_poured.
+The pouring it into action has a list of _Ingredients called the ingredients_poured.
 The pouring it into action has a list of volumes called the amounts_poured.
 
 Setting action variables for pouring something into something (this is the setting ingredients poured rule):
 	if the noun is an IngredientContainer:
-		now the ingredients_poured is the ingredients_list of the noun.
+		now the ingredients_poured is the list of _Ingredients held by the noun.
 
 Setting action variables for pouring something (called the source) into something (called the target) (this is the setting amounts poured rule):
 	if the source is an IngredientContainer and the target is an IngredientContainer:
 		[ target capacity ]
 		let target_remaining_capacity be capacity of target;
-		repeat with taken_capacity running through volumes_list of the target:
-			decrease target_remaining_capacity by taken_capacity;
+		repeat with held running through the list of _Ingredients held by the target:
+			decrease target_remaining_capacity by the current_volume of held;
 		[ source total ]
 		let source_total_amount be 0 tsp;
-		repeat with v running through volumes_list of the source:
-			increase source_total_amount by v;
+		repeat with poured running through the list of _Ingredients held by the source:
+			increase source_total_amount by current_volume of poured;
 		[ amount poured ]
 		if target_remaining_capacity is greater than the source_total_amount:
-			now the amounts_poured is the volumes_list of the noun;
+			repeat with poured running through the list of _Ingredients held by the source:
+				add current_volume of poured to amounts_poured;
 		otherwise:
-			let new_volumes be a list of volumes;
 			let scalar be target_remaining_capacity / source_total_amount;
-			repeat with v running through volumes_list of the source:
-				add scalar * v to new_volumes;
-			now the amounts_poured is new_volumes;
+			repeat with poured running through the list of _Ingredients held by the source:
+				add scalar * the current_volume of poured to amounts_poured;
 
 [ TODO: can't pour two untouched things rule ]
 
@@ -114,38 +330,51 @@ Check an actor pouring something into something (this is the can't pour somethin
 
 Check an actor pouring something into something (this is the can't pour out of empty containers rule):
 	let total_taken_capacity be 0 tsp;
-	repeat with taken_capacity running through volumes_list of the noun:
-		increase total_taken_capacity by taken_capacity;
+	repeat with held running through the list of _Ingredients held by the noun:
+		increase total_taken_capacity by current_volume of held;
 	if total_taken_capacity is 0 tsp:
 		say "[The noun] [are] empty.";
 		stop the action.
 
 Check an actor pouring something into something (this is the can't pour into a full container rule):
 	let total_taken_capacity be 0 tsp;
-	repeat with taken_capacity running through volumes_list of the second noun:
-		increase total_taken_capacity by taken_capacity;
+	repeat with poured running through the list of _Ingredients held by the second noun:
+		increase total_taken_capacity by current_volume of poured;
 	if total_taken_capacity is the capacity of the second noun:
 		say "[The second noun] [are] full!";
 		stop the action.
 
-test pouring_checks with "pour salt into stand mixer / pour stand mixer into salt / pour salt into salt / x salt / pour salt into 4-cup / x salt / pour salt into 1-cup / x 1-cup"
+Check an actor pouring something into something (this is the ingredient pool not exhausted rule):
+	let new_ingredient be a random off-stage _Ingredient;
+	if new_ingredient is nothing:
+		say "Failed to pour - no remaining ingredients in ingredient pool.";
+		stop the action.
 
-[ TODO: Right now we accumulate 0-quantity ingredients for every type of ingredient that passes through a container, which we should either implement "clean" for, or just make it implicit. ]
+test pouring with "pour shaker into pitcher / x shaker / x pitcher";
+
+[test pouring_checks with "pour salt into stand mixer / pour stand mixer into salt / pour salt into salt / x salt / pour salt into 4-cup / x salt / pour salt into 1-cup / x 1-cup"]
+
 Carry out an actor pouring something (called source) into something (called target) (this is the standard carry out pouring rule):
 	let src_idx be 1;
-	repeat with new_ingredient running through ingredients_poured:
-		let new_volume be the entry src_idx of the amounts_poured;
-		decrease entry src_idx of the volumes_list of the source by the new_volume;
-		if the new_ingredient is listed in the ingredients_list of the target:
-			let tar_idx be 1;
-			repeat with N running through the ingredients_list of the target:
-				if N is the new_ingredient:
-					increase entry tar_idx of the volumes_list of the target by the new_volume;
-					break;
-				increment tar_idx;
+	repeat with poured_ingredient running through ingredients_poured:
+		let poured_volume be the entry src_idx of the amounts_poured;
+		[ Remove the appropriate volume from source container ]
+		decrease current_volume of poured_ingredient by poured_volume;
+		if current_volume of poured_ingredient is 0 tsp:
+			now poured_ingredient is in the ingredient_storage;
+		[ Add the appropriate volume to the target container ]
+		let matching_ingredient be poured_ingredient;
+		repeat with candidate running through the list of _Ingredients held by the target:
+			if ingredient_info of poured_ingredient is ingredient_info of candidate:
+				now matching_ingredient is candidate;
+				break;
+		if matching_ingredient is not poured_ingredient:
+			increase current_volume of matching_ingredient by poured_volume;
 		else:
-			add the new_ingredient to the ingredients_list of the target;
-			add the new_volume to the volumes_list of the target;
+			let new_ingredient be a random off-stage _Ingredient;
+			now new_ingredient is in the target;
+			init_ingredient new_ingredient with ingredient_info of the poured_ingredient and poured_volume;
+		[ Increment loop ]
 		increment src_idx;
 
 Report an actor pouring something (called source) into something (called target) (this is the standard report someone pouring rule):
@@ -154,98 +383,69 @@ Report an actor pouring something (called source) into something (called target)
 	else:
 		say "[The actor] [pour] [the source] into [the target].";
 
-[ For some reason "x 1.5-qt" tells you you can't see any such thing! ]
-test i with "put 1.5-qt on Corian / put 3-qt on Corian / fill 1-tsp with salt / pour 1-tsp into 3-qt / x 3-qt / fill 1-cup with bread flour / pour 1-cup into 3-qt / x 3-qt / pour 3-qt into half-cup / x 3-qt / x half-cup / pour half-cup into 4-cup / x half-cup"
-
-Part 3 - Beat verb
-
-[ We have an issue with "beat" and "knead" - namely, that since we model a roux or a dough as "a list of ingredients" and not "an object" we can't directly beat or knead anything! Can we think of a good way to alias it?
-
-An example might be:
-	> beat water <- you find the ingredient container that has water; however, if there are 2 containers with water, how do we disambiguate?
-	> beat yeast into water <- here we "beat X into Y" - this is basically syntactic sugar on "beat water"
-
-Reflecting further even if we object-ify each ingredient that doesn't solve the problem. The problem is, what if I have one egg in a earthenware bowl and one egg in a plastic bowl, and I say "beat egg"? The only way to disambiguate them is to specify the container! So, we need to set up container-based disambiguation... ]
+Part - Beat verb
 
 To beat is a verb.
 
-Understand "beat [ingredient] with [something]" as beating it by ingredient. Beating it by ingredient is an action applying to one ingredient and one thing.
-The beating it by ingredient action has a list of objects called candidates.
+Understand "beat [_Ingredient]" as beating it with.
+Understand "beat [_Ingredient] with [something]" as beating it with.
+Beating it with is an action applying to two things.
 
-Setting action variables for beating ingredient by ingredient (this is the setting container beat rule):
-	let new_candidates be a list of objects;
-	repeat with container running through IngredientContainers:
-		if container is not ingredient_source:
-			let c_idx be 1;
-			repeat with container_ingredient running through ingredients_list of container:
-				if the ingredient understood is container_ingredient and entry c_idx of volumes_list of container is greater than 0 tsp:
-					add container to new_candidates;
-				increment c_idx;
-	now candidates is new_candidates;
+Rule for supplying a missing second noun while beating:
+	say "You have to specify an implement to beat [the noun] with.";
 
-Check beating ingredient by ingredient (this is the stop if no target rule):
-	if the number of entries in candidates is less than 1:
-		say "No such target TODO text!";
+Carry out beating something (called ingredient) with something (called the beater):
+	let container be the holder of the ingredient;
+	if the container is an IngredientContainer:
+		say "You beat [the list of _Ingredients held by the container] in [the container] with [the beater].";
+		repeat with adjacent running through the _Ingredients held by container:
+			add TAG_BEATEN to the ingredient_tags of adjacent;
+	else:
+		say "You beat [the ingredient] with [the beater]."; 
+		add TAG_BEATEN to the ingredient_tags of the ingredient;
+
+Test beat with "beat water with bottle"; 
+[Test beat with "fill 4-cup from sink / beat asdf / beat water / beat water with mixing spoon / beat 4-cup with mixing spoon / fill 1-cup from sink / beat water"]
+
+Part - Knead verb
+
+To knead is a verb.
+
+Understand "knead [something]" as kneading an ingredient.
+Kneading an ingredient is an action applying to one thing.
+
+Check kneading an ingredient (this is the can only knead ingredients rule):
+	if the noun is not an _Ingredient:
+		say "You can't knead that!";
 		stop the action.
 
-Check beating ingredient by ingredient (this is the stop if too many candidates rule):
-	if the number of entries in candidates is greater than 1:
-		say "There are multiple containers with [the ingredient understood]. Which do you mean, the [candidates]? TODO: Make this actually invoke the 'asking which do you mean' activity, somehow; 'carry out asking which do you mean' will invoke the rule but not populate the options list - figure out how to do that, or...figure out how to restructure completely.";
-		stop the action.
+[ TODO: Restrict kneading to sane ingredients. ]
+[ TODO: Contemplate how to make this work with turning it out onto the countertop. ]
+Carry out kneading an ingredient (this is the standard kneading rule):
+	say "You knead [the noun].";
+	add TAG_HAND_KNEADED to the ingredient_tags of the noun;
 
-Carry out beating ingredient by ingredient (this is the standard beating it by ingredient rule):
-	try beating entry 1 of candidates with the second noun;
+Part - Wait verb
 
-Understand "beat [something] with [something]" as beating it with. Beating it with is an action applying to two things.
+Waiting for a time period is an action applying to one number.
 
-Carry out beating something (called container) with something (called the beater):
-	say "You beat [the container] with [the beater]. TODO: Implement!";
+Understand "wait [a time period]" or "wait for [a time period]" or "wait for a/an [a time period]" or "wait a/an [a time period]" as waiting for a time period.
 
-[ Test beat with "beat water / fill 4-cup from sink / beat water"; ]
-Test beat with "fill 4-cup from sink / beat asdf / beat water / beat water with mixing spoon / beat 4-cup with mixing spoon / fill 1-cup from sink / beat water"
+Check waiting for a time period:
+    if the time understood is greater than two hours, say "That's really quite a long time." instead. 
 
-Part 4 - Mix verb
+Carry out waiting for a time period:
+	let the target time be the time of day plus the time understood;
+	decrease the target time by one minute;
+	while the time of day is not the target time:
+		follow the turn sequence rules.
 
-To mix is a verb.
-
-Part 5 - Knead verb
-
-[ TODO: Kneading! ]
+Report waiting for a time period:
+    say "It is now [time of day + 1 minute]." 
 
 Book 3 - Object Definitions
 
-Part 1 - IngredientContainer
-
-An IngredientContainer is a kind of thing.
-
-An IngredientContainer is either graduated or ungraduated. An IngredientContainer is usually ungraduated.
-An IngredientContainer has a volume called capacity.
-An IngredientContainer has a list of ingredients called ingredients_list.
-An IngredientContainer has a list of volumes called volumes_list.
-An IngredientContainer can be a ingredient_source. An IngredientContainer is usually not an ingredient_source.
-
-Check inserting something into an IngredientContainer (this is the can't put objects an ingredient container rule):
-	say "The [second noun] [hold] only ingredients." instead.
-
-[ TODO: Modify descriptions to fit & graduated/ungraduated ]
-Rule after printing the name of an IngredientContainer when printing the locale description:
-	let n be the number of entries in the ingredients_list of the item described;
-	if n > 1:
-		say " (containing a mixture of [ingredients_list])";
-	else if n is 1:
-		say " (containing some [entry 1 of the ingredients_list of the item described])";
-
-Instead of examining an IngredientContainer:
-	say "[The noun] ";
-	let n be the number of entries in the ingredients_list of the noun;
-	if n is 0:
-		say "is empty.";
-	else if n is 1:
-		say "contains [entry 1 of the volumes_list of the noun] [entry 1 of the ingredients_list of the noun].";
-	else:
-		say "contains a mixture of [ingredients_list of the noun], quantities [volumes_list of the noun] - TODO: reformat.";
-
-Part 2 - StandMixer
+Part - StandMixer
 
 [ Ok, so...if you just write "zero, stir, two..." it will interpret "two" not to mean the string two but the numerical value two, and then throw an error due to mixed string/number types. Hence setting_number. ]
 StandMixerStatus is a kind of value. The StandMixerStatuses are speed 0, stir, speed 2, speed 4, speed 6, speed 8 and speed 10.
@@ -320,7 +520,7 @@ Report setting a StandMixer by StandMixerStatus:
 
 Test stand with "set stand mixer to asdf / set stand mixer to 0 / set stand mixer to zero"
 
-Part 3 - Oven
+Part - Oven
 
 [ Oven states:
 	OFF
@@ -446,7 +646,7 @@ When play begins:
 
 Book 1 - Rooms
 
-A recipe is carried by the player. The description is "Dead-Easy Bread[line break]
+A bread recipe is carried by the player. The description is "Dead-Easy Bread[line break]
 1 1/2 lb (about 5 1/4 cups) all-purpose flour[line break]
 1 tsp salt[line break]
 2 cups water[line break]
@@ -506,7 +706,7 @@ Chapter 1 - West Wall
 
 [ Sink ]
 
-A kitchen sink is in Kitchen. It is fixed in place. It is scenery. It is an IngredientContainer with capacity 8 gallons and ingredients_list {water} and volumes_list {8 gallons}. It is an ingredient_source.
+A kitchen sink is in Kitchen. It is fixed in place. It is scenery. It is an IngredientContainer with capacity 8 gallons. It is an ingredient_source. In it is an _Ingredient with ingredient_info id_water and current_volume 8 gallons.
 
 [ Dish washer ]
 
@@ -564,7 +764,7 @@ A refrigerator is in the kitchen. It is fixed in place. It is scenery. It is a c
 
 Understand "fridge" as refrigerator.
 
-A small active dry yeast bottle is in the refrigerator. It is an IngredientContainer with capacity 4 fl oz and ingredients_list {active dry yeast} and volumes_list {2.4 fl oz}. It is an ingredient_source.
+A small glass bottle is in the refrigerator. It is an IngredientContainer with capacity 4 fl oz. It is an ingredient_source. In it is an _Ingredient with ingredient_info id_ady and current_volume 2.4 fl oz.
 
 Chapter 3 - Drawers
 
@@ -627,21 +827,21 @@ A towel cabinet is in the kitchen. It is fixed in place. It is scenery.
 
 A spice rack is in the kitchen. It is fixed in place. It is scenery.
 
-A 500g cylinder of salt is in the spice rack. It is an IngredientContainer with capacity 30 tbsp and ingredients_list {salt} and volumes_list {19 tbsp}. It is an ingredient_source.
+A 500g cardboard cylinder is in the spice rack. It is an IngredientContainer with capacity 30 tbsp.  In it is an _Ingredient with ingredient_info id_salt and current_volume 19 tbsp. It is an ingredient_source.
 
 [ Pantry ]
 
 A pantry cabinet is in the kitchen. It is fixed in place. It is scenery.
 
-A all-purpose flour bin is in the pantry cabinet. It is an IngredientContainer with capacity 4 quarts and ingredients_list {all-purpose flour} and volumes_list {3.1 quarts}. It is an ingredient_source.
+A all-purpose flour bin is in the pantry cabinet. It is an IngredientContainer with capacity 4 quarts. It is an ingredient_source. In it is an _Ingredient with ingredient_info id_flour and current_volume 3.1 quarts.
 
-A bread flour bin is in the pantry cabinet. It is an IngredientContainer with capacity 4 quarts and ingredients_list {bread flour} and volumes_list {1.4 cups}. It is an ingredient_source.
+[ A bread flour bin is in the pantry cabinet. It is an IngredientContainer with capacity 4 quarts and ingredients_list {bread flour} and volumes_list {1.4 cups}. It is an ingredient_source. ]
 
-A cake flour bin is in the pantry cabinet. It is an IngredientContainer with capacity 4 quarts and ingredients_list {cake flour} and volumes_list {2.7 cups}. It is an ingredient_source.
+[ A cake flour bin is in the pantry cabinet. It is an IngredientContainer with capacity 4 quarts and ingredients_list {cake flour} and volumes_list {2.7 cups}. It is an ingredient_source. ]
 
-A white sugar box is in the pantry cabinet. It is an IngredientContainer with capacity 2.5 cups and ingredients_list {white sugar} and volumes_list {1.9 cups}. It is an ingredient_source.
+A white cardboard box is in the pantry cabinet. It is an IngredientContainer with capacity 2.5 cups. It is an ingredient_source. In it is an _Ingredient with ingredient_info id_sugar and current_volume 1.9 cups.
 
-A raisins bag is in the pantry cabinet. It is an IngredientContainer with capacity 30 fl oz  and ingredients_list {raisins} and volumes_list {22 fl oz}. It is an ingredient_source.
+[ A raisins bag is in the pantry cabinet. It is an IngredientContainer with capacity 30 fl oz. It is an ingredient_source. In it is an _Ingredient with ingredient_info id_raisins and current_volume 22 fl oz. ]
 
 [ Spoon & spatula rack ]
 
