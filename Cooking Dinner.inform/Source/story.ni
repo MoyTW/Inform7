@@ -270,7 +270,10 @@ Understand "fill [something] with/from [something]" as filling it with.
 Filling it with is an action applying to two things.
 
 Carry out an actor filling something with something (this is the convert filling to pouring rule):
-	try the actor pouring the second noun into the noun instead.
+	if the second noun is an _Ingredient:
+		try the actor pouring the holder of the second noun into the noun instead;
+	else:
+		try the actor pouring the second noun into the noun instead.
 
 Rule for supplying a missing second noun while an actor filling (this is the query player for source rule):
 	say "You'll need to specify what to fill [the noun] with."
@@ -279,8 +282,8 @@ Part - Pour Verb
 
 To pour is a verb.
 
-Understand "pour [something] in/into/with [something]" as pouring it into.
-Understand "empty [something] in/into/with [something]" as pouring it into.
+Understand "pour [something] in/into [something]" as pouring it into.
+Understand "empty [something] in/into [something]" as pouring it into.
 
 [ TODO: Discourage the player pouring something into an ingredient source container ]
 
@@ -677,7 +680,7 @@ fill 1-tsp with sugar /
 pour 1-tsp into 4-cup /
 x 4-cup /
 x 3-qt /
-beat 4-cup /
+beat water with mixer bowl /
 pour 3-qt into mixer bowl /
 pour 4-cup into mixer bowl /
 stir mixer bowl /
