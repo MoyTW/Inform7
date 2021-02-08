@@ -71,6 +71,11 @@ To init_ingredient (ingredient - an _Ingredient) with (info - an IngredientInfo)
 Rule for printing the name of an _Ingredient:
 	say "[the info_name] ([current_volume])";
 
+[
+TODO: This fails to comprehend that identically-named objects should be treated as distinct. For example, if you have pour water into a small bowl then pour water into a big bowl, and then `x water`, it will arbitrarily select one (it might be ordered, but that's not really helpful) whereas I'd like it to ask the player to disambiguate. This is kind of an issue with the fact that the objects don't have unique names, but the issue with unique names are that they're extremely unwieldy, and - argh, yeah, it's like, you have four different 'sugar' objects and you don't want to have to write "fill the 4-cup with the sugar in the 1-tsp spoon" because that's awful but there's no way around it at this level of granularity is there...
+Yeah. I don't think you can get around that level of granularity if you're dealing with <ingredient in container>, that's just part of The Deal of going down to that water. You certainly can't get around it with water for your sauce versus water for steaming, for example.
+I think I *could* end up hacking something together - I can very easily change `info_name` to be <name + container name> but then the mere act of "get 1 tsp of sugar into this water" is awful, because you by necessity have to full-name the container! It also means you can't easily do single-word Understand commands because you'd run right into that same issue...
+]
 [ TODO: This doesn't work properly with multi-word names - see https://intfiction.org/t/inform-7-changing-the-name-of-an-object/2507 for a possible, if awfully hacky, example. ]
 Understand the info_name property as describing an _Ingredient;
 
