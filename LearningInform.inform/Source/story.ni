@@ -168,20 +168,20 @@ To attempt to process (container - an IngredientContainer) by recipe:
 		let candidate_names be getting the name of applied to the list of things held by the container;
 		if the required_transformations entry is empty:
 			transform the ingredients of the container into the product entry;
-			say "You combined the [candidate_names] to create [the list of things in the container].";
+			[ say "You combined the [candidate_names] to create [the list of things in the container]."; ]
 		else:
 			let success be true;
 			repeat with r running through required_transformations entry:
 				if r with container is failed:
 					now success is false;
-					say "Failed to fulfill [r].";
+					[ say "Failed to fulfill [r]."; ]
 			if success is true:
 				transform the ingredients of the container into the product entry;
-				say "You combined the [candidate_names] to create [the list of things in the container].";
-			else:
-				say "Transformation failed.";
-	else:
-		say "No such combination found for [candidate_ids].";
+				[ say "You combined the [candidate_names] to create [the list of things in the container]."; ]
+			[ else:
+				say "Transformation failed."; ]
+	[ else:
+		say "No such combination found for [candidate_ids]."; ]
 
 An every turn rule (this is the transform ingredients in world every turn rule):
 	repeat with c running through the IngredientContainers:
@@ -391,6 +391,24 @@ Check kneading an ingredient (this is the can only knead ingredients rule):
 Carry out kneading an ingredient (this is the standard kneading rule):
 	say "You knead [the noun]. [the holder of the noun].";
 	add TAG_HAND_KNEADED to the ingredient_tags of the noun;
+
+Part - Wait verb
+
+Waiting for a time period is an action applying to one number.
+
+Understand "wait [a time period]" or "wait for [a time period]" or "wait for a/an [a time period]" or "wait a/an [a time period]" as waiting for a time period.
+
+Check waiting for a time period:
+    if the time understood is greater than two hours, say "That's really quite a long time." instead. 
+
+Carry out waiting for a time period:
+	let the target time be the time of day plus the time understood;
+	decrease the target time by one minute;
+	while the time of day is not the target time:
+		follow the turn sequence rules.
+
+Report waiting for a time period:
+    say "It is now [time of day + 1 minute]." 
 
 Section Kitchen
 
