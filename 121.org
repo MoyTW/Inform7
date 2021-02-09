@@ -1,0 +1,82 @@
+* Concept: Waiting for Godot
+
+Actually bears no resemblence to Waiting for Godot.
+
+A game where you're tasked with waiting in an area for the return of a
+Goddess. Vaguely inspired by Sharess, but the exact nature of the thing that
+you're waiting for isn't important, only that:
+
+1. The waiting will take a long time
+2. It may end early
+3. There's a set (incredibly long) end date
+
+Other important points:
++ You are not alone
+  - Everybody you're with is fundamentally static, though dynamic in micro scale
++ You have no physical needs that are unaccounted for in your waiting place
++ You cannot trivially leave
+  - There is some way to leave, but it requires unequivocally burning down your
+    duty
++ The majority of the game does not involve leaving, or trying to leave
+  - It mostly has to do with interacting with the others in the area
+
+Ideas:
++ you are all clay golems or some other solid, but mutable beings? such that
+  different members of your group will be able to mostly appear or mimic each
+  other
+  - kinda like Brain Dead quest, or...Anomalisa, or something
+  - could also just make everything mannequin-like and define entirely through
+    clothes and voice, I mean, basically the same thing as above
+
+* Concept: Roman Slave
+
+Childhood & growing up as a Roman slave.
+
+That seems possibly...too edgelord, even though it's not actually edgelord at
+all, but, like, the concept written out seems edgelord-ish. Anyways it'd be
+mid-Imperial, at least it wouldn't be the slave firehose of the Republic, and
+it'd be prooobably domestic in large familias. Easier sourcing and also less
+depressing.
+
+Also manumission will be an option.
+
+Research-heavy.
+
+* Concept: Roman Camp Follower / Army Town
+
+Similar, but in a camp follower/army town, and also not a slave. Much less
+edgelord-y but possibly just as stressful. Would probably be early Imperial; see
+Roman Woman for a general template.
+
+Research-heavy.
+
+* Concept: Otome + Villainess
+
+Synopsys: you play an otome game inside a parser game, and then you get isekai's
+into the game as a villainess
+
+this is the dumbest idea ever and I LOVE IT though it's a big ask
+
+Technically speaking this requires the author to write two games, essentially,
+which is pretty high-effort. Also it has to be, like, good? which seems hard,
+tbh. real hard.
+
+kind of a shitpost tbh
+
+* Concept: Starship vacations
+
+You are a starship, you're taking a vacation with some friends. Gameplay
+consists of planning, voting on, and visiting interesting new civilizations. You
+can mess with them with your sufficiently advanced technology but if you mess
+with them too much the Tourism Board sends the Tourism Police after you. Messing
+with them in inventive ways gives you Likes though.
+
+Honestly this gang of hyper-advanced spaceship tourists seems like a real buncha
+work described that way; gotta workship it so they're not that.
+
+Game loop would be something like:
+
+1. discuss/vote on where to go
+2. go and do the stuff
+3. talk to other tourists
+4. goto 1
